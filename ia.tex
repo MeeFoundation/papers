@@ -3,12 +3,13 @@
 
 \geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
 %\geometry{landscape}                		% Activate for rotated page geometry
-\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage[parfill]{parskip}    			% Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
+								% TeX will automatically convert eps --> pdf in pdflatex
 \usepackage{amssymb}
 
 \usepackage{hyperref} 				% you need this package
+\usepackage{pifont}					% for \ding
 
 % Make clickable footnote
 \newcommand{\hyperfootnote}[1][]{\def\ArgI{{#1}}\hyperfootnoteRelay}
@@ -35,50 +36,81 @@
 
 \begin{document}
 \maketitle
-%\abstract{foo}
+
 \section{Power Asymmetry}
-While the internet has brought an explosion of new services to billions of users, there is room for improvement. Specifically, we focus on the power asymmetry between users and the digital service providers regarding the user's digital identity and personal data. People lack control (i.e. power) over what they refer to as their \emph{own} data. 
+While the emergence of the internet brought new services and experience to billions of users, a power asymmetry has developed between the digital service providers and their user regarding these users' digital identities and personal data. Providers have accumulated power compared to users who have lost power (control) over their own identities and data. 
 
-In order to reinforce that we're talking about power relations, we use the term \emph{computational power} to refer to software that works (i.e. provides agency) "on the user's side" for, and \emph{exclusively} on behalf of, the user. 
+This was unintentional from a design point of view. The internet's designers preferred decentralized architectures that push computation and storage to the edge and minimize centralized control wherever possible. However, economic factors, including so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have contributed to  concentrations of power on the provider side. 
 
-\subsection{Autonomy}
+Efforts to ``re-decentralize the web"[reference needed], and focus on decentralized, p2p architectures have arisen. [insert references to other, related efforts like ProjectVRM]. This concept of identity agents runs parallel to these trends.
 
-\emph{Independence}. Unlike the real world, we have no independent identity online. It could be said that we have no \emph{digital embodiment}\footnote{P. Windley, Personal communication, Sepember 2022}. The online identities we do have are provided to us by digital service providers (e.g. a Facebook identity, or an Amazon account) and thus we don't have  \emph{self-sovereign identities} [add reference to Drummond's book] 
+To reinforce our focus on power relationships, we use the term \emph{computational power} to refer to software tools that work (i.e. provide agency) ``on the user's side" for, and \emph{exclusively} on behalf of, the user. We are not talking about whether the average user's phones and laptops have sufficient computational power; they do. We're saying that this raw computational power and storage is not leveraged by tools that push back on app provider's power, and engage digitally and automatically to empower the user to better manage their relationships with providers on terms more beneficial to them. Since our discussion applies equally provider's mobile apps, webapps, and websites, we simply use the term \emph{app} to refer to all of them.
 
-\emph{Portability}. Providers have our data and as a result, we are held hostage. As Tim Berners-Lee has recently said, "We are locked into platforms that hold our data" [need to check and get reference]. Data portability remains more of an aspiration than a reality.
+Power asymmetry lies at the root of a diverse set of related symptoms, most of which erode privacy, since privacy and power are highly interrelated concepts\footnote{Consider the title of C. Veliz's recent book, ``Privacy is Power"[cite]}. 
+These privacy eroding symptoms include a lack of personal autonomy, a lack of personal agency, and third-party surveillance.
 
-\emph{Trust}. In the offline world you can autonomously present you drivers license to a wine seller to prove you exceed the minimum drinking age. The wine seller trusts the issuer of the license, not you. There is no standard way to do the same thing online. Further, the interaction is privacy respecting because the presentation event is never learned of by the issue. Although there are domain-specific exceptions (e.g. cryptocurrency), online there is no common, generalized way for you to prove something about yourself as stated by one party about you, to another party.
+\subsection{Lack of Autonomy}
+
+\begin{quote}
+\textbf{au\tiny \ding{108}\normalsize ton\tiny \ding{108}\normalsize o\tiny \ding{108}\normalsize my}: \emph{freedom from external control or influence; independence.}\hyperfootnote[][https://]{languages.oup.com/google-dictionary-en/}
+\end{quote}
+
+\emph{Independence}. In the physical world each of us is a separate, independent entity. Each of us has a self that embodies our individuality. We ``bring" that independent selfness to interactions with others, with vendors, etc. while understanding that this independence is not absolute--we are still to some extent dependent on common, shared systems, laws, environments, and so on. The same cannot be said for our life online where Phil Windley has expressed by saying that "we have no \emph{digital embodiment}\footnote{Phil Windley, personal communication, Sepember 2022}."  Online our identities are provided to us by digital service providers (e.g. in the form of a Facebook identity, or an Amazon account). Without them we don't exist. Anyone who has been banned from a platform, or uses a platform that is shut down is sharply reminded that their digital identity exists at the pleasure of that platform. Our provisional existence is the original power asymmetry. Efforts create personal datastores or even more to the point those that strive to provide each of us a \emph{self-sovereign identity}\cite{Preukschat2021} are squarely aimed at addressing this issue--the word ``sovereignty" certainly evokes power.
+
+\emph{Autonomous data}. Our personal data is collected and held by businesses (first-parties) as we interact with their apps, not by us. This pattern \emph{app-held data} is such a common pattern that it's hard to imagine an alternative. Our data is not ``free from external control" by apps, because it is generally stored and managed by them.
+
+Our data is also collected and held by third-parties (e.g. data brokers) with whom we have no interactions at all. In short, it's been said that \hyperfootnote[“everybody has our data … except us.”][https://]{reb00ted.org/personaldata/20210620-who-has-my-personal-data/}. 
+
+An alternative approach is \emph{user-held} data\cite{Jurcys2021}, where your data is held by you in a personal datastore)\footnote{Examples of open-source personal datastores include \url{https://solidproject.org}, Decentralized Web Nodes(DWN). For more about PDSes see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. 
+
+\emph{Lock-in}. As we've just mentioned our online existence is provisional, but beyond that it is also bound to the platform that originated it. Providers hold our data, and even if they are willing to allow us access (e.g. to download a copy), we lack the ability to accept the data stream, a personal datastore to hold it, and the ability to transform it into other formats and schemas so as to be usable in other contexts. Our lack of agency in these areas results in our data being held hostage, i.e. without autonomy. As Tim Berners-Lee has recently said, "We are locked into platforms that hold our data" [need to check and get reference]. 
+
+[No ability to communicate with others peer-to-peer without relying on an intermediary]
+
+\subsection{Lack of agency}
+
+\begin{quote}
+\textbf{a\tiny \ding{108}\normalsize gen\tiny \ding{108}\normalsize cy}: \emph{the capacity, condition, or state of acting or of exerting power} \hyperfootnote[][https://]{www.merriam-webster.com/dictionary/agency}
+\end{quote}
+
+\emph{Wielding credentials}. In the offline world you can autonomously present you drivers license to a wine seller to prove you exceed the minimum drinking age. The wine seller trusts the issuer of the license, not you. This interaction could be described as ``wielding" a trust credential. By contrast, there is no standard way to do the same thing online. Further, the interaction is privacy-respecting because the presentation interaction is never disclosed to the issuer. Although there are domain-specific exceptions (e.g. cryptocurrency), there is no common, generalized, online method for you to prove something about yourself as stated by one party about you, to another party.
+
+\emph{Porting Data}. [analogous to wielding credentials, discuss porting identity and data from one app to another]
 
 \emph{Delegation}. In the offline world one entity can grant access to some resource to another entity. For example, I could give my car keys to a friend so they could borrow my car. There is no standard, or secure way to do this online. This is especially problematic in healthcare scenarios where a caregiver needs to gain access to electronic health-related data about another person.
 
-\subsection{First-parties}
+\subsubsection{Lack of agency with first-parties}
 
-When we create an account on a provider's app/site, we are creating a relationship with the provider as a first-party. There are several power asymmetries in this relationship.
+When we create an account on a provider's app, we are creating a relationship with the provider as a first-party. There are several power asymmetries in this relationship.
 
-\emph{Provider-defined Privacy Policies}. Users of a provider's site/app are given the option to review the privacy policies dictated by the provider. The policy's purpose is mostly to protect the provider's interests. The extent to which it protects the user's interest is determined by the regulatory regime they are under, and their degree of adherence to it. In practice the user doesn't have the time to read an average of 100+ policies for the providers they use because they lack computational power on their side to make sense of them. 
+\emph{Provider-defined Privacy Policies}. Users are given the option to review the privacy policies put forth by the provider, policies which are designed to protect the provider's interests while staying within the limits defined by the relevant privacy regulations. The burden of making sense of these policies is shifted to the user (i.e. the potential victim) because the user doesn't have the time to read 100+ policies for the providers they typically use, nor do they have the computational power on their side to aid them in this assessment. 
 
-\emph{User-defined Privacy Policies}. With the notable exception of the Global Privacy Control, users generally lack the computational power 
+\emph{User-defined Privacy Policies}. With the notable exceptions, (e.g. the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org}), users  lack the technical means (i.e. computational power) to express their privacy terms to providers.
 
-\emph{User Rights}. More problematic still, is that even when the privacy laws state that the user has rights, for example to access, correct and delete their data the user lacks computational power on their side to exercise these rights. Today the user has to send written requests to get their data, request that it by updated or deleted, etc. None of this is practical because it is too burdensome on the user. Without this power on the users side, users live in doubt and fear as to whether providers will use their data against their interests, share their data with third-parties.
+\emph{User Rights}. Even when the privacy laws state that the user has rights, (e.g. the right to access, correct and delete their data), they lack software tools (computational power) to exercise these rights. Today the user has to send written requests to get their data, request that it by updated or deleted, etc. None of this is practical because too burdensome on the user. Without these tools, users live in doubt and fear as to whether providers will use their data against their interests, share their data with third-parties.
 
-\emph{Inferences}. [page 66 of Zucked "Eli Pariser need to give users control of their bubble (interests profile)]
+\emph{Inferences}. "Eli Pariser need to give users control of their bubble" check this quote\cite[p66]{McNamee2020}(interests profile)
 
-\subsection{Third-parties and surveillance}
+\emph{Feudalism}. [You (as a peasant) work the fields, the landlord owns them and amass fortunes; mentions of Jared's and others AI injustice about who owns the work. Jared Lanier, etc.]
 
-\emph{Third-party tracking}. Whereas the user is at least aware when they sign up at a first-party site/app that their on-site interactions are known to the provider of that site/app, there are hundreds of third-parties that the user isn't even aware of that track the user, and assemble databases about us. These databases create privacy risks and vulnerabilities. We have little transparency into what's being gathered, where it's being shared and how it's being used. Much of this third-party tracking is enabled by the first-parties for economic reasons (e.g. first-parties placing dozens of third-party tracking cookies on the user's browser).
+\subsection{Third-party surveillance}
 
-\emph{Surveillance-based targeted advertising}. In general, targeted advertising involves four steps: (1) collection of observations about the user by a first- or third-party, (2) synthesis of an "ad profile” from these observations, (3) matching this ad profile against available "target audiences”(i.e. characteristics of whom the advertiser wishes to reach, advertising budget, etc.) from advertisers through a bidding process, and (4) displaying the winning ad. Surveillance-based targeted advertising when step (1) is achieved through third-party tracking as described above. The third-party vendors have the power to perform the tracking and synthesis of a user's "ad profile", and since the user lacks this computational power on their side there is no alternative. Users have no say in their own ad profiles--never seeing them and never with the ability to correct them.
+Surveillance by third-parties is rampant on the internet. [why? weak privacy laws? lack of enforcement?]
+
+\emph{Third-party surveillance}. Whereas the user is at least aware when they sign up on a first-party app that their interactions are known to the provider of that app, there are hundreds of third-parties of which the user is unaware that track and assemble databases about them. Databases of user data in the hands of hundreds of unknown third-parties creates privacy risks and vulnerabilities. Users have little transparency into what's being gathered, where it's being shared and how it's being used. Note that much of this third-party tracking is enabled by the first-parties, for the first-party's own economic reasons (e.g. first-parties placing dozens of third-party tracking cookies on the user's browser).
+
+\emph{Surveillance-based targeted advertising}. Targeted advertising involves four steps: (1) collection of observations about the user by a first- or third-party, (2) synthesis of an "ad profile” from these observations, (3) matching this ad profile against available "target audiences”(i.e. characteristics of whom the advertiser wishes to reach, advertising budget, etc.) from advertisers through a bidding process, and (4) displaying the winning ad. Surveillance-based targeted advertising when step (1) is achieved through third-party tracking as described above. The third-party vendors have the power to perform the tracking and synthesis of a user's "ad profile", and since the user lacks this computational power on their side there is no alternative. Users have no say in their own ad profiles--never seeing them and never with the ability to correct them.
 
 \emph{Data brokers}. Data brokers who buy and sell personal data to other brokers, to advertisers, adtech firms and first-party publishers provide liquidity (along with a host of privacy threats) in the personal data shadow marketplace because user's lack the computational power to provide data about themselves.
 
-\subsection{Convenience}
-The prevailing architecture of the internet wherein each provider manages their own separate "silo" of information about you (i.e. your account) not only has all the challenges just mentioned. But the lack of computational power on the user's side also creates several inconveniences for the user.
+\subsection{Lack of Convenience}
+The prevailing architecture of the internet involves each provider managing their own  information ``silo" of information about the user (i.e. their account). This approach and the lack of computational power on the user's side creates inconvenience for them that is described below.
 
-\emph{Repetition}. Endless repetition as you fill in forms
+\emph{Repetition}. When using apps, users ")are often asked to provide information about themselves that another app has already asked them such as ``what is your email address?" This is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The user has the hassle of repeated data entry, the app has increased friction (a worsened user experience).
 
-\emph{Password management}. The average user has over 100 site and 25 apps in daily use. Managing passwords at each is realistically impossible without an automated password manager (computational power). 
+\emph{Password management}. The average user uses 100 websites and 25 apps daily. Managing and periodically updating strong, unique passwords at each is  impractical without an automated password manager (computational power), yet it has been estimated that less than 5 percent of internet users use a password manager. 
 
-\emph{Account Management}. The user has the inconvenient burden of maintaining their account information at100+ silos. Even just updating contact or credit card information at dozens of sites without computational power on the user's side, this is tedious and time-consuming and encourages the user to spend more time at a smaller number of larger mega-sites.
+\emph{Account Management}. The user has the inconvenient burden of maintaining the timeliness and consistency of their account information at over one hundred apps. For example, updating contact or credit card information at each is tedious, time-consuming and encourages the user to spend more time at sites that already have their information. The relative convenience of shopping on Amazon vs. another e-commerce site. It is partially caused by the user's lack of computational power to manage these relationships--the processes are not automated and tedious.
 
 \section{Design Considerations}
 Our vision is to develop an identity agent to address the problems outlined in the previous section. This agent  can represent the user and promote their interests online. In this section, we discuss a number of design considerations for this agent illustrating the each with use cases.
@@ -149,18 +181,19 @@ Talk here about the need for an entity to audit and enforce compliance with the 
 \subsection{Privacy by design}
 
 \section{Architecture}
+In this section we describe a proposed architecture for an identity agent.
 
 \subsection{Agent}
 
-The Mee architecture follows a decentralized, layered architecture shown below. We describe this archicture by considering a user, Alice, with her own device (e.g. a smart phone) as well as three other parties (OPs): a provider's website, a provider's local app, and another user, Bob's, agent:
+The agent architecture follows a decentralized, layered architecture shown below. We illustrate this architecture by considering a user, Alice, with her own device (e.g. a smart phone) as well as three Other Parties (OPs): a provider's website, a provider's local app, and another user Bob's agent:
 
 \includegraphics[width=\textwidth]{./images/architecture.png}
 
 \subsubsection{Application layer}
 
-Mee-compatible applications in the application layer may be service provider websites ("Provider's Website" above), other user's agents running on their own devices ("Bob's Agent"), or a service provider's local app running on Alice's device ("Provider's Local App"). Alice's agent appears to other users' agents as an app. The component supporting this on Alice's side is called the Agent Facade.
+Compatible applications in the application layer may be service provider websites (``Provider's Website" above), other user's agents running on their own devices (``Bob's Agent"), or a service provider's local app running on Alice's device (``Provider's Local App"). Alice's agent appears to other users' agents as an app. The component supporting this on Alice's side is called the Agent Facade.
 
-\subsubsection{Identity Agent UI Layer}
+\subsubsection{Identity agent UI layer}
 
 Alice's identity agent is deployed as an app on Alice's device. The top of layer of the agent is the UI layer that provides Alice with data management features to connect with apps/sites and manage her data. This UI allows her to inspect and in some cases edit each of the partial representations of her in each connection's context(s). 
 
@@ -168,7 +201,7 @@ Alice's identity agent is deployed as an app on Alice's device. The top of layer
 
 The delegation layer handles requests for access to data from Alice's agent, local apps, remote apps, and other users' agents. In response to these requests, Alice's authorization server grants or revokes access to data in the context data storage layer. 
 
-\subsubsection{Storage Layer}
+\subsubsection{Storage layer}
 
 The data access and replication component provides data access (as controlled by authorization server above it) to the data in each of Alice's contexts. It manages the replication of changes to the data in one of Alice's contexts both (i) between the corresponding app and Alice's agent as well as (ii) among Alice's edge devices (phone, tablet, laptop, etc.).
 

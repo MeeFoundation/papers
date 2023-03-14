@@ -1,9 +1,26 @@
 \begin{thebibliography}{1}
 
+\bibitem{Jurcys2021}
+Paulius Jurcys, Christopher Donewald, Mark Fenwick, Markus Lampinen, Vytautas
+  Nekrošius, and Andrius Smaliukas.
+\newblock Ownership of user-held data: Why property law is the right approach.
+\newblock {\em JOLT}, 2021.
+
 \bibitem{Kirkpatrick2011}
 David Kirkpatrick.
 \newblock {\em The Facebook effect: The inside story of the company that is
   connecting the world}.
 \newblock Simon and Schuster, 2011.
+
+\bibitem{McNamee2020}
+Roger McNamee.
+\newblock {\em Zucked: Waking up to the Facebook catastrophe}.
+\newblock Penguin, 2020.
+
+\bibitem{Preukschat2021}
+Alex Preukschat and Drummond Reed.
+\newblock {\em Self-sovereign identity: decentralized digital identity and
+  verifiable credentials}.
+\newblock Simon and Schuster, 2021.
 
 \end{thebibliography}
