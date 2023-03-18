@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{Finley2017}
+Klint Finley.
+\newblock Tim berners-lee, inventor of the web, plots a radical overhaul of his
+  creation | wired.
+\newblock {\em Wired.com}, 4 2017.
+
 \bibitem{Jurcys2021}
 Paulius Jurcys, Christopher Donewald, Mark Fenwick, Markus Lampinen, Vytautas
   Nekrošius, and Andrius Smaliukas.
@@ -12,6 +18,11 @@ David Kirkpatrick.
   connecting the world}.
 \newblock Simon and Schuster, 2011.
 
+\bibitem{Kleppmann2019}
+Martin Kleppmann, Adam Wiggins, Peter~Van Hardenberg, and Mark McGranaghan.
+\newblock Local-first software: you own your data, in spite of the cloud.
+\newblock pages 154--178, 2019.
+
 \bibitem{McNamee2020}
 Roger McNamee.
 \newblock {\em Zucked: Waking up to the Facebook catastrophe}.
@@ -22,5 +33,11 @@ Alex Preukschat and Drummond Reed.
 \newblock {\em Self-sovereign identity: decentralized digital identity and
   verifiable credentials}.
 \newblock Simon and Schuster, 2021.
+
+\bibitem{veliz2020}
+Carissa Véliz.
+\newblock {\em Privacy is Power: Why and how You Should Take Back Control of
+  Your Data}.
+\newblock Random House, 2020.
 
 \end{thebibliography}
