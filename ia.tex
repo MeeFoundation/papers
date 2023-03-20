@@ -172,33 +172,34 @@ Once data is shared from the agent to a first-party there are no technical means
 
 \subsection{User rights}
 
-[Talk about how even the best privacy legislation is impotent in practice to protect users because they don't require associated technical means to implement them]
+[to be written: even the best privacy legislation is impotent in practice to protect users because they don't require associated technical means to implement them]
 
 \subsection{Enforcement}
 
-Talk here about the need for an entity to audit and enforce compliance with the legal contract]
+[to-be-written: Talk here about the need for an entity to audit and enforce compliance with the legal contract]
 
 \subsection{Privacy by design}
+[to-be-written]
 
 \section{Identity Agents} %SECTION
 
 \subsection{End-user perspective}
-An \emph{identity agent} is an app that gives the user more control (power) over their own personal information as they interact with websites, mobile apps, and other user's agents. It does this through a combination of technical and legal mechanisms.
+An \emph{identity agent} is an app that gives the user control (power) over their own personal information as they interact with websites, mobile apps, and other user's agents. It does this through a combination of technical and legal mechanisms.
 
-\subsubsection{Privacy and Autonomy}. 
-The agent runs on the user's edge devices (mobile phone, laptop, etc.) where it holds, entirely under the user's control, a local, private database of the user's personal information. When an app/site wants to know something about the user, the agent shares as much or as little as the user chooses. If an app/site signs the Mee Human Information License and thereby becomes "Mee-certified", the legal entity behind that app/site becomes obligated to (a) require explicit consent for collection, processing, storage and sharing of the users data and (b) must implement APIs to exercise the user's rights to access, correct and delete the user's personal information. We envision that someday agents could provide ad profiles to Mee-certified publisher websites that are supported by interest-based advertising while eliminating the need for surveillance by third-parties.
+\subsubsection{Privacy and Autonomy} 
+The agent runs on the user's edge devices (mobile phone, laptop, etc.) where, entirely under the user's control, it holds a local, private database of the user's personal information. When an app/site wants to know something about the user, the agent shares as much or as little as the user chooses. If an app/site signs a Human Information License and thereby becomes \emph{certified}, the legal entity behind that app/site is thereby obligated to (i) require explicit consent for collection, processing, storage and sharing of the users data and to (ii) implement APIs to exercise the user's rights to access, correct and delete the user's personal information. We envision that agents could provide ad profiles to certified publisher websites that are supported by interest-based advertising while eliminating the need for surveillance by third-parties.
 
-\subsubsection{Convenience}. 
-Although the agent is an interactive application, it operates in the background most of the time. Always working soley in the user's interest, it collects information from sites that already hold their data, and shares it with other sites that need it. Our vision is that that the user *never has to repeat themself* (nor remember passwords!) as they move from app to app and site to site across the internet.
+\subsubsection{Convenience}
+Although the agent is an interactive application, it operates in the background most of the time. Always working solely in the user's interest, it collects information from sites that already hold their data, and shares it with other sites that need it. Our vision is that that the user *never has to repeat themself* (nor remember passwords!) as they move from app to app and site to site across the internet.
 
-Here are a few examples. If a site wanted to know the user's email address it might ask for it in a web form. In this case the agent would use it's form-filler "protocol" to fill in the value. If the site supports password-less sign-in (e.g. using OpenID Connect) the agent acts as the identity provider. If a site needed a digital driver's license credential, the agent acts as a digital wallet and presents this credential that it had presumably downloaded earlier from an issuing site. In these different examples, different protocols for information sharing are required, and in the interest of convenience, the agent should support all of them.
+Here are a few examples. If a site wanted to know the user's email address it might ask for it in a web form. In this case the agent would use it's form-filler ``protocol" to fill in the value. If the site supports password-less sign-in (e.g. using OpenID Connect) the agent acts as the identity provider. If a site needed a digital driver's license credential, the agent acts as a digital wallet and presents this credential that it had presumably downloaded earlier from an issuing site. In these different examples, different protocols for information sharing are required, and in the interest of convenience, the agent should support all of them.
 
 \subsection{Self and contexts}
 The agent represents both the user's \emph{selfness} and \emph{whonesses}.
 
-The selfness of the user is held in a data container called the *self*. The contents of the self are holistic and therefore quite sensitive. For this reason they would normally not be shared in a direct or comprehensive form with others. The user's self is the point of integration across contexts each of which may be from differing identity systems. 
+The selfness of the user is held in a data container called the \emph{self}. The contents of the self are holistic and therefore quite sensitive. For this reason they would normally not be shared in a direct or comprehensive form with others. The user's self is the point of integration across contexts each of which may be from differing identity systems. 
 
-Each context is represented by a *context* data container. A directed *correlation* link points from an entity in the self to the entities representing the user in each context. To ensure privacy only the user knows that each of these separate contexts contain representations of them. Each context represents an interaction via some communications protocol with an external app, website or agent. 
+Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the user in each context. To ensure privacy only the user knows that each of these separate contexts contain representations of them. Each context represents an interaction via some communications protocol with an external app, website or agent. 
 
 We can illustrate these concepts with a simple example. A user might play a game on a gaming site using the id DevilSpawn666, while communicating on Twitter as @alicewalker and subscribing to the New York Times as alice.walker@gmail.com. Here's a simplified view of how this is represented:
 
@@ -241,9 +242,9 @@ Here is a summary of the functionality of an example agent.
 
 \begin{itemize}
 \item \textbf{Authorization Server}: GNAP AS
-\item \textbf{Replication}: auto merge of transactions
-\item \textbf{Messaging}: agent-to-agent and agent-to-provider
-\item \textbf{Storage}: local context datastore - Data is stored according to shared or app-specific schema. In some contexts this local data is authoritative whereas in other cases it is a copy of externally managed context data.  
+\item \textbf{Replication}: synchronization of context state across the user's set of agents
+\item \textbf{Messaging}: communications among members of the user's set of agents
+\item \textbf{Storage}: local data storage for contexts  
 \end{itemize}
 
 \subsection{Architecture}
@@ -264,22 +265,32 @@ The \hyperfootnote[GNAP][https://]{oauth.net/gnap/} Authorization Server (AS) re
 
 The Data Access and Replication component has two responsibilities. First, it provides an abstraction layer performing schema mapping such that the UI layer with which it is integrated has read/write access to context data in an abstract, universal schema. This is the ``data access" responsibility. The second responsibility is to manage the replication of data within Alice's context datastores across all of Alice's devices (phone, tablet, laptop, etc.). 
 
-Below the Data Access and Replication component lie a set of datastores each using its own datastorage technology to hold one or more context datastores. Each context datastore holds a contextualized representation of Alice as defined, created and managed by apps/sites. The diagram above shows three local context datastores on Alice's device and one, the Med Lab app's context datastore, which is not replicated on Alice's local device (perhaps because its data set is too large for Alice's device).
+Below the Data Access and Replication component lie a set of datastores each using its own datastorage technology to hold one or more contexts (data containers). Each context holds a contextualized representation of Alice as defined (as to schema) and created and managed by apps/sites. The diagram above shows three local contexts on Alice's device and one, the Med Lab app's context, which is not replicated on Alice's local device (perhaps because its data set is too large for Alice's device).
 
-In this example, Bob's agent is accessing a context datastore called ``Alice@Bob" as managed by datastore 1. Provider's Local App is accessing a context datastore called ``Alice@Local App" that is also managed by datastore 1.  An external Provider's Website is accessing a context datastore called ``Alice@ProviderSite" that is managed by datastore 2. 
+In this example, Bob's agent is accessing a context called ``Alice@Bob" as managed by datastore 1. Provider's Local App is accessing a context called ``Alice@Local App" that is also managed by datastore 1.  An external Provider's Website is accessing a context called ``Alice@ProviderSite" that is managed by datastore 2. 
 
-\subsection{Applications}
+\section{Applications}
 
-We now consider how applications interact with the agent. The diagram below shows Alice's agent from above with the addition of a local and a remote application layer. 
+We now consider how an identity agent interacts with applications. The diagram below shows Alice's agent from the previous section with the addition of a local as well as a remote application layer. 
+
+\subsection{Interactions with apps/sites}
 
 The local application layer contains applications that run on the same device as Alice's agent. The digram shows one such application labelled ``Provider's Local App". The remote application layer contains applications that run on systems and devices external to Alice's device. Two examples are shown. The first is Bob's Agent which appears to Alice as an app (just as Alice's agent appears as an app to Bob's agent). The second is a website labeled ``Provider's Website". 
+
+The first step setting up a connection with a provider's app/site is for the app/site to authenticate the user's agent. We propose that the app/site implement the \hyperfootnote[OpenID SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html} for this purpose.
 
 \includegraphics[width=\textwidth]{./images/applications.png}
 
 \subsection{Private data sharing}
+Data collected and held by the user's agent is clearly under the user's control. But data that they have shared with another party also needs to be under their control. We call this \emph{private data sharing}. Since no technical means exist to control data transferred to another party, legal means must be used instead. The legal mechanism we propose is a ``Human Information License" (HIL) contract between two parties. The first is the digital service provider legal entity behind a given app/site. The second is a legal entity, likely a nonprofit, that represents agent users. For more details see the ``Human Information License" section.
 
-Agents need to be able to bidirectionally share personal information with other parties in order to respect the user's data rights to access, correction (editing), and deletion of the information held by this party. The other party must respect these rights in order to become certified under the terms of the Mee Human Information License. To do so they must support the private data sharing communication protocols implemented by the agent. For authentication purposes the other party must implement the \hyperfootnote[OpenID SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html}. For bi-directional data sharing alternatives are currently being discussed.
+The HIL imposes a number of obligations of the provider. Among them is the provider's requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The user may have shared information manually (e.g. by filling in a form, or other kinds of interactions) or online from their agent. The HIL requires the provider to implement \emph{data rights} APIs/protocols that an agent can use to remotely control this collected data.
+
+These data rights APIs/protocols are an are of active research.  
     
+\section{Human Information License}
+[to be written]
+
 \section{Contributors}
 Contributors to this document include Alexander Yuhimenko, Sergey Kucherenko, Kiril Khalitov.   
 

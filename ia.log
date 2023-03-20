@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.26)  19 MAR 2023 19:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.26)  19 MAR 2023 23:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -355,7 +355,7 @@ Overfull \hbox (4.80211pt too wide) in paragraph at lines 149--150
 is an ex-am-ple of a lack of integrity"[[]].
  []
 
-<./images/selfness-and-whoness-larger.png, id=281, 725.71124pt x 408.52625pt>
+<./images/selfness-and-whoness-larger.png, id=289, 725.71124pt x 408.52625pt>
 File: ./images/selfness-and-whoness-larger.png Graphic file (type png)
 <use ./images/selfness-and-whoness-larger.png>
 Package pdftex.def Info: ./images/selfness-and-whoness-larger.png  used on inpu
@@ -367,73 +367,73 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 163--164
  []
 
 [8] [9 <./images/selfness-and-whoness-larger.png>] [10]
-<./images/example1.png, id=301, 714.38895pt x 182.48175pt>
+<./images/example1.png, id=309, 714.38895pt x 182.48175pt>
 File: ./images/example1.png Graphic file (type png)
 <use ./images/example1.png>
-Package pdftex.def Info: ./images/example1.png  used on input line 205.
+Package pdftex.def Info: ./images/example1.png  used on input line 206.
 (pdftex.def)             Requested size: 430.00462pt x 109.84073pt.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 205--206
+Overfull \hbox (30.0pt too wide) in paragraph at lines 206--207
 [][] 
  []
 
-<./images/agent-functionality.png, id=302, 736.4313pt x 497.57895pt>
+<./images/agent-functionality.png, id=310, 736.4313pt x 497.57895pt>
 File: ./images/agent-functionality.png Graphic file (type png)
 <use ./images/agent-functionality.png>
 Package pdftex.def Info: ./images/agent-functionality.png  used on input line 2
-11.
+12.
 (pdftex.def)             Requested size: 430.00462pt x 290.53964pt.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 211--212
+Overfull \hbox (30.0pt too wide) in paragraph at lines 212--213
 [][] 
  []
 
 [11 <./images/example1.png>]
-Overfull \hbox (34.1835pt too wide) in paragraph at lines 226--227
+Overfull \hbox (34.1835pt too wide) in paragraph at lines 227--228
 \OT1/cmr/m/n/10.95 the [OWF con-cep-tual architecture](https://github.com/openw
 allet-foundation/architecture-
  []
 
 
-Overfull \hbox (1.0001pt too wide) in paragraph at lines 226--227
+Overfull \hbox (1.0001pt too wide) in paragraph at lines 227--228
 \OT1/cmr/m/n/10.95 task-force/blob/main/docs/architecture/conceptual-architectu
 re.md) adds Burn, Re-
  []
 
 [12 <./images/agent-functionality.png>]
-<./images/architecture.png, id=312, 736.4313pt x 293.77756pt>
+<./images/architecture.png, id=320, 736.4313pt x 293.77756pt>
 File: ./images/architecture.png Graphic file (type png)
 <use ./images/architecture.png>
-Package pdftex.def Info: ./images/architecture.png  used on input line 253.
+Package pdftex.def Info: ./images/architecture.png  used on input line 254.
 (pdftex.def)             Requested size: 430.00462pt x 171.53865pt.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 253--254
+Overfull \hbox (30.0pt too wide) in paragraph at lines 254--255
 [][] 
  []
 
 [13 <./images/architecture.png>] [14]
-<./images/applications.png, id=327, 736.4313pt x 407.24146pt>
+<./images/applications.png, id=338, 736.4313pt x 407.24146pt>
 File: ./images/applications.png Graphic file (type png)
 <use ./images/applications.png>
-Package pdftex.def Info: ./images/applications.png  used on input line 277.
+Package pdftex.def Info: ./images/applications.png  used on input line 282.
 (pdftex.def)             Requested size: 430.00462pt x 237.79099pt.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 277--278
+Overfull \hbox (30.0pt too wide) in paragraph at lines 282--283
 [][] 
  []
 
-(./ia.bbl [15 <./images/applications.png>]) [16] (./ia.aux)
+[15 <./images/applications.png>] (./ia.bbl [16]) [17] (./ia.aux)
 Package rerunfilecheck Info: File `ia.out' has not changed.
-(rerunfilecheck)             Checksum: 1152F4859C1844AB86A1E52916D25D80;4865.
+(rerunfilecheck)             Checksum: 4FA085D1A5D9CB5BBA9674986585A0AE;5230.
  ) 
 Here is how much of TeX's memory you used:
- 9722 strings out of 478268
- 151313 string characters out of 5846347
- 448242 words of memory out of 5000000
- 27715 multiletter control sequences out of 15000+600000
+ 9727 strings out of 478268
+ 151360 string characters out of 5846347
+ 448245 words of memory out of 5000000
+ 27717 multiletter control sequences out of 15000+600000
  481377 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,8n,63p,1199b,378s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,8n,63p,1199b,428s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -447,10 +447,10 @@ ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
 ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2
 022/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ia.pdf (16 pages, 883114 bytes).
+Output written on ia.pdf (17 pages, 884803 bytes).
 PDF statistics:
- 415 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 82 named destinations out of 1000 (max. 500000)
- 306 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 322 words of extra memory for PDF output out of 10000 (max. 10000000)
 
