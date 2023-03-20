@@ -35,9 +35,13 @@
 %\date{}							% Activate to display a given date or no date
 
 \begin{document}
-\maketitle
 
-\section{Power Asymmetry}
+\maketitle
+\begin{abstract}
+This document describes symptoms caused by today's power imbalance between relatively powerful digital service providers and mere users. We then present a set of design considerations we think need to be addressed in any potential solution. Finally we propose an architecture for an \emph{identity agent} that represents the user and protects their interests online along and working in concert with an associated legal contract.
+\end{abstract}
+
+\section{Power imbalance}
 While the internet has brought new services and experience to billions of users, it has also resulted in a power asymmetry between the digital service providers and their users regarding these users' digital identities and personal data. These providers have accumulated power relative to their users.
 
 The internet's designers endeavored to create decentralized architectures that pushed computation and storage to the edge and minimize centralized control. However, in the last couple decades economic factors and so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have all contributed to concentrations of power on the provider side. 
@@ -181,7 +185,7 @@ Once data is shared from the agent to a first-party there are no technical means
 \subsection{Privacy by design}
 [to-be-written]
 
-\section{Identity Agents} %SECTION
+\section{Identity Agents} 
 
 \subsection{End-user perspective}
 An \emph{identity agent} is an app that gives the user control (power) over their own personal information as they interact with websites, mobile apps, and other user's agents. It does this through a combination of technical and legal mechanisms.
@@ -269,11 +273,157 @@ Below the Data Access and Replication component lie a set of datastores each usi
 
 In this example, Bob's agent is accessing a context called ``Alice@Bob" as managed by datastore 1. Provider's Local App is accessing a context called ``Alice@Local App" that is also managed by datastore 1.  An external Provider's Website is accessing a context called ``Alice@ProviderSite" that is managed by datastore 2. 
 
-\section{Applications}
+\subsection{Data model} %Subsection: Data model
 
-We now consider how an identity agent interacts with applications. The diagram below shows Alice's agent from the previous section with the addition of a local as well as a remote application layer. 
+This section describes the data model of the agent. The user's data that follows this model is replicated across instances of their agent running on different devices. At the highest level, the data model can be thought of as a three level hierarchy of data containers (\emph{Container} subclass instances) each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The middle layer are \emph{Group} containers. The bottom layer consists of \emph{Context} containers.
 
-\subsection{Interactions with apps/sites}
+These Person instances are connected into a directed graph that spans these three levels of containers. The singleton Self container holds a single Person node that represents the selfness of user as a single individual. The Self has a set of Context containers each of which represents how the user is presented to or perceived by another party (e.g. another person's agent or a digital service provider's app/site)--that is their whoness. Note that any number of combinations of communications protocols, local apps and web services may be involved in the connection between the agent and another party. The Person node in the Self container has no scalar attributes but usually contains a set of correlation links pointing to a corresponding Person node (representing the user) in each of N contexts.
+
+Between the Self and the leaf Context containers may exist a set of intermediate level Group containers. These also contain a Person node representing the user. This Person node is linked to "sub" Person nodes in the child containers of the Group container. It may also have attributes of its own. The Person node in a Group container can be used to represent a role the user might play in a set of child contexts. 
+
+In the simplified example below we show a user, Alice, whose selfness is represented by a blue Person node in the Self context. Alice has a relationship with three other parties: a game, Twitter, and the New York Times. Each of these relationships is represented by a context. The whoness, or facet of Alice that she exposes in each context is represented by a Person node in each of these three contexts.
+
+\includegraphics[width=\textwidth]{./images/example1.png}
+
+The information in a context (most importantly person nodes) is read and written to by the agent based on the data flowing through the agent's connection with the other party (or more precisely, with the apps and websites of the other party). We have added these other parties explicitly to the diagram below by introducing a new kind of context called Others within which are objects representing other parties. 
+
+\includegraphics[width=\textwidth]{./images/example2.png}
+
+The personal data flowing through each of the three connections represented by the purple lines above may flow from the agent, to the agent or in both directions. It may have originated on either side. It may be self asserted claims (attributes) entered by the user directly into the agent. Or it may be claims entered by the user on a website of the other party, or sensed by a local app (or sensor), or generated by the other party based on direct on-site or on-app interactions with the user.
+
+\subsubsection{Container classes}
+
+We describe the data model in two parts. The first part describes the data containers. The second describes the data that is held by those containers. Let us start describing the data model of the containers themselves. Here are the various data container classes: 
+
+\includegraphics[width=\textwidth]{./images/container-classes.png}
+
+\textbf{Classes}
+
+\begin{itemize}
+\item \textbf{Others} - a container holding a set of Other nodes (see Persona Classes). Each Other node represents a party with the user has a connection. These Others may be other people or legal entities. If they are legal entities, they are often called relying parties, such as a digital service provider like Twitter, Inc. Each other has the following properties:
+	\begin{itemize}
+	\item \textbf{Context} - a single Context that captures one aspect of the overall connection
+	\end{itemize}
+\item \textbf{Self} - the single Container holding a single Person node that represents the selfness of the user
+\item \textbf{Group} - an intermediate level container that holds a single Person node that represents a common role or persona that the user plays. A group has these attributes:
+	\begin{itemize}
+	\item \textbf{name} - the name of the group 
+	\item \textbf{icon} - a icon for the group
+	\end{itemize}
+\item \textbf{Context} - a Container holding a Person node that represents the user in a specific aspect of their relationship with some other party. We say "specific aspect" because the relationship between the user a given other, may be represented by more than one context, each representing a different aspect. 
+\end{itemize}
+
+\textbf{More about Contexts}
+
+A context has the following attributes, that taken together uniquely identify the context:
+
+\begin{itemize}
+\item \textbf{schema} - url of the schema of the data in the context
+\item \textbf{protocols[]} - array of one or more Protocol instances
+\end{itemize}
+
+The kinds of data held by a context depends on the communications protocol (using the term loosely) between the agent and the other party. As will be described next, a Protocol class within the agent represents these data conventions using a schema that is an extension of the Persona schema.
+
+There are two subclasses of Context: \emph{LinkedContext} and \emph{DelegatedContext} that are described in their own sections below.
+
+\textbf{Protocols}
+
+A Protocol class represents a communication protocol used between the agent and an endpoint provided by an other party. Each protocol subclass represents a different communications protocol such as SIOPv2, GoogleAccountSync, BasicMessage (DIDComm), etc.  Protocol classes have a class method that returns the data schema used when it updates data in that context. These schemas are resolvable from a URL which is written to the *schema* attribute of the Context instance.
+
+A Protocol is an attribute of a Context, and although a less common situation, may have more than one. Below is an example of a user Alice who has a (hypothetical) connection with Santander Bank. This connection has a single context that contains the information that Alice shares in with the bank via the OpenID Connect SIOPv2 protocol.
+
+\includegraphics[width=\textwidth]{./images/context-with-protocol.png}
+
+Each protocol instance has these attributes:
+
+\begin{itemize}
+\item \textbf{namespace} - a string that indicates the namespace used by the "endpoint" attribute
+\item \textbf{endpoint} - a string identifier that unique identifies the other party with which the user has a relationship within the above namespace attribute
+\item \textbf{dataflow} - one of {to-agent, from-agent, bidirectional} - indicates the direction of data flow between the agent and the endpoint
+\end{itemize}
+
+\textbf{Multiple connections}
+
+In the example below, we expand our story about our user, Alice. She has defined two groups. The first represents her role as a Journalist, and it contains two contexts: the context representing her relationship with Google and with Twitter. The Google context contains her Google account profile which can be updated either using her agent or via the Google website (hence the "bidirectional" dataflow). Her Twitter context contains a snapshot of all of her Twitter account information, lists of who she follows, etc. 
+
+The second group, entitled ``News" contains a Person linked to three context all belonging to the New York Times. The first of these three is the context that she uses, via SIOPv2 to login to the NYTimes website. The second is a context that contains data her form filler Safari extension uses. The last is a context that establishes a bidirectional connection with the NYTimes using a new (an purely hypothetical for now!) bidirectional data synchronization protocol called MeeTalk. She plays a game for which there is a context (without being within an intervening Group), and she has a direct relationship with her friend Bob using the DIDComm BasicMessage protocol.  
+
+\includegraphics[width=\textwidth]{./images/multiple-connections.png}
+
+A relationship between the identity agent and another party is called a \emph{Connection}. It is represented by one or more other contexts each of which has a protocol (and sometimes more than one). Alice is shown with five connections--one for each of the five Other nodes in her Others container. 
+
+\textbf{Linked contexts}
+
+Alice can convey claims made about her by one party and present them to another party. For this example we'll assume that the claims are encapsulated within a \hyperfootnote[Verifiable Credentials][https://]{w3.org/TR/vc-data-model/} document. 
+
+\includegraphics[width=\textwidth]{./images/linked-contexts.png}
+
+In this example Alice, presumably having authenticated herself in her connection to a site/app of the ``VC Issuing party" is issued a VC containing claims about her which is stored in the leftmost context above. She then goes to another site/app of the ``VC Verifying party" and finds that they trust the issuing party and would accept a VC issued by them. In Alice's second connection a VC presenting protocol is used to send the VC to the verifying party. This second connection involved a special class of context, called a \emph{LinkedContext}. 
+
+\textbf{Delegated contexts}
+
+Alice takes care of her elderly mother, and helps her mother manage her bank account at Santander Bank. Alice's mother has an agent and has delegated access to Alice a context that contains her mother's OpenID Connect SIOP claims. 
+
+\includegraphics[width=\textwidth]{./images/delegated-contexts.png}
+
+As shown above, Alice has a direct connection with the bank (that communicates via the SIOPv2 protocol) but the context for that connection is linked to a context managed by Alice's mother's agent. The MeeTalk data replication/sync protocol is used to ensure that Alice's DelegatedContext is always synchronized with the "original" context on her Mother's agent.
+
+\subsubsection{Persona classes}
+
+Group and Context containers all contain information about subjects (things) that are described according to the persona schema. [We need to decide on the Persona Schema Description Language (SDL) and describe the concepts below using it]. In knowledge representation parlance, the Persona schema would be known as an *upper ontology.*
+
+In the Persona schema, people are be represented as instances of Person, A PersonalAccount class is also defined. These classes are shown below. 
+
+\includegraphics[width=\textwidth]{./images/persona-classes.png}
+
+\textbf{Classes}
+
+\begin{itemize}
+\item \textbf{Subject} - kind of digital subject about which the agent stores information
+\item \textbf{Person} - a natural person, a subclass of Subject. Each person has the following properties:
+	\begin{itemize}
+	\item \textbf{claims[]} - a set of zero or more properties. Here are a few examples: 
+		\begin{itemize}
+		\item givenName
+		\item familyName
+		\item phoneticGivenName
+		\end{itemize}
+	\item \textbf{account} - an optional PersonalAccount at some other party's site or app
+	\item \textbf{correlation} - zero or more PersonRefs that act as a link to a target Person object representing another whoness of the link's source's person's selfness.
+	\item \textbf{knows} - zero or more PersonRefs that link to a Person representing some other person (other than the user)
+	\end{itemize}
+\item \textbf{Other} - a Subject representing another person or a legal entity with which the user has a connection. Each Other object has:
+	\begin {itemize}
+	\item \textbf{consents} - zero or more Consent objects. Each Consent has:
+		\begin{itemize}
+		\item \textbf{dateTime} - time stamp of when the user consented to share this set of claims
+		\item \textbf{claims[]}  - a set of zero or more claims (note: claim types (e.g. ``email address") not their values)
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\textbf{Extensions}
+
+Each protocol class will extend the Persona schema by defining Person subclasses, other new object classes and new kinds of relationships. For example the Google
+\hyperfootnote[Google Account][https://]{myaccount.google.com}  API includes (optional) claims of ``name", ``gender" and ``birthday". The protocol that supports the myaccount API would define these claim types in its schema, and insert a link to this schema in its corresponding context's \emph{schema} attribute.
+
+\subsubsection{Datatypes}
+
+This section is largely incomplete, but will eventually describe lower level classes that we call datatypes that are used by the higher level classes mentioned above.
+
+\includegraphics[width=\textwidth]{./images/datatypes.png}
+
+\begin{itemize}
+\item \textbf{EndpointId} -  an identifier of an endpoint (e.g. webservice or a local app) supported by an other party.
+\item \textbf{LocalAppId} - A specific kind of EndpointId. Uniquely identifies a service provider's mobile app. 
+\item \textbf{Secret Recovery Phrase} - a 12-word textual phrase that the user creates. It is used to generate cryptographic keys that in turn are used to encrypt the user’s personal data whether it is stored locally on their device or in a backup location. It can be used to generate keys to digitally sign transactions (e.g., for crypto currency transactions). It should never be shared with anyone or any service provider. If the user loses this phrase, they lose the ability to decrypt their data. 
+\end{itemize}
+
+\section{Agents and apps/sites} % SECTION 
+
+We now consider how an identity agent interacts with apps/sites. The diagram below shows Alice's agent from the previous section with the addition of a local as well as a remote application layer. 
+
+\subsection{Interactions}
 
 The local application layer contains applications that run on the same device as Alice's agent. The digram shows one such application labelled ``Provider's Local App". The remote application layer contains applications that run on systems and devices external to Alice's device. Two examples are shown. The first is Bob's Agent which appears to Alice as an app (just as Alice's agent appears as an app to Bob's agent). The second is a website labeled ``Provider's Website". 
 
@@ -288,7 +438,7 @@ The HIL imposes a number of obligations of the provider. Among them is the provi
 
 These data rights APIs/protocols are an area of active research.  
     
-\section{Human Information License}
+\subsection{Human Information License}
 [to be written]
 
 \section{Contributors}
