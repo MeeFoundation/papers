@@ -104,7 +104,7 @@ Third-party ad tech vendors perform the tracking and synthesis of a user's "ad p
 \subsection{Inconvenience}
 The prevailing architecture of the internet involves each provider managing their own  information ``silo" of information about the user (i.e. their account). This approach and the lack of computational power on the user's side creates inconvenience for them that is described below.
 
-\emph{Repetition}. When using apps, users ")are often asked to provide information about themselves that another app has already asked them such as ``what is your email address?" This is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The user has the hassle of repeated data entry, the app has increased friction (a worsened user experience).
+\emph{Repetition}. When using apps, users are often asked to provide information about themselves that another app has already asked them such as ``what is your email address?" This is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The user has the hassle of repeated data entry, the app has increased friction (a worse user experience).
 
 \emph{Password management}. The average user uses 100 websites and 25 apps daily. Managing and periodically updating strong, unique passwords at each is  impractical without an automated password manager (computational power), yet it has been estimated that less than 5 percent of internet users use a password manager. 
 
@@ -146,7 +146,7 @@ Much of the power asymmetry described in the first section is due to economic in
 
 \subsection{Multi-contextual}
 
-Zuckerberg has said "Having two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. He could not be more wrong. Let's take a step back and look at selfness and whoness. 
+Zuckerberg has said ``Having two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. He could not be more wrong. In everyday life people indeed have one \emph{selfness}, but they have many, context-dependent \emph{whonesses}.
 
 \subsubsection{Selfness and Whoness}
 
@@ -168,11 +168,11 @@ In order to trust that the agent does what we claim, we need transparency which 
 
 \subsection{Data Governance}
 
-Once data is shared from the agent to a first-party there are no technical means to constraint what the recipient does with it. No technical means can prevent them from selling it others, for example. Instead, legal means must be employed. Rather than wait for privacy regulations to get strong enough, we propose that first-parties sign a Human Information License to license the user's information under terms that are fair and balanced and respect the user's privacy rights. The contract can be signed by an entity that represents the user to make it effortless for the user.
+Once data is shared from the agent to a first-party there are no technical means to constraint what the recipient does with it. No technical means can prevent them from selling it others, for example. Instead, legal means must be employed. Rather than wait for privacy regulations to get strong enough, we propose that first-parties sign a Human Information License to license the user's information under terms that are fair and balanced and respect the user's privacy rights. This contract can be signed by an entity that represents the user and makes it effortless for them.
 
 \subsection{User rights}
 
-[to be written: even the best privacy legislation is impotent in practice to protect users because they don't require associated technical means to implement them]
+[to be written: even the best privacy legislation while good in principle, does not in practice protect users because these laws don't mandate associated automated technology-based means for their implementation.]
 
 \subsection{Enforcement}
 
@@ -190,14 +190,14 @@ An \emph{identity agent} is an app that gives the user control (power) over thei
 The agent runs on the user's edge devices (mobile phone, laptop, etc.) where, entirely under the user's control, it holds a local, private database of the user's personal information. When an app/site wants to know something about the user, the agent shares as much or as little as the user chooses. If an app/site signs a Human Information License and thereby becomes \emph{certified}, the legal entity behind that app/site is thereby obligated to (i) require explicit consent for collection, processing, storage and sharing of the users data and to (ii) implement APIs to exercise the user's rights to access, correct and delete the user's personal information. We envision that agents could provide ad profiles to certified publisher websites that are supported by interest-based advertising while eliminating the need for surveillance by third-parties.
 
 \subsubsection{Convenience}
-Although the agent is an interactive application, it operates in the background most of the time. Always working solely in the user's interest, it collects information from sites that already hold their data, and shares it with other sites that need it. Our vision is that that the user *never has to repeat themself* (nor remember passwords!) as they move from app to app and site to site across the internet.
+Although the agent is an interactive application, it operates in the background most of the time. Always working solely in the user's interest, it collects information from sites that already hold their data, and shares it with other sites that need it. Our vision is that that the user \emph{never has to repeat themself} (nor remember passwords!) as they move from app to app and site to site across the internet.
 
-Here are a few examples. If a site wanted to know the user's email address it might ask for it in a web form. In this case the agent would use it's form-filler ``protocol" to fill in the value. If the site supports password-less sign-in (e.g. using OpenID Connect) the agent acts as the identity provider. If a site needed a digital driver's license credential, the agent acts as a digital wallet and presents this credential that it had presumably downloaded earlier from an issuing site. In these different examples, different protocols for information sharing are required, and in the interest of convenience, the agent should support all of them.
+Here are a few examples. If a site wanted to know the user's email address it might ask for it in a web form. In this case the agent would use it's form-filler ``protocol" to fill in the value. If the site supports password-less sign-in (e.g. using OpenID Connect) the agent acts as the identity provider. If a site needed a digital driver's license credential, the agent acts as a digital wallet and presents this credential that it had presumably downloaded earlier from an issuing site. In these different examples, different protocols for information sharing would be used, and the agent must be technology agnostic and support all of them. Only in this way an an agent be human-centric and put the one user at the center of all of their online relationships.
 
 \subsection{Self and contexts}
-The agent represents both the user's \emph{selfness} and \emph{whonesses}.
+The agent represents both the user's single \emph{selfness} and their multiple context-dependent \emph{whonesses}.
 
-The selfness of the user is held in a data container called the \emph{self}. The contents of the self are holistic and therefore quite sensitive. For this reason they would normally not be shared in a direct or comprehensive form with others. The user's self is the point of integration across contexts each of which may be from differing identity systems. 
+The selfness of the user is held in a data container called the \emph{self}. The contents of the self are holistic and therefore quite sensitive. For this reason they would normally not be shared in a direct or comprehensive form with others. The user's self is the point of integration across contexts each of which may be from differing identity systems, use different protocols for communication and different schemas for knowledge representation.
 
 Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the user in each context. To ensure privacy only the user knows that each of these separate contexts contain representations of them. Each context represents an interaction via some communications protocol with an external app, website or agent. 
 
