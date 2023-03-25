@@ -10,6 +10,7 @@
 
 \usepackage{hyperref} 				% you need this package
 \usepackage{pifont}					% for \ding
+\usepackage{url}					% I think needed for "plainurl" support in \bibliographystyle 
 
 % Make clickable footnote
 \newcommand{\hyperfootnote}[1][]{\def\ArgI{{#1}}\hyperfootnoteRelay}
@@ -42,18 +43,18 @@ There is a power imbalance between digital service providers and their users, wi
 \end{abstract}
 
 \section{Power imbalance}
-While the internet has brought new services and experience to billions of users, it has also resulted in a power asymmetry between the digital service providers and their users regarding these users' digital identities and personal data. These providers have accumulated power relative to their users.
+While the internet has brought new services and experience to billions of users, it has also resulted in a power asymmetry between the digital service providers and their users regarding these users' digital identities and personal data. 
 
-The internet's designers endeavored to create decentralized architectures that pushed computation and storage to the edge and minimize centralized control. However, in the last couple decades economic factors and so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have all contributed to concentrations of power on the provider side. 
+The internet's designers, in the interest of resilience and scalability began with a decentralized architecture that pushed computation and storage to the edge and minimized centralized control. However, in recent decades economic factors, so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have all contributed to concentrations of power into the hands of a few relatively large providers providing services to billions of users. 
 
-When Berners-Lee created the web initially, it was a decentralized platform. Anyone could publish a website and link to any other site. He even envisioned that these pages would be editable. However, as the web has grown from a research-sharing community into a global medium for commerce, communication, journalism and entertainment, the power dynamics have shifted. Today, huge companies like Amazon, Meta, Google, and Netflix dominate the web. These corporate giants enjoy an enormous amount of control not only over what people see and do online, but over their users' private data.\cite{Finley2017}
+Berners-Lee invented the web as a decentralized platform wherein anyone could publish a website and link to any other site. He even envisioned that these pages would be editable. However, as the web has grown from a research-sharing community into a global medium for commerce, communication, journalism and entertainment, power has concentrated. Today, the web is dominated by enormous companies like Amazon, Meta, Google, and Netflix. These corporate giants enjoy enormous control not only over what people see and do online, but over their users' private data.\cite{Finley2017}
 
 In response, many initiatives have arisen proposing alternative approaches and technologies. Here are just a few representative examples: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{blogs.harvard.edu/vrm}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
-To reinforce our focus on power relationships, we use the term \emph{computational power} to refer to software tools that works (i.e. provide agency) ``on the user's side" for, and \emph{exclusively} on behalf of, the user. We are not arguing whether the average user's phones and laptops have sufficient computational power; they do. We're emphasizing that this raw computational power and storage is not leveraged by tools that push back on service provider's power; tools that empower the user to better manage their relationships with providers on more beneficial terms. Since our discussion applies equally provider's mobile apps, webapps, and websites, from here forward we will simply use the term \emph{app} to refer to all of them.
+We use the term \emph{user agent} to refer to software tools that work (i.e. provide agency) ``on the user's side" for, and \emph{exclusively} on behalf of, the user. Since our discussion applies equally to provider's mobile apps, webapps, and websites, from here forward we will simply use the term \emph{app} to refer to all of them.
 
 Power asymmetry lies at the root of a diverse set of related end-user symptoms, most of which erode privacy, since privacy and power are highly interrelated concepts\footnote{Consider the title of V\'eliz's recent book, ``Privacy is Power"\cite{veliz2020}}. 
-These privacy eroding symptoms include a lack of personal autonomy, a lack of personal agency, and third-party surveillance. 
+These privacy-eroding symptoms include a lack of personal autonomy, a lack of personal agency, and third-party surveillance. 
 
 \subsection{Lack of Autonomy}
 
@@ -83,11 +84,11 @@ As we'll discuss more later on, there alternatives have been proposed. One is ``
 
 \emph{Delegation}. In the offline world one entity can grant access to some resource to another entity. For example, I can give my car keys to a friend so they can borrow my car. There is no standard, secure way to do this online. This is especially problematic in healthcare scenarios where a healthcare provider needs access to electronic health-related data about a patient, whereas the patient may not be able to provide it by themselves but instead needs to rely on someone else, e.g. a family member to grant the needed permission.
 
-\emph{Provider-defined Privacy Policies}. As is expected, providers define policies which are designed to protect the their interests while staying within the limits defined by the relevant privacy regulations. Users are indeed given the option to review these policies with the burden of making sense of them shifted to the user (i.e. the potential victim). Because the user typically uses dozens providers or more, they don't have the time to review each of these policies and they lack the computational power on their side to assist them. 
+\emph{Provider-defined Privacy Policies}. As is expected, providers define policies which are designed to protect the their interests while staying within the limits defined by the relevant privacy regulations. Users are indeed given the option to review these policies with the burden of making sense of them shifted to the user (i.e. the potential victim). Because the user typically uses dozens providers or more, they don't have the time to review each of these policies and they lack user agents to assist them. 
 
-\emph{Privacy policy expression}. With a few exceptions, (e.g. the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org}), users  lack the technical means (i.e. computational power) to express their own privacy terms to providers. 
+\emph{Privacy policy expression}. With a few exceptions, (e.g. the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org}), users  lack the technical means (i.e. computational capability) to express their own privacy terms to providers. 
 
-\emph{User rights}. In a growing number of jurisdictions, including Europe under \hyperfootnote[GDPR][https://]{gdpr-info.eu/} and California under \hyperfootnote[CPRA][https://]{thecpra.org/}, the user's data rights, (e.g. the right to access, correct and delete their data), are clearly described. In principle these laws respect these rights, however in practice the time and effort required to exercise these rights at every app/site is sufficiently onerous, that in practice they are not respected. The user must send written requests to get copies of their data, update it, or have it be deleted. Computational power on the user's side is necessary to regain in practice, the rights they already have in principle. 
+\emph{User rights}. In a growing number of jurisdictions, including Europe under \hyperfootnote[GDPR][https://]{gdpr-info.eu/} and California under \hyperfootnote[CPRA][https://]{thecpra.org/}, the user's data rights, (e.g. the right to access, correct and delete their data), are clearly described. In principle these laws respect these rights, however in practice the time and effort required to exercise these rights at every app/site is sufficiently onerous, that in practice they are not respected. The user must send written requests to get copies of their data, update it, or have it be deleted. The power of user agents is necessary to regain in practice, the rights they already have in principle. 
 
 \emph{Content filtering}. Social networking platforms have replaced human content editors with algorithmic filters. Users might think that they see a balance of content whereas in reality they are trapped in what Pariser called ``filter bubbles."\cite{Pariser2011} Pariser's recommendation is that if platforms are going to be gatekeepers, they need to program a sense of civic responsibility into their algorithms, they need to be transparent about the rules that determine what gets through the filter, and ``they need to give user control of their bubble."\cite[p66]{McNamee2020}
 
@@ -99,42 +100,43 @@ Whereas the user is at least aware when they sign up on a first-party app that t
 
 \emph{Surveillance-based targeted advertising}. Targeted advertising \footnote{Also known as behavioral advertising, or more recently, interest-based advertising} involves four main processing steps: (i) the collection of observations about the user by a first- or third-party, (ii) synthesis of an "ad profile” from these observations, (iii) matching this ad profile against available "target audiences”(i.e. characteristics of whom the advertiser wishes to reach, advertising budget, etc.) from advertisers through a bidding process, and (iv) displaying the winning ad. Surveillance-based targeted advertising specifically is when step (i) above is achieved by third-parties who track the user as they move from apps to app and site to site across the internet using third-party cookies and other tracking mechanisms. 
 
-\emph{Data brokers}. Data brokers are third-parties who buy and sell personal data to other brokers, to advertisers, adtech firms and first-party publishers. They provide  personal data marketplaces and exchange behind the users's back, because users lack the computational power to provide data about themselves.
+\emph{Data brokers}. Data brokers are third-parties who buy and sell personal data to other brokers, to advertisers, adtech firms and first-party publishers. They provide  personal data marketplaces and exchange behind the users's back, because users lack user agents to provide data about themselves.
 
 
 \subsection{Inconvenience}
-The prevailing architecture of the internet involves each provider managing their own  information ``silo" of information about the user (i.e. their account). This approach and the lack of computational power on the user's side creates inconvenience.
+The prevailing architecture of the internet involves each provider managing their own  information ``silo" of information about the user (i.e. their account). This approach and the lack of sufficiently powerful user agents creates inconvenience.
 
 \emph{Repetition}. When using apps, users are often asked to provide information about themselves that another app has already asked them, such as ``what is your email address?" This is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The user has the hassle of repeated data entry and the app offers a less-than-optimal user experience.
 
-\emph{Password management}. The average user uses 100 websites and 25 apps daily. Although managing and periodically updating strong, unique passwords at each is  impractical without an automated password manager (computational power), it has been estimated that less than five percent of internet users use one. 
+\emph{Password management}. The average user uses 100 websites and 25 apps daily. Although managing and periodically updating strong, unique passwords at each is  impractical without an automated password manager user agent, it has been estimated that less than five percent of internet users use one. 
 
-\emph{Account Management}. The user shoulders the burden of maintaining the timeliness and consistency of their account information at dozens of apps. For example, updating contact or credit card information at each is tedious, time-consuming and encourages the user to spend more time at sites that already have their information. The relative convenience of shopping on Amazon vs. another e-commerce site is a consequence partially caused by the user's lack of computational power to manage these relationships.
-
+\emph{Account Management}. The user shoulders the burden of maintaining the timeliness and consistency of their account information at dozens of apps. For example, updating contact or credit card information at each is tedious, time-consuming and encourages the user to spend more time at sites that already have their information. The relative convenience of shopping on Amazon vs. another e-commerce site is a consequence partially caused by the user's lack of a user agent to manage these relationships.
 
 
 \section{Design Considerations}%Design Considerations
 
-In this section, we discuss a number of design considerations for this solutions the symptoms just described.
+In this section, we discuss a number of design considerations for any solution to successfully address the symptoms just described.
 
 \subsection{User-centric vs. provider-centric}
 
-Many of the challenges described thus far have their origin in an architecture that is \emph{provider-centric} rather than \emph{user-centric}, or \emph{human-centered}. In the provider-centric model each app sees a single narrow slice of the user through the lens of their direct interactions with them. Each works in isolation to optimize the user's experience on their app or at their site. However, to the user the situation is reversed. They sit at the center of many dozens of connections radiating out from them to these apps. The user has the burden for entering, and updating information at each provider each of which maintains a separate copy. 
+Many of the challenges described thus far have their origin in an architecture that is \emph{provider-centric} rather than \emph{user-centric}, or \emph{human-centered}. The internet is comprised of millions of providers, each offering their own app[s]. In this provider-centric model the user is viewed insolation--the fact the that user uses apps from dozens of providers is irrelevant from any given providers's perspective. Each provider's app sees a single narrow slice of the individual through the lens of their direct interactions with them. Each works in isolation to optimize the user's experience on their app or at their site. 
 
-User-centric technologies are required to reduce the user's burden. A good example is a browser's form-filler which greatly reduces the number of manual keystrokes required to fill in web forms.  Another closely related user-agent technology is that of password managers. Browsers are \emph{user-agents} whose form-fillers and password manager features work on the user's behalf, and sit on the user's side of the power equation and maintain databases on the user's side. 
+To the individual the situation is reversed. They use many dozens of apps with connections to each app radiating out from them. The individual at the center has the burden for entering, and updating personal information, payment details, preferences, and so on at each.
+
+User-centric technologies that are designed to empower the user across multiple apps from multiple providers are called are \emph{user-agents}. A web browsers is an example, especially it's built-in form-filler which reduces the number of manual keystrokes required to fill in web forms. Another example is a password manager. 
 
 \subsection{Edge-centered vs. cloud-centered}
-Assuming that user-centric decentralized architecture is required, a related question is where should this datastore live? Should it be edge-centered or cloud-centered? Edge-centered means that the primary location for a user's personal datastore is on their own phones, and laptops and perhaps home servers. Cloud-centered means that the user's personal datastore is primarily held in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). We say \emph{primary} because there are usually use-cases that involved replicating/syncing some of the data to the ``other" location. Both options have their advantages and disadvantages, we explore three of them here.
+Assuming that user-centric decentralized architecture is required, a related question is where should the user's agent and associated personal datastore live? Should it be edge-centered, or cloud-centered? Edge-centered means that the primary location for a user's agent is on their own phones, and laptops and perhaps home servers. Cloud-centered means that the user's agent is primarily held in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). We say \emph{primary} because there are usually use-cases that involved replicating/syncing some of the data to the ``other" location. Both options have their advantages and disadvantages, we explore three of them here.
 
-\emph{Security}. Although this is a debatable point, it is our contention that having a personal datastore on a personal, edge device is more secure than in the cloud if we assume a large number of users. Even if each  alternative were equivalently secure for a single user, a cloud-centered architecture inherently aggregates large numbers of personal datastores at one cloud service provider and thereby creates a much larger economic incentive for hackers to invest in attacking it. 
+\emph{Security}. Although this is debatable, it is our contention that having a personal datastore on a personal, edge device is more secure than in the cloud if we assume a large number of users. Even if each  alternative were equivalently secure for a single user, a cloud-centered architecture inherently aggregates large numbers of personal datastores at one cloud service provider and thereby creates a much larger economic incentive for hackers to invest in attacking it. 
 
-\emph{Equity}. The hosting costs of a cloud-centered solution must be paid for by someone, whereas user's typically own their edge devices and they are thus on a marginal basis for a new app essentially ``free". We need solutions that can be afforded by all socio-economic classes and not just those better off. On this basis any solution that requires monthly hosting fees is disqualified.
-
-\emph{Backup}. A well-known disadvantage a \emph{non-custodial} edge-centered architecture (as compared to a cloud-centered architecture) is the need for the user's data to be backed up. This is not a problem if the user backs up their devices (e.g. to a cloud backup service), but some users can't be relied on to be disciplined about this. [to be written: need stats on phone vs. laptop backup]. [to be written: we assume the user has N>1 device and that the agent is installed on N>1 and that the agents replicate/sync]
+\emph{Equity}. The hosting costs of a cloud-centered solution must be paid for by someone, whereas user's typically own their edge devices and they are thus on a marginal basis for a new app essentially ``free". Solutions must be able to be afforded by all socio-economic classes and not just those better off. On this basis we believe solutions that incur monthly hosting fees are disqualified.
 
 \subsection{Replication}
 
-If we assume an edge-centered design, we introduce the need to solve the related, so-called \emph{roaming} problem. That is, we must support use cases wherein the user has more than one device that are intermittently connected to the internet, and needs to have their personal datastore state be consistent across these devices, at least eventually. This requires that the set of agents of a given user implement data replication and syncing. [to be written: discuss the (unfortunate and costly) need for relays to achieve P2P sync in some use cases. Who will pay for the relays?].
+If we assume an edge-centered design, we introduce the need to solve the related, so-called \emph{roaming} problem. That is, we must support use cases wherein the user has more than one device that are intermittently connected to the internet, and needs to have their personal datastore state be consistent across these devices, at least eventually. This requires that the user's agents implement data replication and syncing between themselves. An open research question is how to achieve this replication without the need for relay servers and their attendant costs--costs which undermine the equity consideration previously mentioned.
+
+\emph{Backup}. One disadvantage of so-called \emph{non-custodial}, edge-centered architecture (as compared to cloud-centered architectures) is the vulnerability of users who are not diligent about backing up their devices (e.g. to an online service) to losing their agent-managed personal data. For users with more than one device this is less likely since data is replicated (as mentioned above) across their devices and a repaired or replaced device's data can be restored from one of the user's other devices. There remains of course the worst-case scenario wherein the user didn't backup any of their devices and all of them at the same moment are lost or damaged. 
 
 \subsection{Loyalty}
 
@@ -142,19 +144,14 @@ Much of the power asymmetry described in the first section is due to economic in
 
 Although there are other potential solutions (e.g. data cooperatives and data unions) one of the simplest is that the agent provider be a nonprofit organization that has no economic interest in the user's data. This being the case, there is no need for the agent provider to have any access to the user's data.
 
-\subsection{Separation of app from db}
+\subsection{Metacontextual}
 
-[to be written: discuss this using SOLID as an example. Desktop OSes had it, then in 2007?? iPhone got it, now in 2023! webapps will get it. Discuss how this separation enhances data portability]
+Zuckerberg once said ``Having two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}, but even if you can force all users of a single system like Facebook to have a single identity, this approach is unworkable for the design of an agent that represents the user across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different the values of one attribute may be different in different contexts. 
 
-\subsection{Delegation}
+\begin{quote} ``[A]t various times in the same day, virtually every adult can be a friend, a worker, a supervisor, a citizen, a mentor, a student, a musician, a customer, a lover, a child and a parent. Each of these roles demands different behavior and different aspects of our selves, aspects that need not be consistent. We behave, for example, in different ways with loved ones than with those we encounter in commercial or professional settings. Even among our loved ones, we behave very differently (and often show very different sides of ourselves) to our children, our parents, and our sexual partners. But this is not dishonest, nor is it inconsistent. At the very least, it's no more inconsistent than is the complicated nature of having a self. It is human."\cite[p122]{Richards2021}
+\end{quote}
 
-[Talk about delegated medical records use case; present the Gropper Principle]
-
-\subsection{Multi-contextual}
-
-Zuckerberg has said ``Having two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. He could not be more wrong. In everyday life people indeed have one \emph{selfness}, but they have and need many, context-dependent \emph{whonesses}. 
-
-\subsubsection{Selfness and Whoness}
+If we look at a person's age attribute we see that cross contexts they might share: their exact chronological age among one's close friends, a fictional age to a music recommendation service, no age at all in contexts wherein doing so might cause discrimination against you, or a merely a statement that they exceed the legal drinking age. 
 
 In his \hyperfootnote[last public speech][https://]{www.youtube.com/watch?v=9DExNTY3QAk}  
 \hyperfootnote[Kim Cameron][https://]{en.wikipedia.org/wiki/Kim\_Cameron\_(computer\_scientist)} introduced two useful definitions based on archaic English:
@@ -168,9 +165,32 @@ The following diagram illustrates these concepts and introduces the notion of co
 
 \includegraphics[width=\textwidth]{./images/selfness-and-whoness-larger.png}
 
-\subsection{Open source}
+Using these terms we can say that in everyday life people have one \emph{selfness}, but they have many, context-dependent \emph{whonesses}. 
 
-In order to trust that the agent does what we claim, we need transparency which open source can provide. Further this is an ambitious project and we need to nurture the creation of a community of developers help build it.
+\subsection{Delegation}
+
+In \emph{A Human Rights Approach to Personal Information Technology}\cite{Gropper2022} Gropper asserts that there is an architectural principle that must be adhered to in order to respect human rights [e.g. to privacy]. He itemizes three universal components of the personal information commons:
+
+\begin{itemize}
+\item \textbf{Authentication} (signing-in and signing documents)
+\item \textbf{Request} for information (e.g. forms, searches, conversations)
+\item \textbf{Storage} (e.g. labs, prescriptions, social contracts, transactions [, other human information])
+\end{itemize}
+
+What could be called the \emph{Gropper Principle} is this (our words, his ideas):
+\begin{quote}
+``Any system that respects the human right to privacy must not bundle authentication, request, and storage."
+\end{quote}
+
+In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/841489/} at the 2022 Identiverse conference provides additional detail (see \hyperfootnote[slides][https://]{drive.google.com/file/d/1lwaMVkG4kLi7z6cXhqMx-DGkUww9azW3/view}). It explains that only a decentralized architecture can implement the Gropper Principle because each of the three concerns needs to be implemented separately. For this to work in an open world with multiple alternative component providers, we as a development community will need to converge on open standards between and among these three components. 
+
+\subsection{Trustworthiness}
+
+Any agent solution for online identity is by it's nature managing highly sensitive information. In order to be adopted voluntarily by people any solution must be trustworthy--its users must have confidence that their information isn't being used against their interests. 
+
+Solutions based on open source software can leverage transparency to help build this confidence that the solution is trustworthy. In open source software the source code is visible to anyone to review and audit to ensure that the solution is secure, free from vulnerabilities, and works in the user's interest.
+
+In addition to open source, users will also consider the nature of the organization offering the solution as to trustworthiness. The organization's financial incentives should be aligned with their users interests. In this regard a nonprofit organization can be created that has no financial or business incentive to exploit the user's data against the user's interest. Ideally the organization would have no need to have any access to the user's data so that there's simply no reason to have to trust them, their security infrastructure and practices.
 
 \subsection{Data Governance}
 
@@ -178,14 +198,11 @@ Once data is shared from the agent to a first-party there are no technical means
 
 \subsection{User rights}
 
-[to be written: even the best privacy legislation while good in principle, does not in practice protect users because these laws don't mandate associated automated technology-based means for their implementation.]
+People should enjoy user rights to access, correct and delete their own personal information managed by providers. Unfortunately, even the best privacy legislation while providing these rights in principle, does not do so in practice. The reason they fail in practice is that the combined burden of the mechanisms to exercise these rights across dozens of apps, is unmanageable for the user. To provide these rights in practice, providers must implement APIs and user's must have user agents that can consume them on the user's behalf.
 
 \subsection{Enforcement}
 
 [to-be-written: Talk here about the need for an entity to audit and enforce compliance with the legal contract]
-
-\subsection{Privacy by design}
-[to-be-written]
 
 \section{Identity Agents} 
 
@@ -372,7 +389,7 @@ As shown above, Alice has a direct connection with the bank (that communicates v
 
 \subsubsection{Persona classes}
 
-Group and Context containers all contain information about subjects (things) that are described according to the persona schema. [to be written: describe Persona Schema Description Language (SDL) and describe the concepts below using it]. In knowledge representation parlance, the Persona schema would be known as an \emph{upper ontology}.
+Group and Context containers all contain information about subjects (things) that are described according to the persona schema. In knowledge representation parlance, the Persona schema would be known as an \emph{upper ontology}.
 
 In the Persona schema, people are be represented as instances of Person, a \emph{PersonalAccount} class is also defined. These classes are shown below. 
 
@@ -421,34 +438,30 @@ This section is largely incomplete, but will eventually describe lower level cla
 \item \textbf{Secret Recovery Phrase} - a 12-word textual phrase that the user creates. It is used to generate cryptographic keys that in turn are used to encrypt the user’s personal data whether it is stored locally on their device or in a backup location. It can be used to generate keys to digitally sign transactions (e.g., for crypto currency transactions). It should never be shared with anyone or any service provider. If the user loses this phrase, they lose the ability to decrypt their data. 
 \end{itemize}
 
+\section{Agents and apps} % SECTION 
 
-\section{Agents and apps/sites} % SECTION 
-
-We now consider how an identity agent interacts with apps/sites. The diagram below shows Alice's agent from the previous section with the addition of a local as well as a remote application layer. 
+We now consider agent interactions with apps and websites. 
 
 \subsection{Interactions}
 
-The local application layer contains applications that run on the same device as Alice's agent. The digram shows one such application labelled ``Provider's Local App". The remote application layer contains applications that run on systems and devices external to Alice's device. Two examples are shown. The first is Bob's Agent which appears to Alice as an app (just as Alice's agent appears as an app to Bob's agent). The second is a website labeled ``Provider's Website". 
+In the diagram below Alice's agent in the \emph{Agent} layer is interacting with apps in one of two \emph{Application Layers}. The top application layer contains two apps running on a remote system. The first is \emph{Bob's Agent} which appears to Alice as an app (just as, by symmetry, Alice's agent appears as an app to Bob's agent). The second is a website labeled \emph{Provider's Website}. The lower application layer contains \emph{local apps} that run on the same device where Alice's device agent is also running. The digram shows a local app labelled \emph{Provider's Local App}.
 
-The first step setting up a connection with a provider's app/site is for the app/site to authenticate the user's agent. We propose that the app/site implement the \hyperfootnote[OpenID SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html} for this purpose.
+The first step setting up a connection with a provider's app for the app to authenticate the user's agent. We app implements the \hyperfootnote[OpenID SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html} for this purpose. After authentication, a private data sharing connection can be established.
 
 \includegraphics[width=\textwidth]{./images/applications.png}
 
 \subsection{Private data sharing}
-Data collected and held by the user's agent is clearly under the user's control. But data that they have shared with another party also needs to be under their control. We call this \emph{private data sharing}. Since no technical means exist to control data transferred to another party, legal means must be used instead. The legal mechanism we propose is a ``Human Information License" (HIL) contract between two parties. The first is the digital service provider legal entity behind a given app. The second is a legal entity, likely a nonprofit, that represents agent users. For more details see the ``Human Information License" section.
 
-The HIL imposes a number of obligations of the provider. Among them is the provider's requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The user may have shared information manually (e.g. by filling in a form, or other kinds of interactions) or online from their agent. The HIL requires the provider to implement \emph{data rights} APIs/protocols that an agent can use to remotely control this collected data.
+Data held and/or managed by the user's agent is clearly under the user's control. The challenge is that data that the user has shared with another party \emph{also} needs to be under their control. Since no technical means exist to control a user's data held by another party, we must rely on law. Current privacy laws and regulations are intended to provide this control, but place such burdens on the user to effectuate their control that this control hardly exists. The solution we proposed is to combine both legal (license agreement) and technical means (identity agents). 
 
-These data rights APIs/protocols are an area of active research.  
-    
-\subsection{Human Information License}
-[to be written]
+The legal mechanism we propose is a \hyperfootnote[Human Information License (HIL)][https://]{docs.google.com/document/d/13aGk5adoncMxxfl5637NfqP6fl6q\_op\_1CF50UrJNjg}. The (HIL) contract between two parties. The first is the digital service provider legal entity behind a given app. The second is a legal entity, The Mee Foundation, a nonprofit that represents agent users. The HIL imposes a number of obligations of the provider. Among them is the provider's requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The user may have shared information manually (e.g. by filling in a form, or other kinds of interactions) or online from their agent. The HIL requires the provider to implement \emph{data rights} APIs/protocols that an agent can use to remotely control this collected data. In this way we tie the legal (HIL) and technical means (agents and APIs) together.
+
 
 \section{Contributors}
-Contributors to this document include Alexander Yuhimenko, Sergey Kucherenko, Kiril Khalitov.   
+Contributors to this document include Kiril Khalitov, Sergey Kucherenko, Maria Vasuytenko, and Alexander Yuhimenko.
 
-\bibliographystyle{plain}
 \bibliography{library}
+\bibliographystyle{plainurl}
 
 
 \end{document}  
