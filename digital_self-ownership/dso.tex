@@ -1,0 +1,38 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\usepackage[parfill]{parskip}    			% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}						% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+											% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amssymb}
+\usepackage{hyperref} 						% for \hyperfootnote
+\usepackage{pifont}							% for \ding
+\usepackage{url}							% for "plainurl" support in \bibliographystyle 
+
+% Make clickable footnote
+\newcommand{\hyperfootnote}[1][]{\def\ArgI{{#1}}\hyperfootnoteRelay}
+	% relay to new command to make extra optional command possible
+\newcommand\hyperfootnoteRelay[2][]{\href{#1#2}{\ArgI}\footnote{\href{#1#2}{#2}}}
+	% the first optional argument is now in \ArgI, the second is in #1
+% Takes at most 3 parameters (see http://www.tex.ac.uk/FAQ-twooptarg.html for info on multiple optional parameters)
+% If first parameter isn't given, it's value is '' (empty string in text before footnote reference)
+% If second parameter isn't given, it's value is '' (string before visible URL, e.g. 'http://')
+% Makes a clickable footnote (alternatively: \url{}) with optional reference in the text as well
+% Use 1: \hyperfootnote{www.mywebsite.com}: creates a footnote consisting of a clickable URL
+% Use 2: \hyperfootnote[My website]{www.mywebsite.com}: creates a clickable piece of text in the text ('My website') plus a footnote consisting of a clickable URL
+% Note: requires the hyperref package.
+% Note: use xspace package to add/absorb spaces when necessary (e.g. to avoid a space between the footnote number and a punctuation mark)
+% Info on how to define a LaTeX command: https://www.sharelatex.com/learn/Commands
+
+\geometry{letterpaper}                   	% ... or a4paper or a5paper or ... 
+\title{Digital Self-Ownership}
+\author{Paul Trevithick, The Mee Foundation}
+\date{Created March 27, 2023. Revised: \today}							
+\begin{document}
+\maketitle
+
+
+\section{Introduction}
+
+\bibliography{library}
+\bibliographystyle{plainurl}
+\end{document}  
