@@ -1,23 +1,18 @@
 \documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
 \usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for rotated page geometry
 \usepackage[parfill]{parskip}    			% Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{graphicx}						% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+											% TeX will automatically convert eps --> pdf in pdflatex
 \usepackage{amssymb}
-
-\usepackage{hyperref} 				% you need this package
-\usepackage{pifont}					% for \ding
-\usepackage{url}					% I think needed for "plainurl" support in \bibliographystyle 
+\usepackage{hyperref} 						% for \hyperfootnote
+\usepackage{pifont}							% for \ding
+\usepackage{url}							% for "plainurl" support in \bibliographystyle 
 
 % Make clickable footnote
 \newcommand{\hyperfootnote}[1][]{\def\ArgI{{#1}}\hyperfootnoteRelay}
-  % relay to new command to make extra optional command possible
+	% relay to new command to make extra optional command possible
 \newcommand\hyperfootnoteRelay[2][]{\href{#1#2}{\ArgI}\footnote{\href{#1#2}{#2}}}
-  % the first optional argument is now in \ArgI, the second is in #1
-  
+	% the first optional argument is now in \ArgI, the second is in #1
 % Takes at most 3 parameters (see http://www.tex.ac.uk/FAQ-twooptarg.html for info on multiple optional parameters)
 % If first parameter isn't given, it's value is '' (empty string in text before footnote reference)
 % If second parameter isn't given, it's value is '' (string before visible URL, e.g. 'http://')
@@ -26,28 +21,24 @@
 % Use 2: \hyperfootnote[My website]{www.mywebsite.com}: creates a clickable piece of text in the text ('My website') plus a footnote consisting of a clickable URL
 % Note: requires the hyperref package.
 % Note: use xspace package to add/absorb spaces when necessary (e.g. to avoid a space between the footnote number and a punctuation mark)
-
 % Info on how to define a LaTeX command: https://www.sharelatex.com/learn/Commands
 
-%SetFonts
-
+\geometry{letterpaper}                   	% ... or a4paper or a5paper or ... 
 \title{Identity Agents}
 \author{Paul Trevithick, The Mee Foundation}
-\date{Created March 3, 2023. Revised: \today}							% Activate to display a given date or no date
-
+\date{Created March 3, 2023. Revised: \today}							
 \begin{document}
-
 \maketitle
 \begin{abstract}
-There is a power imbalance between digital service providers and their users, with regard to these users' personal information and online identity. Users lack of autonomy and agency, are subjected to third-party surveillance, and are inconvenienced by a provider-controlled, siloed architecture that manages their personal information. We explore design considerations for potential solutions and propose a design for an \emph{identity agent} and associated legal contract, that represents the user and protects their interests online.
+There is a power imbalance between digital service providers and their users, with regard to these users' personal information and online identity. The result is that users lack autonomy agency. They are subjected to third-party surveillance, and are inconvenienced by today's prevailing provider-controlled, siloed architecture for personal information. We explore design considerations for potential solutions and propose a design for an \emph{identity agent} and an associated legal contract, that represents the user and protects their interests online.
 \end{abstract}
 
 \section{Power imbalance}
 While the internet has brought new services and experience to billions of users, it has also resulted in a power asymmetry between the digital service providers and their users regarding these users' digital identities and personal data. 
 
-The internet's designers, in the interest of resilience and scalability began with a decentralized architecture that pushed computation and storage to the edge and minimized centralized control. However, in recent decades economic factors, so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have all contributed to concentrations of power into the hands of a few relatively large providers providing services to billions of users. 
+The internet's designers, in the interest of resilience and scalability began with a decentralized architecture that moved computation and storage to the edge of the network and minimized centralized control. However, in recent decades economic factors, so-called natural monopolies, preferential attachment network effects, economies of scale, and the relative ease of creating centralized solutions have all contributed to concentrations of power into the hands of a few relatively large providers providing services to billions of users. 
 
-Berners-Lee invented the web as a decentralized platform wherein anyone could publish a website and link to any other site. He even envisioned that these pages would be editable. However, as the web has grown from a research-sharing community into a global medium for commerce, communication, journalism and entertainment, power has concentrated. Today, the web is dominated by enormous companies like Amazon, Meta, Google, and Netflix. These corporate giants enjoy enormous control not only over what people see and do online, but over their users' private data.\cite{Finley2017}
+Berners-Lee conceived the web as a decentralized platform wherein anyone could publish a website and link to any other site. He even envisioned that these pages would be editable. However, as the web has grown from a research-sharing community into a global medium for commerce, communication, journalism and entertainment, power has concentrated. Today, the web is dominated by enormous companies like Amazon, Meta, Google, and Netflix. These corporate giants enjoy enormous control not only over what people see and do online, but over their users' private data.\cite{Finley2017}
 
 In response, many initiatives have arisen proposing alternative approaches and technologies. Here are just a few representative examples: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{blogs.harvard.edu/vrm}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
@@ -457,7 +448,7 @@ Data held and/or managed by the user's agent is clearly under the user's control
 The legal mechanism we propose is a \hyperfootnote[Human Information License (HIL)][https://]{docs.google.com/document/d/13aGk5adoncMxxfl5637NfqP6fl6q\_op\_1CF50UrJNjg}. The (HIL) contract between two parties. The first is the digital service provider legal entity behind a given app. The second is a legal entity, The Mee Foundation, a nonprofit that represents agent users. The HIL imposes a number of obligations of the provider. Among them is the provider's requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The user may have shared information manually (e.g. by filling in a form, or other kinds of interactions) or online from their agent. The HIL requires the provider to implement \emph{data rights} APIs/protocols that an agent can use to remotely control this collected data. In this way we tie the legal (HIL) and technical means (agents and APIs) together.
 
 
-\section{Contributors}
+\section{Acknowledgements}
 Contributors to this document include Kiril Khalitov, Sergey Kucherenko, Maria Vasuytenko, and Alexander Yuhimenko.
 
 \bibliography{library}
