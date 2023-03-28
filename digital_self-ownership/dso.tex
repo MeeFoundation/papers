@@ -44,24 +44,24 @@ Today, a few hundred years later, the self-ownership that Locke argued was “se
 
 Digital Self-Ownership (DSO) is an extension of Locke's self-ownership that covers people's digital selves, i.e. their personal information. DSO proposes a set of digital personal rights which establish people's power and control over their personal information. In much the same way that private property gives individuals power over their own belongings, DSO is about increasing the power of individuals relative the power of digital service providers. 
 
-We acknowledge that many argue that the concept of ownership and property should not be applied to data in general, and thus not to personal data specifically. For example, Prewitt (2021) argues that “data cannot be owned, but must be governed.”\cite{Prewitt2021}. \footnote{For other arguments against using the concept of ownership and propertization of personal data (and data in general) see RadicalxChange.org's (\url{https://radicalxchange.org}) Data Freedom Act (\url{https://www.radicalxchange.org/media/papers/data-freedom-act.pdf}), which is “…informed by a model of social, overlapping claims to data. This view of data, which challenges more familiar notions of individual data ownership, is echoed by top researchers in the fields of data privacy, security, and network economics.” See also the Technium Data Manifesto \url{https://kk.org/thetechnium/data-manifesto/} whose first tenet reads, “Data cannot be owned. By anybody.”} However, by following the tradition of treating ownership and property to be a system of rights, we believe it can be applied to personal data.  
+We acknowledge that many argue that the concept of ownership and property should not be applied to data in general\footnote{For other arguments against using the concept of ownership and propertization of personal data (and data in general) see RadicalxChange.org's (\url{https://radicalxchange.org}) Data Freedom Act (\url{https://www.radicalxchange.org/media/papers/data-freedom-act.pdf}), which is “…informed by a model of social, overlapping claims to data. This view of data, which challenges more familiar notions of individual data ownership, is echoed by top researchers in the fields of data privacy, security, and network economics.” See also the Technium Data Manifesto \url{https://kk.org/thetechnium/data-manifesto/} whose first tenet reads, “Data cannot be owned. By anybody.”}, and thus not to personal data specifically. For example, Prewitt\cite{Prewitt2021} argues that “data cannot be owned, but must be governed.”  However, by following the tradition of treating ownership and property as a system of rights, we a set of rights can be designed appropriate for the characteristics of personal data.  
 
-DSO applies differently to two domains of personal data that differ based on primary storage location. The first is \emph{user-held}\cite{Jurcys2021} personal information. The second is \emph{app-held} personal information. 
+The specific set of DSO rights differ by two primary storage location domains. The first set is for \emph{user-held}\cite{Jurcys2021} personal data. The second set is for what we call \emph{app-held} personal data. 
 
-\subsection{DSO for User-held data}
+\subsection{DSO for User-held Data}
 
-User-held personal information is data about the individual that is created (authored) by the holder or captured by the holder using a sensor, and ``held" by (i.e. stored on) a personal device such as a phone, or in a personal datastore, or in a personal data cloud. 
+User-held personal information is data about the individual that is created (authored) by them or captured by them using a sensor, and ``held"  (stored) on their personal device such as a phone, personal datastore, or personal data cloud. 
 
-Below is the bundle of rights that give the user ownership over their user-held data. 
+The following is a bundle of rights that taken together give the user ownership over their user-held data:
 \begin{itemize}
 	\item \textbf{Assert}. The right to assert information about themself.
 	\item \textbf{Access, Update, Delete}. The right to access, update and/or delete their data. 
-	\item \textbf{Process}. The right to process their data. This includes leveraging local applications, algorithms, and ``personal AI.'' 
-	\item \textbf{Share}. The right to share data with others without a license. Exercising this right typicaly greatly or entirely undermines ownership.
-	\item \textbf{License}. The right to transfer a copy of the data to an app, whereupon that copy, now being \emph{app-held}, affords the user the rights described below.
+	\item \textbf{Process}. The right to process their data. This includes leveraging it with local applications, algorithms, and ``personal AI.''  
+	\item \textbf{Share}. The right to share data with others without a license. Note that exercising this right undermines ownership, often entirely.
+	\item \textbf{License}. The right to transfer a copy of the data to a data custodian's app, whereupon that copy, now being \emph{app-held}, affords the user the rights described below.
 \end{itemize}
 
-\subsection{DSO for App-held data}
+\subsection{DSO for App-held Data}
 App-held data is personal information about an individual that is held (stored) by a digital service provider's mobile app, desktop app, website or webservice with which the individual directly interacts. We call these first-party providers, data custodians.
 
 We define app-held personal information as data that the data custodian has collected through interactions between the individual as a user of the data custodian's app, or through observations made by the app or associated sensors, or through data generated by the app as part of these interactions, but excluding data inferred about the individual as part of these interactions.
@@ -81,7 +81,7 @@ Jurcys et al.\cite{Jurcys2021} defined the term \emph(user-held) data and is bel
 \section{Implementation}
 The rights outlined can be made available to individuals using a combination of legal and technical means. 
 
-Since the user is in total control of user-held data, the user \emph{is} the law in this case, so other law is required. However, for app-held data this situation is more complicated. Since privacy laws do not provide and enforce the rights we've described \footnote{The situation is more stark. Putting aside the rights we propose here, individual data ownership rights of any kind are not recognized in any jusrisdiction} for app-held data, we can instead rely on contract law. A contract can be executed between a trusted intermediary that operates on behalf of the individual on the one hand, and the first-party, acting as a data custodian on the other. We call this contract a \emph{Human Information License}. 
+Since the user is in total control of user-held data, the user \emph{is} the law in this case, so other law is required. However, for app-held data this situation is more complicated. Since privacy laws do not provide and enforce the rights we've described \footnote{The situation is in reality even more stark. Putting aside the rights we propose here, individual data ownership rights are not recognized in any jusrisdiction.} for app-held data, we can instead rely on contract law. A contract can be executed between a trusted intermediary that operates on behalf of the individual on the one hand, and the first-party, acting as a data custodian on the other. We call this contract a \emph{Human Information License}. 
 
 On the technical side, a user agent (which by definition represents the user) can consume APIs exposed by the data custodian to implement the access, reading, updating and deleting functions we have described. 
 
