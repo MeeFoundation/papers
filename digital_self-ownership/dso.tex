@@ -26,13 +26,71 @@
 \geometry{letterpaper}                   	% ... or a4paper or a5paper or ... 
 \title{Digital Self-Ownership}
 \author{Paul Trevithick, The Mee Foundation}
-\date{Created March 27, 2023. Revised: \today}							
+\date{Created March 27, 2023. Revised \today}							
 \begin{document}
 \maketitle
+\begin{abstract}
+	Digital self-ownership is a set of individual rights that give people ownership over their online personal information. These rights are related to, but different from property rights involved in the ownership of personal property. We can also compare them to the rights afforded to individuals under recent privacy laws. Finally we show how these rights be respected by through a Human Information License.
+\end{abstract}
 
+\section{Ownership as rights}
+Ownership of property is a system of rights. Consider a spoon that you own. Your rights to use the spoon, give it away, sell it, destroy it, and so on, are not intrinsic to the spoon--they exist because they are recognized by law.
 
-\section{Introduction}
+John Locke argued that property law should be applied to people. He is commonly regarded as the originator of ``self-ownership''--the idea that humans have a property right in their person. In 1689 he wrote, ``Every man has a property in his own person: this nobody has any right to but himself."\cite{Locke1689}. This idea was taken up by the American revolutionaries, and was instrumental in justifying their passion to be self-sovereign citizens instead of subjects of King George. Locke considered these to be inate human rights, but it is worth noting that they were later formalized in the U.S. Constitution and Bill of Rights. 
 
-\bibliography{library}
+\section{Digital Self-Ownership}
+
+Today, a few hundred years later, the self-ownership that Locke argued was “self-evident” does not hold in the digital realm. Despite some advances in privacy law, we have little control over our digital selves. Much of our human information (e.g., preferences, interests, affiliations, friends, medical records, location data) is collected by corporations involved in surveillance capitalism\cite{zuboff2019}. It is held, bought, sold, and leveraged for the corporation’s economic advantage, not ours. The resulting loss of privacy and lack of a sense of ownership of our personal data is well-known. Although we're not quite ready to go to war over the idea, we believe that owning our digital selves is vitally important to civil society and the survival of democracy in a digital age. 
+
+We introduce Digital Self-Ownership (DSO) as an extension of Locke's self-ownership to cover people's digital expression, namely, their personal information. DSO asserts a set of digital personal rights to establish people's power and control over their personal information. In much the same way that private property gives individuals power over their own belongings, we seek to increase the power of individuals relative the extraordinary power of digital service providers. 
+
+We acknowledge that some argue that the concept of ownership and property should not be applied to data in general, and thus not to personal data specifically. For example, Prewitt (2021) argues that “data cannot be owned, but must be governed.”\cite{Prewitt2021}. \footnote{For other arguments against using the concept of ownership and propertization of personal data (and data in general) see RadicalxChange.org's (\url{https://radicalxchange.org}) Data Freedom Act (\url{https://www.radicalxchange.org/media/papers/data-freedom-act.pdf}), which is “…informed by a model of social, overlapping claims to data. This view of data, which challenges more familiar notions of individual data ownership, is echoed by top researchers in the fields of data privacy, security, and network economics.” See also the Technium Data Manifesto \url{https://kk.org/thetechnium/data-manifesto/} whose first tenet reads, “Data cannot be owned. By anybody.”}
+
+However, by following the tradition of considering ownership and property to be a system of rights, we believe it can be applied to personal data and will show how it can be recognized in a new kind of law.
+
+DSO has two branches, based on one of two locations where personal data is stored. The first is \emph{user-held}\cite{Jurcys2021} personal information. The second is \emph{app-held} personal information. 
+
+\subsection{DSO for User-held data}
+
+User-held personal information is data about the individual that is created (authored) by the holder or captured by the holder using a sensor, and ``held" by (i.e. stored on) a personal device such as a phone, or in a personal datastore, or in a personal data cloud. 
+
+Below is the bundle of rights that give the user ownership over their user-held data. 
+\begin{itemize}
+	\item \textbf{Assert}. The right to assert information about themself.
+	\item \textbf{Access, Update, Delete}. The right to access, update and/or delete their data. 
+	\item \textbf{Process}. The right to process their data. This includes leveraging local applications, algorithms, and ``personal AI.'' 
+	\item \textbf{Share}. The right to share data with others without a license. Exercising this right typicaly greatly or entirely undermines ownership.
+	\item \textbf{License}. The right to transfer a copy of the data to an app, whereupon that copy, now being \emph{app-held}, affords the user the rights described below.
+\end{itemize}
+
+\subsection{DSO for App-held data}
+App-held data is personal information about an individual that is held (stored) by a digital service provider's mobile app, desktop app, website or webservice with which the individual directly interacts. We call these first-party providers, data custodians.
+
+We define app-held personal information as data that the data custodian has collected through interactions between the individual as a user of the data custodian's app, or through observations made by the app or associated sensors, or through data generated by the app as part of these interactions, but excluding data inferred about the individual as part of these interactions.
+
+In all cases these rights must be implemented through the mechanism of direct digital communication between the data custodian and a user agent. This user agent is the individual's representative in a digital connection with the data custodian.
+
+Below is the minimum bundle of rights that gives the user ownership over their app-held personal data:
+\begin{itemize}
+	\item \textbf{Intent}. The right to know of the data custodian's intent to collect any kind of information and the organizational or business purpose behind this intent.
+	\item \textbf{Awareness}. The right to know what kinds of app-held data have been collected by the data custodian.
+	\item \textbf{Access, Update, Delete}. The right, to access update, and delete app-held data held by the data custodian. 
+\end{itemize}
+
+\section{Related Work}
+
+Jurcys et al.\cite{Jurcys2021} defined the term \emph(user-held) data and is believed to be the first to describe how self-ownership applies to it. This is closely related to the discussion of user-held data rights above. Van Alstyne et al.\cite{Alstyne2021}'s proposed 'in-situ' concept is closely related to the app-held data rights described above.
+
+\section{Implementation}
+The rights outlined can be made available to individuals using a combination of legal and technical means. 
+
+Since the user is in total control of user-held data, the user \emph{is} the law in this case, so other law is required. However, for app-held data this situation is more complicated. Since privacy laws do not provide and enforce the rights we've described \footnote{The situation is more stark. Putting aside the rights we propose here, individual data ownership rights of any kind are not recognized in any jusrisdiction} for app-held data, we can instead rely on contract law. A contract can be executed between a trusted intermediary that operates on behalf of the individual on the one hand, and the first-party, acting as a data custodian on the other. We call this contract a \emph{Human Information License}. 
+
+On the technical side, a user agent (which by definition represents the user) can consume APIs exposed by the data custodian to implement the access, reading, updating and deleting functions we have described. 
+
+\section{Conclusion}
+We have described a system of rights to give individuals ownership over their personal information online. These can be implemented through a combination of legal and technical means.
+
+\bibliography{../library}
 \bibliographystyle{plainurl}
 \end{document}  
