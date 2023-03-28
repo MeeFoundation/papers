@@ -24,6 +24,12 @@
 % Info on how to define a LaTeX command: https://www.sharelatex.com/learn/Commands
 
 \geometry{letterpaper}                   	% ... or a4paper or a5paper or ... 
+\usepackage{draftwatermark}
+\SetWatermarkLightness{0.9}
+\SetWatermarkText{DRAFT}					% you can use \today
+\SetWatermarkScale{5}
+
+
 \title{Identity Agents}
 \author{Paul Trevithick, The Mee Foundation}
 \date{Created March 3, 2023. Revised \today}							
@@ -42,7 +48,7 @@ Berners-Lee conceived the web as a decentralized platform wherein anyone could p
 
 In response, many initiatives have arisen proposing alternative approaches and technologies. Here are just a few representative examples: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{blogs.harvard.edu/vrm}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
-We use the term \emph{user agent} to refer to software tools that work (i.e. provide agency) ``on the user's side" for, and \emph{exclusively} on behalf of, the user. Since our discussion applies equally to provider's mobile apps, webapps, and websites, from here forward we will simply use the term \emph{app} to refer to all of them.
+We use the term \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent} to refer to software tools that work (i.e. provide agency) ``on the user's side"\footnote{Project VRM refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the user. Since our discussion applies equally to provider's mobile apps, webapps, and websites, from here forward we will simply use the term \emph{app} to refer to all of them.
 
 Power asymmetry lies at the root of a diverse set of related end-user symptoms, most of which erode privacy, since privacy and power are highly interrelated concepts\footnote{Consider the title of V\'eliz's recent book, ``Privacy is Power"\cite{veliz2020}}. 
 These privacy-eroding symptoms include a lack of personal autonomy, a lack of personal agency, and third-party surveillance. 
@@ -57,11 +63,11 @@ These privacy-eroding symptoms include a lack of personal autonomy, a lack of pe
 
 \emph{Ownership}. Our personal data is collected and held by organizations as we interact with their apps, but not by us. This pattern \emph{app-held data} by \emph{first-parties} is so common that it's hard to imagine an alternative. Our data is not free from external control by apps, because it is generally stored and managed by them. Our data is also collected and held by \emph(third-parties) (e.g. data brokers) with whom we have no direct interactions. In short, it's been said that \hyperfootnote[“everybody has our data … except us.”][https://]{reb00ted.org/personaldata/20210620-who-has-my-personal-data/}. 
 
-As we'll discuss more later on, there alternatives have been proposed. One is ``user-held" data\cite{Jurcys2021}, where your data is held by you in a personal datastore\footnote{Examples of open-source personal datastores include \url{https://solidproject.org}, Decentralized Web Nodes(DWN). For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. Another is following ``local-first" software principles.\cite{Kleppmann2019}
+As we'll discuss more later on, alternatives have been proposed. One is ``user-held" data\cite{Jurcys2021}, where your data is held by you in a personal datastore\footnote{Examples of open-source personal datastores include \url{https://solidproject.org}, Decentralized Web Nodes(DWN). For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. Another is following ``local-first" software principles.\cite{Kleppmann2019}
 
 \emph{Lock-in}. As we've mentioned our online existence is provisional. Our existence is bound to the provider from which it originated. Providers hold our data, and although in many jurisdictions providers are required to allow us to have access (e.g. to request that we can download a copy), we lack the technical means to accept the data stream and store it under our control (e.g. in a personal datastore). If we did we'd have the potential to subsequently transform it into other formats and thereby make it reusable in other contexts. Thus our data is held hostage, i.e. without autonomy. 
 
-\emph{Peer-to-peer} With a few exceptions\hyperfootnote[][https://]{berty.tech}, internet users, when they communicate person-to-person don't have the ability to do so \emph{peer-to-peer}--from their edge device to the other person's device. Instead, they are dependent on servers hosted by intermediaries. Whereas it is now standard practice that the content of messages is end-to-end encrypted, the metadata about them (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server. 
+\emph{Peer-to-peer}. With a few exceptions\hyperfootnote[][https://]{berty.tech}, internet users, when they communicate person-to-person don't have the ability to do so \emph{peer-to-peer}--from their edge device to the other person's device. Instead, they are dependent on servers hosted by intermediaries. Whereas it is now standard practice that the content of messages is end-to-end encrypted, the metadata about them (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server. 
 
 \subsection{Lack of agency}
 
@@ -89,13 +95,13 @@ As we'll discuss more later on, there alternatives have been proposed. One is ``
 
 Whereas the user is at least aware when they sign up on a first-party app that their interactions are known to the provider of that app, there are also hundreds of third-parties of which the user is unaware that track and assemble databases about them. Databases of user data in the hands of hundreds of unknown third-parties creates privacy risks and vulnerabilities. Users have no visibility into what's being gathered, where it's being shared, and how it's being used. It is worth noting that that much of this third-party tracking is enabled in collaboration with first-parties (e.g. first-parties placing third-party tracking cookies on the user's browser).
 
-\emph{Surveillance-based targeted advertising}. Targeted advertising \footnote{Also known as behavioral advertising, or more recently, interest-based advertising} involves four main processing steps: (i) the collection of observations about the user by a first- or third-party, (ii) synthesis of an "ad profile” from these observations, (iii) matching this ad profile against available "target audiences”(i.e. characteristics of whom the advertiser wishes to reach, advertising budget, etc.) from advertisers through a bidding process, and (iv) displaying the winning ad. Surveillance-based targeted advertising specifically is when step (i) above is achieved by third-parties who track the user as they move from apps to app and site to site across the internet using third-party cookies and other tracking mechanisms. 
+\emph{Surveillance-based targeted advertising}. Vanilla targeted advertising \footnote{Also known as behavioral advertising, or more recently, interest-based advertising} involves four main processing steps: (i) the collection of observations about the user by a first- or third-party, (ii) synthesis of an ``ad profile” from these observations, (iii) matching this ad profile against available ``target audiences”(i.e. characteristics of whom the advertiser wishes to reach, advertising budget, etc.) from advertisers through a bidding process, and (iv) displaying the winning ad. What many people find objectionable is \emph{Surveillance-based} targeted advertising wherein step (i) above is achieved by third-parties who track the user as they move from apps to app and site to site across the internet (using third-party cookies, newer, cookie-less alternative identifiers, and other tracking mechanisms). 
 
-\emph{Data brokers}. Data brokers are third-parties who buy and sell personal data to other brokers, to advertisers, adtech firms and first-party publishers. They provide  personal data marketplaces and exchange behind the users's back, because users lack user agents to provide data about themselves.
+\emph{Data brokers}. Data brokers are third-parties who buy and sell personal data to other brokers, to advertisers, adtech firms and first-party publishers. They provide  personal data marketplaces behind the users's back. They could be considered an unfortunate, privacy-invading \emph{iterim} solution to address the fact that users lack user agents with which to directly provide this data about themselves. 
 
 
 \subsection{Inconvenience}
-The prevailing architecture of the internet involves each provider managing their own  information ``silo" of information about the user (i.e. their account). This approach and the lack of sufficiently powerful user agents creates inconvenience.
+In the prevailing architecture of the internet each ditial service provider manages their own information ``silo" of information about the user (i.e. their account). This approach and the lack of sufficiently powerful user agents creates inconvenience.
 
 \emph{Repetition}. When using apps, users are often asked to provide information about themselves that another app has already asked them, such as ``what is your email address?" This is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The user has the hassle of repeated data entry and the app offers a less-than-optimal user experience.
 
@@ -451,7 +457,7 @@ The legal mechanism we propose is a \hyperfootnote[Human Information License (HI
 \section{Acknowledgements}
 Contributors to this document include Kiril Khalitov, Sergey Kucherenko, Maria Vasuytenko, and Alexander Yuhimenko.
 
-\bibliography{library}
+\bibliography{../library}
 \bibliographystyle{plainurl}
 
 

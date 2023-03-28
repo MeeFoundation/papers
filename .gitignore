@@ -1,4 +1,5 @@
 library.bib
+identity_agent/ia.tex
 identity_agent/ia.aux
 identity_agent/ia.bbl
 identity_agent/ia.blg
@@ -8,6 +9,8 @@ identity_agent/ia.synctex.gz
 identity_agent/library.bib
 identity_agent/ia.fdb_latexmk
 identity_agent/ia.fls
+
+digital_self-ownership/dso.tex
 digital_self-ownership/dso.aux
 digital_self-ownership/dso.fdb_latexmk
 digital_self-ownership/dso.fls
