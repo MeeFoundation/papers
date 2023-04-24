@@ -9,6 +9,7 @@ identity_agent/identity_agents.gz
 identity_agent/identity_agents.bib
 identity_agent/identity_agents.fdb_latexmk
 identity_agent/identity_agents.fls
+identity_agent/identity_agents.synctex.gz
 
 self-control/self-control.tex
 self-control/self-control.aux
