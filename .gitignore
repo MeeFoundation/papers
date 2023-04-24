@@ -1,14 +1,14 @@
 library.bib
-identity_agent/ia.tex
-identity_agent/ia.aux
-identity_agent/ia.bbl
-identity_agent/ia.blg
-identity_agent/ia.log
-identity_agent/ia.out
-identity_agent/ia.synctex.gz
-identity_agent/library.bib
-identity_agent/ia.fdb_latexmk
-identity_agent/ia.fls
+identity_agent/identity_agent.tex
+iidentity_agent/identity_agent.aux
+iidentity_agent/identity_agent.bbl
+identity_agent/identity_agent.blg
+identity_agent/identity_agent.log
+identity_agent/identity_agent.out
+identity_agent/identity_agent.gz
+identity_agent/identity_agent.bib
+identity_agent/identity_agent.fdb_latexmk
+identity_agent/identity_agent.fls
 
 digital_self-ownership/dso.tex
 digital_self-ownership/dso.aux
