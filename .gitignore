@@ -1,7 +1,6 @@
 library.bib
 
 identity_agent/identity_agents.tex
-
 identity_agent/identity_agents.aux
 identity_agent/identity_agents.bbl
 identity_agent/identity_agents.blg
@@ -12,6 +11,7 @@ identity_agent/identity_agents.bib
 identity_agent/identity_agents.fdb_latexmk
 identity_agent/identity_agents.fls
 identity_agent/identity_agents.synctex.gz
+identity_agent/identity_agents.graffle
 
 self-control/self-control.tex
 self-control/self-control.aux
@@ -22,4 +22,15 @@ self-control/self-control.out
 self-control/self-control.synctex.gz
 self-control/self-control.bbl
 self-control/self-control.blg
+self-control/self-control.graffle
 
+age-protect/age-protect.tex
+age-protect/age-protect.aux
+age-protect/age-protect.fdb_latexmk
+age-protect/age-protect.fls
+age-protect/age-protect.log
+age-protectl/age-protect.out
+age-protect/age-protect.synctex.gz
+age-protect/age-protect.bbl
+age-protect/age-protect.blg
+age-protect/age-protect.graffle
