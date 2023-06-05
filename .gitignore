@@ -13,6 +13,7 @@ identity_agent/identity_agents.fls
 identity_agent/identity_agents.synctex.gz
 identity_agent/identity_agents.graffle
 
+
 self-control/self-control.tex
 self-control/self-control.aux
 self-control/self-control.fdb_latexmk
@@ -36,3 +37,4 @@ age-protect/age-protect.bbl
 age-protect/age-protect.blg
 age-protect/age-protect.graffle
 age-protect/age-protect.out
+age-portect/images
