@@ -1,5 +1,18 @@
 library.bib
 
+smartwallets/smartwallets.tex
+smartwallets/smartwallets.aux
+smartwallets/smartwallets.bbl
+smartwallets/smartwallets.blg
+smartwallets/smartwallets.log
+smartwallets/smartwallets.out
+smartwallets/smartwallets.gz
+smartwallets/smartwallets.bib
+smartwallets/smartwallets.fdb_latexmk
+smartwallets/smartwallets.fls
+smartwallets/smartwallets.synctex.gz
+smartwallets/smartwallets.graffle
+
 identity_agent/identity_agents.tex
 identity_agent/identity_agents.aux
 identity_agent/identity_agents.bbl
@@ -12,7 +25,6 @@ identity_agent/identity_agents.fdb_latexmk
 identity_agent/identity_agents.fls
 identity_agent/identity_agents.synctex.gz
 identity_agent/identity_agents.graffle
-
 
 self-control/self-control.tex
 self-control/self-control.aux
