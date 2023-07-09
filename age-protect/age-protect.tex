@@ -99,23 +99,27 @@ Additional details are provided in the sequence diagram in Figure \ref{fig:adult
 	\label{fig:adult-seq}
 \end{figure}
 \begin{comment}
-PASTE INTO SEQUENCEDIAGRAM.ORG
-Adult->AVS: (1) visit AVS.com
-Adult<-AVS:HTML page with AP-compatible button
-Adult->AVS: (2) tap AP-compatible button
-note over AVS: verify identity and age of adult
-Adult<-AVS:issue AVR
-note over Adult: ...sometime later...
+MERMAID
+sequenceDiagram
+    participant Adult
+    participant AVS
+    participant ServiceProvider
+    Adult->>+AVS: (1) visit AVS.com
+    AVS->>-Adult: HTML page with AP-compatible button
+    Adult->>+AVS: (2) tap AP-compatible button
+    Note right of AVS: verify identity and age of adult
+    AVS->>-Adult: issue AVR
+    Note right of Adult: ...sometime later...
+    Adult->>+ServiceProvider: (3) visit SP website for the first time (AP enabled)
+    Note right of ServiceProvider: SP detects AgeProtect, needs to age verify, has no AVR
+    ServiceProvider->>-Adult: (4) webpage with AP-compatible button
+    Adult->>+ServiceProvider: (5) tap AP-compatible button
+    ServiceProvider->>-Adult: SIOP request AVR
+    Note right of Adult: Find matching AVR
+    Adult->>ServiceProvider: return AVR
+    Note right of ServiceProvider: verify AVR and cache it with user record
+    Note right of ServiceProvider: adult gains access to content and services of website
 
-Adult->Service Provider: (3) visit SP website for the first time with AgeProtect enabled
-note over Service Provider: SP detects AgeProtect, needs to age verify, has no AVR
-Adult<-Service Provider: (4) webpage with AP-compatible button
-Adult->Service Provider: (5) tap AP-compatible button
-Adult<-Service Provider:SIOP request AVR
-note over Adult: Find matching AVR
-Adult->Service Provider:return AVR
-note over Service Provider: verify AVR and cache it with user record
-note over Service Provider: adult gains access to content and services of website
 \end{comment}
 
 \subsection{Minor verifies age at a website}
