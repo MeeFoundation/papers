@@ -36,7 +36,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-	We present a new age verification approach with a unique combination of characteristics: (i) it is opt-in: a parent or guardian can choose to protect their minor children and adults can use it to prove they are of age (ii) the privacy and anonymity of all parties is respected (iii) it leaves the existing internet experience completely unchanged. Age Protect is a technical specification that defines the interactions between three kinds of parties: online service providers, smartwallets, and AVSes. Service providers can implement it to offer age-restricted content and services consistent with prevailing laws and regulations. People can use it by installing a compatible on-device software smartwallet and having a relationship with an compatible Age Verification Service (AVS). Using this smartwallet a person can convey AVS-attested age-related information to service providers which can use it to authorize access to content and services they offer on their apps, websites, or other online services. 
+	We present a new age verification approach with a unique combination of characteristics: (i) it is opt-in: a parent or guardian can choose to protect their minor children and adults can use it to prove they are of age (ii) the privacy and anonymity of all parties is respected (iii) it leaves the existing internet experience unchanged for those that don't ope-in. Age Protect is a technical specification that defines the interactions between three kinds of parties: online service providers, digital wallets, and AVSes. Service providers can implement it to offer age-restricted content and services consistent with prevailing laws and regulations. People can use it by installing a compatible on-device software wallet and having a relationship with a compatible Age Verification Service (AVS). Using this wallet a person can convey AVS-attested age-related information to service providers which can use it to authorize access to content and services they offer on their apps, websites, or other online services. 
 \end{abstract}
 
 \section{Introduction}
@@ -63,26 +63,26 @@ Age Protect if widely adopted would provide an age-aware experience for people t
 
 \section{Usage Scenarios} 
 
-Age Protect is a specification for the interactions between three kinds of parties: service providers, smartwallets, and Age Verification Services. By \emph{Service Provider (SP)} we mean an entity offering apps, websites and other online services (and theoretically also by gaming consoles and Connected TVs)\footnote{This is an area for future research as to how the smartwallet-to-platform integration would best be achieved}, although for simplicity we describe only website scenarios. By \emph{smartwallet} we mean a specialized kind of software application running on a person's phone(s), tablet(s) and/or laptop(s). By \emph{Age Verification Services (AVSes)} we mean a special kind of third-party online service and/or mobile app that provides age and identity verification services. 
+Age Protect is a specification for the interactions between three kinds of parties: service providers, smartwallets, and Age Verification Services. By \emph{Service Provider (SP)} we mean an entity offering apps, websites and other online services (and theoretically also by gaming consoles and Connected TVs)\footnote{This is an area for future research as to how the wallet-to-platform integration would best be achieved}, although for simplicity we describe only website scenarios. By \emph{wallet} we mean a specialized kind of software application running on a person's phone(s), tablet(s) and/or laptop(s). By \emph{Age Verification Services (AVSes)} we mean a special kind of third-party online service and/or mobile app that provides age and identity verification services. 
 
-For Age Protect to work a person must have an Age Protect-compatible smartwallet installed on their device(s), and they must put into this smartwallet an Age Protect-compatible \emph{Age Verification Record (AVR)} document issued by an Age Protect-compatible AVS. After they do so their experience at Age Protect-compatible apps and services will change. When they go to create a new account a button will appear that when tapped will allow them to present this AVR. Based on the contents of the AVR, they will gain or be denied access to one or more kinds of content and services. 
+For Age Protect to work a person must have an Age Protect-compatible digital wallet installed on their device(s), and they must put into this wallet an Age Protect-compatible \emph{Age Verification Record (AVR)} document issued by an Age Protect-compatible AVS. After they do so their experience at Age Protect-compatible apps and services will change. When they go to create a new account a button will appear that when tapped will allow them to present this AVR. Based on the contents of the AVR, they will gain or be denied access to one or more kinds of content and services. 
 
-Age Protect can be used by both minors and adults, and we will describe usage scenarios for both. A single guardian can protect multiple minors, although for simplicity we will describe the single-minor use case. It can support multiple people sharing the same tablet or laptop by relying on the smartwallet's ability to do the same. The smartwallet would need identify the user uniquely even if biometric identification was not supported by the hardware (likely by an additional credential such as a PIN code).
+Age Protect can be used by both minors and adults, and we will describe usage scenarios for both. A single guardian can protect multiple minors, although for simplicity we will describe the single-minor use case. It can support multiple people sharing the same tablet or laptop by relying on the wallet's ability to do the same. The wallet would need identify the user uniquely even if biometric identification was not supported by the hardware (likely by an additional credential such as a PIN code).
 
-In this document we refer to an \emph{AP-compatible button}. This is a button on the AVS or SP app/site that triggers an OpenID \hyperfootnote[SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html} (and other standards) flow that allows the person to (i) allow the SP or AVS to communicate with the smartwallet (including issuing and presenting AVRs) and to (ii) download and install a smartwallet if they don't already have one. It allows the SP to specify which AVS services it trusts.
+In this document we refer to an \emph{AP-compatible button}. This is a button on the AVS or SP app/site that triggers an OpenID \hyperfootnote[SIOPv2][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html} (and other standards) flow that allows the person to (i) allow the SP or AVS to communicate with the wallet (including issuing and presenting AVRs) and to (ii) download and install a wallet if they don't already have one. It allows the SP to specify which AVS services it trusts.
 
 \subsection{Adult verifies age on a website}
 
-The simplest scenario involving an adult, is one where they first acquire an \emph{Age Verification Record(AVR)} from an Age Verification Service (AVS), store it in their smartwallet, and then go to an age-restricted website of a Service Provider (SP) where they present it AVR to prove their age. The smartwallet is a kind of \hyperfootnote[digital wallet][https://]{openwallet.foundation/} which holds the AVR and from which it is copied duing ``presentation.'' An AVR is a \hyperfootnote[VC][https://]{https://www.w3.org/TR/vc-data-model/} which contains an attribute (referred to as a \emph{claim}) whose value is the birth date of the adult as asserted by the AVS. On receipt the SP cryptographically verifies the AVR. 
+The simplest scenario involving an adult, is one where they first acquire an \emph{Age Verification Record(AVR)} from an Age Verification Service (AVS), store it in their wallet, and then go to an age-restricted website of a Service Provider (SP) where they present it AVR to prove their age. The wallet is a kind of \hyperfootnote[digital wallet][https://]{openwallet.foundation/} which holds the AVR and from which it is copied duing ``presentation.'' An AVR is a \hyperfootnote[VC][https://]{https://www.w3.org/TR/vc-data-model/} which contains an attribute (referred to as a \emph{claim}) whose value is the birth date of the adult as asserted by the AVS. On receipt the SP cryptographically verifies the AVR. 
 
 This scenario is shown in Figure \ref{fig:adult}. We describe each numbered step in the flow: 
 
 \begin{enumerate}
 	\item The adult goes to an AVS and taps an AP-compatible button. They then begin identity verification using whatever methods are supported by the AVS. 
-	\item After the adult has completed identity verification, the AVS issues them an AVR. This AVR is transferred into the adult's smartwallet using digital connection that was created when the adult tapped the AP-compatible button.
-	\item The adult visits the service providers's website. In the HTTP header the smartwallet includes a new field called ``AgeProtect''\footnote{The design of this field is under active development and thus may change} which is detected by the SP. 
-	\item If this is the first time the adult has visited with the AgeProtect signal, the SP displays a page asking the adult to prove they are old enough to access the website and explains that they can do so by tapping the AP-compatible button.
-	\item The adult taps the AP-compatible button, which opens their smartwallet, retrieves the necessary AVR and asks the adult to consent to share it with the website as proof of their age. 
+	\item After the adult has completed identity verification, the AVS issues them an AVR. This AVR is transferred into the adult's wallet using digital connection that was created when the adult tapped the AP-compatible button.
+	\item The adult visits the service provider's website. In the HTTP header the wallet includes a new field called ``AgeProtect''\footnote{The design of this field is under active development and thus may change} which is detected by the SP. 
+	\item If this is the first time the adult has visited with the Age Protect signal, the SP displays a page asking the adult to prove they are old enough to access the website and explains that they can do so by tapping the AP-compatible button.
+	\item The adult taps the AP-compatible button, which opens their wallet, retrieves the necessary AVR and asks the adult to consent to share it with the website as proof of their age. 
 \end{enumerate}
 
 Additional details are provided in the sequence diagram in Figure \ref{fig:adult-seq}. 
@@ -131,10 +131,10 @@ The guardian registers a minor (e.g. child) at an AVS, shares a link (or QR code
 	\item The guardian goes to an AVS and taps an AP-compatible button. They then begin identity verification on themselves (using whatever methods are supported by the AVS) and then register the minor, a process that includes specifying the minor's birth date.
 	\item A link (and QR code) is generated for the minor and made available to the guardian.
 	\item The guardian shares this link (or QR code) with the minor.
-	\item The minor scans the QR code (or taps the URL) which brings them to the AVS. An AVR is issued and stored in their smartwallet.
-	\item The minor goes to the SP's website. In the HTTP header the smartwallet includes field name of ``AgeProtect.''\footnote{The design of this field is under active development and thus may change} The SP detects this signal encoded in the header.
-	\item If this is the first time that the minor has visited the site with AgeProtect enabled then the SP displays a page with an AP-compatible button prompting the minor to tap it and thereby request either an age-range or a birth date.
-	\item The minor taps an AP-compatible button and their smartwallet provides whatever age information the SP has requested: either an age-range derived from the AVR's birth date or the actual birth date itself.
+	\item The minor scans the QR code (or taps the URL) which brings them to the AVS. An AVR is issued and stored in their wallet.
+	\item The minor goes to the SP's website. In the HTTP header the wallet includes field name of ``AgeProtect.''\footnote{The design of this field is under active development and thus may change} The SP detects this signal encoded in the header.
+	\item If this is the first time that the minor has visited the site with Age Protect enabled then the SP displays a page with an AP-compatible button prompting the minor to tap it and thereby request either an age-range or a birthdate.
+	\item The minor taps an AP-compatible button and their wallet provides whatever age information the SP has requested: either an age-range derived from the AVR's birthdate or the actual birthdate itself.
 \end{enumerate}
 
 \begin{figure}
@@ -146,46 +146,62 @@ The guardian registers a minor (e.g. child) at an AVS, shares a link (or QR code
 \begin{comment}
 \subsection{Consent: allowing/blocking access to a website by a minor}
 
-In the previous scenario the minor was free to use any Age Protect website so long as the information in their AVR met the age criteria of the website. In this scenario we go further and show how the guardian can control the minor's access to specific websites and even specific kinds of services within a website (e.g. the ability to chat with others, upload images, etc.).
+In the previous scenario the minor was free to use any Age Protect-compatible website so long as the information in their AVR met the age criteria of the website. In this scenario we go further and show how the guardian can control the minor's access to specific websites and even specific kinds of services within a website (e.g. the ability to chat with others, upload images, etc.).
 
-Here's a rough sketch of how this works. Every time the minor wishes to access a new website they must first possess (i.e. have stored in their smartwallet) an authorization token for it. For example if the minor wants to visit Facebook.com they must first have a token for Facebook.com. This token is issued by an interaction between the AVS and the guardian. 
+Here's a rough sketch of how this works. Every time the minor wishes to access a new website they must first possess (i.e. have stored in their wallet) an authorization token for it. For example if the minor wants to visit Facebook.com they must first have a token for Facebook.com. This token is issued by an interaction between the AVS and the guardian. 
 
 Here's how the flow works the first time the minor attempts to go to Facebook.com: 
 \begin{enumerate}
 	\item Minor attempts to visit Facebook.com
-	\item Their smartwallet's browser extension attempts to fetch from their smartwallet an authorization token (issued by an AVS) that specifies that the minor is permitted to visit Facebook.com. In this scenario no such token exists.
-	\item The minor's smartwallet sends a request for authorization to the guardian's smartwallet (leveraging the digital connection between the guardian's smartwallet and the minor's smartwallet)
-	\item The guardian's smartwallet invokes the AVS app/site. This app/site provides a UI that enables the guardian to manage an ``allowed list'' and a ``blocked list'' of SPs. Using this UI the guardian modifies these lists to allow or block access to Facebook.com. If access is allowed it generates a token encoding this capability. 
-	\item The AVS issues the token to the guardian by adding it into a storage area within the guardian's smartwallet that is associated with the guardian's relationship with the AVS.
-	\item The guardian's smartwallet sends this token to the minor's smartwallet (leveraging the digital connection between the guardian's smartwallet and the minor's smartwallet, [and specifically replication of the storage area in the guardian's smartwallet])
-	\item The minor's smartwallet verifies this token and communicates with the browser extension to allow the browser to proceed to Facebook.com
+	\item Their wallet's browser extension attempts to fetch from their wallet an authorization token (issued by an AVS) that specifies that the minor is permitted to visit Facebook.com. In this scenario no such token exists.
+	\item The minor's wallet sends a request for authorization to the guardian's wallet (leveraging the digital connection between the guardian's wallet and the minor's wallet)
+	\item The guardian's wallet invokes the AVS app/site. This app/site provides a UI that enables the guardian to manage an ``allowed list'' and a ``blocked list'' of SPs. Using this UI the guardian modifies these lists to allow or block access to Facebook.com. If access is allowed it generates a token encoding this capability. 
+	\item The AVS issues the token to the guardian by adding it into a storage area within the guardian's wallet that is associated with the guardian's relationship with the AVS.
+	\item The guardian's wallet sends this token to the minor's wallet (leveraging the digital connection between the guardian's wallet and the minor's wallet, [and specifically replication of the storage area in the guardian's wallet])
+	\item The minor's wallet verifies this token and communicates with the browser extension to allow the browser to proceed to Facebook.com
 \end{enumerate}
 \end{comment}
 
-\subsection{Minor uninstalls their smartwallet}
+\subsection{Minor uninstalls their wallet}
 
-A minor can attempt to disable Age Protect by uninstalling the smartwallet from their devices. The smartwallet can, just before the un-installation process completes, send a signal to the AVS. The AVS can in turn notify the minor's guardian that the minor is uninstalling Age Protect.
+A minor can attempt to disable Age Protect by uninstalling the wallet from their devices. The wallet, just before the uninstallation process completes, sends a signal to the AVS. The AVS can in turn notify the minor's guardian that the minor is uninstalling their wallet.
 
 
 \section{Technical specifications}
 
 This section is under development.
 
-\subsection{Signaling protocol}
-This subsection will describe the AppProtect=1 HTTP header field (which is identical in structure to the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org}). We also need to develop a solution to send the Age Protect signal to mobile apps.
+\subsection{Age Protect Signaling}
+ 
+In addition to traditional digital wallet functions, an Age Protect-compatible wallet is discoverable by sites and apps. The signaling from the wallet side and the detection of this signal from the app/site side relies on Agent Discovery [missing reference].
 
 \subsection{AP-Compatible button}
 This subsection will describe how an AP-Compatible button is to be implemented. It will extend the OpenID SIOPv2 spec. 
 
-\subsection{Age Verification Record format}
-This subsection will describe the schema of an AVR.\hyperfootnote[Verifiable Credential][https://]{w3.org/TR/vc-data-model/}
+\subsection{Age Verification Record}
 
-\subsection{Age Verification protocol}
-This section will define the invocation flow, age verification claims (perhaps only user age range and jurisdiction), and mechanism for presenting/prove age with the AVR. 
+An AVR is a Verifiable Credential (VC)\hyperfootnote[Verifiable Credential][https://]{w3.org/TR/vc-data-model/}. To prevent the VC from being allowed to be transferred to another walled, the VC includes:
+\begin{itemize}
+	\item the \hyperfootnote[\emph{nonTransferable}][https://]{w3.org/TR/vc-data-model/\#nontransferable-property} property. 
+	\item an \hyperfootnote[\emph{expiration date}][https://]{w3.org/TR/vc-data-model/\#expiration-date}
+\end{itemize}
+It also includes the following claims:
+\begin{itemize}
+	\item \emph{Issuer} - the AVS that issued the AVR
+	\item \emph{ID} - a unique identifier of the AVR
+	\item \emph{Jurisdiction} - the wallet holder's jurisdiction
+	\item \emph{Birthdate} - the wallet holder's birthdate
+	\item \emph{Age} - the age of the walllet holder at the moment of issuance
+	\item \emph{AgeVerificationMethod} - TBD
+\end{itemize}
+
+
+\subsection{AVR Issuance and Presentation}
+This section will define the invocation flow, age verification claims (perhaps only user age range and jurisdiction), and mechanism for presenting/prove age with the AVR. To maximize privacy the presentation mechanism uses \hyperfootnote[selective disclosure][https://]{w3.org/TR/vc-imp-guide/\#selective-disclosure}. Notes (i) the expiration date will never be presented to the verifier (ii) the jurisdiction and/or verification method are only presented to the verifier if requested by the verifier. 
 
 \section{Initial implementation}
 
-This section will describe an prototype implementation of Age Protect being developed by an AVS provider, \hyperfootnote[PRIVO][https://]{privo.com}, and smartwallet provider, \hyperfootnote[The Mee Foundation][https://]{mee.foundation}, and a software development firm, \hyperfootnote[Swift Invention.][https://]{swiftinvention.com}
+This section will describe an prototype implementation of Age Protect being developed by an AVS provider, \hyperfootnote[PRIVO][https://]{privo.com}, and wallet provider, \hyperfootnote[The Mee Foundation][https://]{mee.foundation}, and a software development firm, \hyperfootnote[Swift Invention.][https://]{swiftinvention.com}
 
 \section{Conclusions and further work}
 We have described the design of a new, opt-in, privacy-preserving age verification approach. This paper will be continuously updated as progress continues on the specifications and a prototype implementation.
