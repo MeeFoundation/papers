@@ -318,15 +318,17 @@ Here is a sample AVR document:
 }
 \end{lstlisting}
 
-\subsection{AVR issuance and presentation notes}
+\subsection{A few notes on AVR issuance}
 
-To maximize privacy we leverage \hyperfootnote[selective disclosure][https://]{w3.org/TR/vc-imp-guide/\#selective-disclosure}. 
+To maximize privacy, the wallet relies on \hyperfootnote[selective disclosure][https://]{w3.org/TR/vc-imp-guide/\#selective-disclosure}, thus the issuer must encrypt the AVR using algorithms that are compatible with selective disclosure.
 
-The expiration date will never be presented to the verifier.
+To enhance the privacy of the person (holder), we may recommend that the AVR expiration is at most six months from issuance. 
 
-The \emph{jurisdiction} and/or \emph{ageVerificationMethod} are only presented to the verifier if requested. 
+\subsection{A few notes on AVR presentation by the wallet}
 
-To enhance the privacy of the person (holder), We may recommend that the AVR expiration is at most six months from issuance. 
+To maximize privacy we leverage \hyperfootnote[selective disclosure][https://]{w3.org/TR/vc-imp-guide/\#selective-disclosure}. This means that only the minimal set of claims requested by the verifier will be presented by the wallet. For example if only age is required, then only age will be presented, but not birthdate. We rely on verifiers being diligent to only request the minimal set of claims necessary. Along the same lines the \emph{jurisdiction} and/or \emph{ageVerificationMethod} are only presented to the verifier if requested. 
+
+The expiration date is never presented to the verifier.
 
 For performance reasons, we may recommend that the wallet compute a persistent unique to a verifier identifier for the wallet holder that expires after a certain amount of time (perhaps 30 days). This would enable caching by the verifier of the AVR record for this same period of time. This idea creates the possibility that the person is up to this amount of time older than the age claimed in the AVR. 
 
