@@ -4,9 +4,10 @@ sequenceDiagram
     participant Issuer
     participant Verifier
     Wallet&Browser->>+Issuer: (1) Authenticate
+    Issuer->>-Wallet&Browser: loged in
     Wallet&Browser->>+Issuer: (2) Begin age verification
     Note right of Issuer: verify identity and age of adult
-    Issuer->>-Wallet&Browser: issue AVR into adult's wallet
+    Issuer->>-Wallet&Browser: issue AVR into wallet
     Note right of Wallet&Browser: ...sometime later...
     Wallet&Browser->>+Verifier: (3) visit verifier website with AP-compatible wallet
     Note right of Verifier: verifier detects AgeProtect, needs to age verify, has no AVR
@@ -14,6 +15,8 @@ sequenceDiagram
     Wallet&Browser->>+Verifier: (5) tap Verify Age button
     Verifier->>-Wallet&Browser: SIOP request AVR
     Note right of Wallet&Browser: Find matching AVR
-    Wallet&Browser->>Verifier: return AVR
+    Wallet&Browser->>+Verifier: return AVR
     Note right of Verifier: verify AVR and cache it with user record
-    Note right of Verifier: adult gains access to content and services of website
+    Verifier->>-Wallet&Browser: success
+    Note right of Wallet&Browser: adult gains access to content and services of website
+
