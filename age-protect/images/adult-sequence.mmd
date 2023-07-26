@@ -4,7 +4,7 @@ sequenceDiagram
     participant Issuer
     participant Verifier
     Wallet&Browser->>+Issuer: (1) Authenticate
-    Issuer->>-Wallet&Browser: loged in
+    Issuer->>-Wallet&Browser: logged in
     Wallet&Browser->>+Issuer: (2) Begin age verification
     Note right of Issuer: verify identity and age of adult
     Issuer->>-Wallet&Browser: issue AVR into wallet
