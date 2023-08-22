@@ -229,7 +229,7 @@ A minor can attempt to disable Age Protect by uninstalling the wallet from their
 
 \subsection{Age Protect Signaling}
  
-In addition to traditional digital wallet functions, an Age Protect-compatible wallet is discoverable by sites and apps. The signaling from the wallet and the detection of this signal from the app/site rely on the Agent Presentation \colorbox{BurntOrange}{[missing reference]} protocol. Using Agent Presentation, for web usage the wallet would integrate with the browser and include the \emph{Agent} HTTP field.
+In addition to traditional digital wallet functions, an Age Protect-compatible wallet is discoverable by sites and apps. The signaling from the wallet and the detection of this signal from the app/site rely on the Provider Discovery \colorbox{BurntOrange}{[missing reference]} protocol. Using Provider Discovery, for web usage the wallet would integrate with the browser and include the \emph{Provider} HTTP field.
 
 \subsection{Verify Age button}
 
@@ -239,11 +239,15 @@ This subsection will describe how the Verify Age button is implemented.
 
 An AVR is a Verifiable Credential (VC)\hyperfootnote[Verifiable Credential][https://]{w3.org/TR/vc-data-model/} JSON document. 
 
+\textbf{@Context property}
+
 The \emph{@Context} property must include at least these two values:
 \begin{itemize}
 	\item ``https://www.w3.org/2018/credentials/v1''
 	\item ``https://schema.mee.foundation/age-protect/v1''
 \end{itemize}
+
+\textbf{id property}
 
 The \emph{id} property must uniquely identify this type of AVR document.
 	
@@ -253,26 +257,67 @@ The \hyperfootnote[\emph{type}][https://]{w3.org/TR/vc-data-model/\#types} prope
 	\item ``AgeProtectAVR''
 \end{itemize}
 
+\textbf{issuer property}
+
 The \hyperfootnote[\emph{issuer}][https://]{w3.org/TR/vc-data-model/\#issuer} property must be present.
 
-The \hyperfootnote[\emph{issuanceDate}][https://]{w3.org/TR/vc-data-model/\#issuance-date} property must be present.
-
-The \hyperfootnote[\emph{expirationDate}][https://]{w3.org/TR/vc-data-model/\#expiration-date} property must be present.
+\textbf{credentialSubject property}
 
 The \hyperfootnote[\emph{credentialSubject}][https://]{w3.org/TR/vc-data-model/\#credential-subject} property must be present. It must include the following properties:
 \begin{itemize}
 	\item \emph{birthdate} - the subject's (i.e., holder's) birthdate
-	\item \emph{age} - the age of the subject at AVR issuance
-	\item \emph{jurisdiction} - the jurisdiction where the subject lives
-	\item \colorbox{BurntOrange}{NEW}\emph{claimant} - the person or entity that originally attested the age claim. The value could be the subject themselves (``self"), or a guardian of the subject (``guardian").
-	\item \colorbox{BurntOrange}{NEW}\emph{ageVerificationMethod} - [to be defined. Is this needed?]
+	\item \emph{ageOrOver} - the age of the subject at AVR issuance
+	\item \emph{jurisdiction} - the jurisdiction where the subject lives. 
+	\begin{itemize}
+		\item \emph{countryCode} - in \hyperfootnote[ISO 3166-1]["https://"]{https://en.wikipedia.org/wiki/ISO\_3166-1} format
+		\item \emph{subdivisionCode} - in \hyperfootnote[ISO 3166-2][https://]{https://en.wikipedia.org/wiki/ISO\_3166-2} format
+	\end{itemize}
 \end{itemize}
 
-[Note: we are discussing the best way to incorporate age ranges instead of (or in addition to) absolute ages. The issue is complex due to variations in how age-ranges are defined across jurisdictions.]
+\textbf{credential-subject property}
+
+The \emph{credential-subject} property may include the following optional properties:
+\begin{itemize}
+	\item \emph{ageUnder13} - boolean
+	\item \emph{age13OrOver} - boolean
+	\item \emph{ageUnder14} - boolean
+	\item \emph{ageUnder15} - boolean
+	\item \emph{ageUnder16} - boolean
+	\item \emph{ageUnder17} - boolean
+	\item \emph{ageUnder18} - boolean
+	\item \emph{age18OrOver} - boolean
+	\item \emph{age20OrOver} - boolean
+	\item \emph{ageUnder21} - boolean
+	\item \emph{age21OrOver} - boolean
+	\item \emph{id} - a subject identifier defined by the issuer
+	\item \emph{ageVerificationMethod} - oneOf {"AgeEstimation", "GovernmentID", "ThirdParty"}
+\end{itemize}
+
+\textbf{credentialStatus property}
 
 The \hyperfootnote[\emph{credentialStatus}][https://]{w3.org/TR/vc-data-model/\#status} property must be present.
 
+\textbf{ageAssertionProvider property}
+
+The \emph{ageAssertionProvider} property must be present. Allowed values are oneOf {"Guardian", "Parent", "Self"}
+
+\textbf{assuranceLevel property}
+
+The \emph{assuranceLevel} property must be present. Its values are defined by \hyperfootnote[fhir.org][https://]{https://build.fhir.org/ig/HL7/fhir-identity-matching-ig/guidance-on-identity-assurance.htm} which we summarize as oneOf {"IAL1", "IAL1.2", "IAL1.5", "IAL1.6", "IAL1.8", "IAL2"}
+
+\textbf{issuanceDate property}
+
+The \hyperfootnote[\emph{issuanceDate}][https://]{w3.org/TR/vc-data-model/\#issuanceDate} property must be present.
+
+\textbf{expirationDate property}
+
+The \hyperfootnote[\emph{expirationDate}][https://]{w3.org/TR/vc-data-model/\#expirationDate} property must be present.
+
+\textbf{nonTransferable property}
+
 The \hyperfootnote[\emph{nonTransferable}][https://]{w3.org/TR/vc-data-model/\#nontransferable-property} property must have a value of true to prevent the VC from being allowed to be transferred to another wallet.
+
+\textbf{proof property}
 
 The \hyperfootnote[\emph{proof}][https://]{w3.org/TR/vc-data-model/\#proofs-signatures} property must be present to allow the verifier to validate the presentation data derived from the AVR.
 
@@ -289,23 +334,28 @@ Here is a sample AVR document:
 		"VerifiableCredential",
 		"AgeProtectAVR"
 	],
+
 	"issuer": {
 		"id": "https://vc.privo.com/issuer",
 		"name": "PRIVO"
 	},
+
+	"credentialSubject": {
+		"id": "https://vc.privo.com/age/ebfeb1f712ebc6f1c276e12ec21",
+		"birthdate": "2010-09-15",
+		"ageOrOver": 12,
+		"ageUnder13" : true,
+		"age21OrOver: false,
+		"jurisdiction": {
+			"countryCode" : "US",
+			"subdivisionCode": "VA"
+		},
+		"ageVerificationMethod": "AgeEstimation"
+	},
+	"ageAssertionProvider" : "parent",
+	"assuranceLevel" : "L1.5",
 	"issuanceDate": "2023-07-14T00:00:00Z",
 	"expirationDate": "2024-09-15T00:00:00Z",
-	"credentialSubject": {
-		"birthdate": "2010-05-15",
-		"age": 13,
-		"jurisdiction": "US-MA",
-		"claimant": "guardian",
-		"ageVerificationMethod": "https://schema.mee.foundation/age-protect/v1#AgeEstimation"
-	},
-	"credentialStatus": {
-		"id": "https://vc.privo.com/status/23",
-		"type": "CredentialStatusList202307"
-	},
 	"nonTransferable": true,
 	"proof": {
 		"created": "2023-07-15T13:13:39Z",
