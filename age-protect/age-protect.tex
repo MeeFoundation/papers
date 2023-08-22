@@ -229,8 +229,15 @@ A minor can attempt to disable Age Protect by uninstalling the wallet from their
 
 \subsection{Age Protect Signaling}
  
-In addition to traditional digital wallet functions, an Age Protect-compatible wallet is discoverable by sites and apps. The signaling from the wallet and the detection of this signal from the app/site rely on the Provider Discovery \colorbox{BurntOrange}{[missing reference]} protocol. Using Provider Discovery, for web usage the wallet would integrate with the browser and include the \emph{Provider} HTTP field.
+An Age Protect-compatible wallet relies on a browser extension that implements the \hyperfootnote[Provider Discovery][https://]{providerdiscovery.org} protocol. Using this protocol the browser extension includes the \emph{Provider} HTTP header field with a value of \emph{"AgeProtectv1"}:
+\begin{lstlisting}[language=json,firstnumber=1]
+	"Provider: AgeProtectv1"
+\end{lstlisting}
 
+Optionally, if the person already has a relationship with a specific age verification provider, e.g. PRIVO.com, they could configure their browser extension to send an enriched HTTP header field:
+\begin{lstlisting}[language=json,firstnumber=1]
+	"Provider: AgeProtectv1, https://privo.com/age-protect.pcf"
+\end{lstlisting}
 \subsection{Verify Age button}
 
 This subsection will describe how the Verify Age button is implemented. 
