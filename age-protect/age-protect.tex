@@ -249,8 +249,10 @@ The \emph{@Context} property must include at least these two values:
 
 \textbf{id property}
 
-The \emph{id} property must uniquely identify this type of AVR document.
+The \emph{id} property must uniquely identify this type of AVR document. 
 	
+\textbf{type property}
+
 The \hyperfootnote[\emph{type}][https://]{w3.org/TR/vc-data-model/\#types} property must be present and contain these two values:
 \begin{itemize}
 	\item ``VerifiableCredential''
@@ -263,7 +265,7 @@ The \hyperfootnote[\emph{issuer}][https://]{w3.org/TR/vc-data-model/\#issuer} pr
 
 \textbf{credentialSubject property}
 
-The \hyperfootnote[\emph{credentialSubject}][https://]{w3.org/TR/vc-data-model/\#credential-subject} property must be present. It must include the following properties:
+The \hyperfootnote[\emph{credentialSubject}][https://]{w3.org/TR/vc-data-model/\#credential-subject} property must be present. It must include the following sub-properties:
 \begin{itemize}
 	\item \emph{birthdate} - the subject's (i.e., holder's) birthdate
 	\item \emph{ageOrOver} - the age of the subject at AVR issuance
@@ -276,7 +278,7 @@ The \hyperfootnote[\emph{credentialSubject}][https://]{w3.org/TR/vc-data-model/\
 
 \textbf{credential-subject property}
 
-The \emph{credential-subject} property may include the following optional properties:
+The \emph{credential-subject} property may include the following optional sub-properties:
 \begin{itemize}
 	\item \emph{ageUnder13} - boolean
 	\item \emph{age13OrOver} - boolean
