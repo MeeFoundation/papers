@@ -231,12 +231,12 @@ A minor can attempt to disable Age Protect by uninstalling the wallet from their
  
 An Age Protect-compatible wallet relies on a browser extension that implements the \hyperfootnote[Provider Discovery][https://]{providerdiscovery.org} specification. The browser extension includes the \emph{Sec-PD} HTTP header field with a value of \emph{"AgeProtectv1"}:
 \begin{lstlisting}[language=json,firstnumber=1]
-	Sec-PD: AgeProtectv1
+	Sec-PD: type=AgeProtectv1
 \end{lstlisting}
 
 Optionally, if the person already has a relationship with a specific age verification provider, e.g. PRIVO.com, they could configure their browser extension to send an enriched HTTP header field:
 \begin{lstlisting}[language=json,firstnumber=1]
-	Sec-PD: AgeProtectv1, "https://privo.com/age-protect.pcf"
+	Sec-PD: type=AgeProtectv1; cfg="https://privo.com/age-protect.pcf"
 \end{lstlisting}
 \subsection{Verify Age button}
 
