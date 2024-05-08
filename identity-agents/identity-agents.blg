@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: identity-agents.aux
+The style file: plainurl.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ../library.bib
+Warning--empty booktitle in Kleppmann2019
+Warning--can't use both author and editor fields in Nietzsche1901
+You've used 24 entries,
+            2882 wiz_defined-function locations,
+            787 strings with 9817 characters,
+and the built_in function-call counts, 9345 in all, are:
+= -- 974
+> -- 286
+< -- 1
++ -- 106
+- -- 76
+* -- 403
+:= -- 1351
+add.period$ -- 90
+call.type$ -- 24
+change.case$ -- 104
+chr.to.int$ -- 0
+cite$ -- 26
+duplicate$ -- 306
+empty$ -- 960
+format.name$ -- 76
+if$ -- 2520
+int.to.chr$ -- 0
+int.to.str$ -- 24
+missing$ -- 30
+newline$ -- 141
+num.names$ -- 48
+pop$ -- 243
+preamble$ -- 1
+purify$ -- 86
+quote$ -- 0
+skip$ -- 737
+stack$ -- 0
+substring$ -- 244
+swap$ -- 34
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 84
+warning$ -- 2
+while$ -- 56
+width$ -- 26
+write$ -- 285
+(There were 2 warnings)
