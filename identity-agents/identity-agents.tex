@@ -158,7 +158,7 @@ Beyond access and export problems, providers generally don't provide ``import'' 
 
 Advocacy groups, including the EFF, are pushing for interoperability as an antidote to corporate concentration. This is good, but they should insist that apps implement import/export APIs that can be leveraged by agents such as identity agents. ``A new regime of interoperability can revitalize competition in the space, encourage innovation, and give users more agency over their data...''\cite{Cyphers2021} 
 
-\section{Related work} % SECTION 
+\section{Related Work} % SECTION 
 
 Many initiatives have arisen to address the challenges we've described. We mention a few of them here.
 
@@ -172,11 +172,49 @@ Jurcys defines ``user-held'' data\cite{Jurcys2021}, wherein the user's data is h
 
 Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
-\section{Design considerations} % SECTION 
+\section{Design Considerations} % SECTION 
 
-In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section.
+In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary to for an agent work with legacy apps as wells new/adapted apps that work within a new trust framework.
 
-\subsection{Human-centricity}
+\subsection{Privacy rights}
+
+In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by apps providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Agents can provide this automation, although this is only half of the answer. The other half involves constraining how apps use this user's data, and having them implement APIs that the agents can use--this is described below in the section on Trust Frameworks.
+
+\subsection{Convenience}
+
+Convenience is one of the most important design considerations to drive user adoption of agents. An agent must provide out-of-the-box functionality related to control and management of personal information. Features like password management and form filling are the most compelling examples. They address everyday, well recognized pain points. 
+
+\subsection{Equity and Affordability}
+
+Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For virtual (web-based) agents this creates a significant funding challenge. The situation is better, on the other hand, for \emph{local} agents that run on the user's device, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
+
+\subsection{Trust}
+
+Agents manage highly sensitive personal information the disclosure of which by malicious actors can bring great harm to the user. Agents must therefore be highly trustworthy. Users must be confident that the agent is designed such that it always works in the user's interest. 
+
+\subsubsection{Loyalty to the user}
+Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. They do just enough in the user's interest ensure that they keep using the service and co-creating personal data to monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For a user to trust that their agent works \emph{exclusively} on their behalf, the \emph{agent provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing agents so that the personal information that they processes is never accessible to the agent provider. This largely eliminates the need to trust the agent provider organization, their security infrastructure, their processes, etc.
+
+\subsubsection{Open source agents}
+
+The transparency of open-source software can build confidence that any agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
+
+\subsubsection{Trusted agent providers}
+
+Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization hjave no no financial incentive to exploit the user's data for its own advantage. 
+
+\subsubsection{Trust Framework}
+
+Once data is shared from an agent to a first-party app there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
+
+Some apps will be willing to join a trust framework and \emph{license} the user's information received from the user's agent. If so, they would agree to the terms of a license agreement which include terms which respect the person's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of identity agent users thereby making the processes effortless for them. Lastly, this organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
+\begin{comment}
+	mention trust framework?
+\end{comment}
+
+\subsection{Functional Requirements}
+
+\subsubsection{Human-centricity}
 
 Many of the challenges described thus far have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
@@ -184,30 +222,7 @@ For the individual the situation is reversed. They sit at the center of a hub wi
 
 Tools to manage these chores must sit on the person's side, and work on their behalf across all of them. Technologies of this kind, that empower a person across multiple apps, e.g. browsers and password managers, are called are \emph{user-agents} since they act as agents of the person. 
 
-\subsection{On-device storage and processing}
-If we assume a human-centric decentralized architecture, where should the person's personal datastore and associated processing live? Should it be on-device or in the cloud? By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant.
-
-\emph{Security}. Although there are other points of view, we contend that if many people are using the solution, having a personal datastore on-device is more secure than in the cloud. Even if each alternative were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a much larger economic incentive for hackers. 
-
-\emph{Equity}. Any solution must be able to be afforded by all socio-economic classes and not just those better off. For this reason, we believe solutions that incur monthly hosting fees are disqualified. Since people own their devices and can ``host'' new apps there, the situation is better, although there is a cost for the additional storage required for an on-device datastore.
-
-\subsection{Replication}
-
-For personal information held on-device, we need to solve the roaming problem when a person has two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The person's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that the person's identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between identity agents running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
-
-Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open, and the relay should only store encrypted data. It should store message data only while waiting for the recipient agent to come online.
-
-\subsection{Backup} 
-
-One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability agent users who are not diligent about backing up their devices (e.g. to an online service) face of losing their agent-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. There remains of course the worst-case scenario wherein the person hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
-
-Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however they are themselves complex and problematic. The agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
-
-\subsection{Loyalty}
-
-Much of the power asymmetry described in the first section is due to economic incentives for online service providers. These incentives motivate them do just enough in the person's interest to keep them using the service and generating personal data that the provider can monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For an identity agent to work \emph{exclusively} on behalf of the person, the \emph{identity agent provider} (i.e. organization that develops and publishes it) must not have an economic incentive to be disloyal to the person's interests. One way to ensure this is to design the agent such that its data remains within itself and is never stored by, or even accessible by, the agent provider.
-
-\subsection{Metacontextuality}
+\subsubsection{Metacontextuality}
 
 Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force everyone using a single platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different the values of one attribute may be different in different contexts. 
 
@@ -235,7 +250,26 @@ Figure~\ref{fig:multiple-contexts} illustrates these concepts and introduces the
 
 Using these terms we can say that in everyday life people have one \emph{selfness}, but they have many, context-dependent \emph{whonesses}. Any solution must be meta-contextual--it must embrace and support the complicated, multi-contextual nature of our lives.
 
-\subsection{Delegation}
+\subsubsection{Replication}
+
+For personal information held on-device, we need to solve the roaming problem when a person has two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The person's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that the person's identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between identity agents running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
+
+Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open, and the relay should only store encrypted data. It should store message data only while waiting for the recipient agent to come online.
+
+\subsections{Trustworthiness}
+
+\subsubsection{On-device storage and processing}
+If we assume a human-centric decentralized architecture, where should the person's personal datastore and associated processing live? Should it be on-device or in the cloud? By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant.
+
+\emph{Security}. Although there are other points of view, we contend that if many people are using the solution, having a personal datastore on-device is more secure than in the cloud. Even if each alternative were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a much larger economic incentive for hackers. 
+
+\subsubsection{Backup} 
+
+One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability agent users who are not diligent about backing up their devices (e.g. to an online service) face of losing their agent-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. There remains of course the worst-case scenario wherein the person hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
+
+Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however they are themselves complex and problematic. The agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
+
+\subsubsection{Delegation}
 
 In \emph{A Human Rights Approach to Personal Information Technology}\cite{Gropper2022} Gropper asserts that there is an architectural principle that must be adhered to in order to respect human rights [e.g. to privacy]. He identifies three universal components:
 
@@ -252,41 +286,18 @@ The then asserts what could be called the \emph{Gropper Principle} as follows (o
 
 In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/841489/} at the 2022 Identiverse conference provides additional detail (see \hyperfootnote[slides][https://]{drive.google.com/file/d/1lwaMVkG4kLi7z6cXhqMx-DGkUww9azW3/view}). It explains that only a decentralized architecture can implement the Gropper Principle because each of the three components needs to be implemented separately. For this to work in an open world with multiple alternative component providers, there will need to be a convergence on open standards between these three components. 
 
-\subsection{Trustworthiness}
-
-Any identity agent manages highly sensitive information. In order to be adopted voluntarily by people any solution must be trustworthy--people must have confidence that their information isn't being used against their interests. 
-
-The transparency of open-source software can to help build confidence that the technology is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the solution is secure, free from vulnerabilities, and works in the person's interest.
-
-In addition to open-source, people will also consider the nature of the organization offering the solution as to trustworthiness. The organization's financial incentives should be aligned with their member's interests. A nonprofit organization could be formed which has no financial or business incentive to exploit their member's data against that member's interest. Ideally the organization would not need to have any access to personal data and thus no need to have to trust them, their security infrastructure, their processes, etc.
-
-\subsection{Data Governance}
-
-Once data is shared from an agent to a first-party there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means must be employed. 
-
-We expect (and hope) that some first-parties will be willing to \emph{license} the user's information received from their agent. If so, they would agree to the terms of a license agreement which include terms which respect the person's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of identity agent users thereby making the processes effortless for them. Lastly, this organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
-\begin{comment}
-	mention trust framework?
-\end{comment}
-
-\subsection{Data Rights}
-
-In many jurisdictions people have \emph{data rights} to access, correct and delete their own personal information managed by providers. Privacy regulations state these rights, but in practice the burden of exercising them across hundreds of apps is unmanageable. People need agents that can automate these processes, and thereby reduce the amount of work to a practical level. 
-
-\section{The identity agent concept} % SECTION 
+\section{Identity Agents} % SECTION 
 
  We now describe a solution to the problems described in the first section that takes into account the design considerations in the second section. An \emph{identity agent}, gives individuals control over their personal information as they interact with websites, mobile apps, and other people's identity agents through a combination of technical and legal mechanisms. It combines a legal contract and a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} with a traditional digital agent\cite{Graham2023}. 
 
-We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. 
-
-A virtual agent is a cloud-hosted or privately hosted web app. BEGIN-NEW By default, a virtual agent does not include a personal datastore. The user may, however, choose to associate a third-party cloud storage provider with their agent and the agent can be configured to maintain its personal datastore using this provider. END-NEW.
+We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. A virtual agent, is a cloud-hosted (or privately hosted) web app that does not include a personal datastore. 
 
 Apps can request personal information from, and provide information to, an identity agent using a wide variety of data sharing protocols. The information may flow between the first-party and the agent in one direction, the other direction or bi-directionally. It may use whatever data formats and schemas are defined by that first-party. The data being exchanged may include structured data, unstructured data, or digitally signed documents (e.g. Verifiable Credentials, etc.). 
 \begin{comment}
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
-The Mee Foundation is developing a Mee Data Network (MDN) specifically designed for first-party to agent communications. It defines a trust framework wherein first-parties \emph{authorized} by The Mee Foundation implement specific APIs and to agree to the terms of a data sharing license. This license requires that they abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN APIs. These APIs enable \emph{private sharing} between the identity agent and the first-party. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the first-party rather than transferring a copy of it in the hope that the first-party will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the first-party. END-NEW.
+The Mee Foundation is developing a Mee Data Network (MDN) specifically designed for first-party to agent communications. It defines a trust framework wherein first-parties \emph{authorized} by The Mee Foundation implement specific APIs and to agree to the terms of a data sharing license. This license requires that they abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN APIs. These APIs enable \emph{private sharing} between the identity agent and the first-party. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the first-party rather than transferring a copy of it in the hope that the first-party will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the first-party.
 
 \subsection{Benefits for the individual}
 
@@ -354,7 +365,7 @@ The individual carries the burden of maintaining the timeliness and consistency 
 
 %\subsection{Benefits for businesses} - to be written                                                             
 
-\section{Identity Agent Implementation} % SECTION 
+\section{Implementation} % SECTION 
 
 An identity agent sits at the center of an architecture wherein the user's interactions with apps radiate out from it. ``When we put the user at the center, and make them the point of integration, the entire system becomes simpler, more robust, more scalable, and more useful.''\cite{Andrieu2007}
 
@@ -634,7 +645,7 @@ This section is largely incomplete, but will eventually describe lower level cla
 }
 \end{comment}
 
-\section{Interactions with Apps} % SECTION 
+\section{Mee Data Network} % SECTION 
 
 Although agents can form connections with many kinds of existing apps using a variety of protocols, we describe here a network of apps and agents called the Mee Data Network that use a specific set of protocols and adhere to a specific trust framework. These two, taken together, offer agent users particularly strong privacy guarantees.
 

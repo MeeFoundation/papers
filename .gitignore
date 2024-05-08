@@ -14,18 +14,18 @@ smartwallets/smartwallets.fls
 smartwallets/smartwallets.synctex.gz
 smartwallets/smartwallets.graffle
 
-identity_agent/identity_agents.tex
-identity_agent/identity_agents.aux
-identity_agent/identity_agents.bbl
-identity_agent/identity_agents.blg
-identity_agent/identity_agents.log
-identity_agent/identity_agents.out
-identity_agent/identity_agents.gz
-identity_agent/identity_agents.bib
-identity_agent/identity_agents.fdb_latexmk
-identity_agent/identity_agents.fls
-identity_agent/identity_agents.synctex.gz
-identity_agent/identity_agents.graffle
+identity-agents/identity-agents.tex
+identity-agents/identity-agents.aux
+identity-agents/identity-agents.bbl
+identity-agents/identity-agents.blg
+identity-agents/identity-agents.log
+identity-agents/identity-agents.out
+identity-agents/identity-agents.gz
+identity-agents/identity-agents.bib
+identity-agents/identity-agents.fdb_latexmk
+identity-agents/identity-agents.fls
+identity-agents/identity-agents.synctex.gz
+identity-agents/identity-agents.graffle
 
 self-control/self-control.tex
 self-control/self-control.aux

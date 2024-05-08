@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex identity-agents"] 1715124558 "identity-agents.aux" "identity-agents.bbl" "identity-agents" 1715125610
+["bibtex identity-agents"] 1715190681 "identity-agents.aux" "identity-agents.bbl" "identity-agents" 1715190681
   "../library.bib" 1708472867 72957 d9c8da60d144219ebca5b50294d68096 ""
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/urlbst/plainurl.bst" 1562101090 33034 6f80d55ce824a32ed5562a5220ff287a ""
-  "identity-agents.aux" 1715125609 10822 9c1d3ad712dbf9a0d7b388e5e139bdc6 "pdflatex"
+  "identity-agents.aux" 1715190681 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   (generated)
   "identity-agents.bbl"
   "identity-agents.blg"
-["pdflatex"] 1715125608 "/Users/paul/Documents/GitHub/papers/identity-agents/identity-agents.tex" "identity-agents.pdf" "identity-agents" 1715125610
-  "/Users/paul/Documents/GitHub/papers/identity-agents/identity-agents.tex" 1715125607 71346 16bf547c4196f55d9a8a0d3f98dec8a7 ""
+["pdflatex"] 1715190679 "/Users/paul/Documents/GitHub/papers/identity-agents/identity-agents.tex" "identity-agents.pdf" "identity-agents" 1715190679
+  "/Users/paul/Documents/GitHub/papers/identity-agents/identity-agents.tex" 1715190679 72248 c0c681bf9da257de5589d1013fba95f5 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -24,6 +24,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm" 1136768653 1328 5442e22a7072966dbaf88ca900acf3f0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1136768653 1528 abec98dbc43e172678c11b3b9031252a ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -46,6 +47,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmtt9.tfm" 1136768653 764 c98a2af25c99b73a368cf7336e255190 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb" 1248133631 32298 c6d25bb16d1eac01ebdc6d7084126a1e ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
@@ -114,10 +116,10 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1677471603 2826450 faaa391e90812266b6016d27d8af4b6b ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "identity-agents.aux" 1715125609 10822 9c1d3ad712dbf9a0d7b388e5e139bdc6 "pdflatex"
-  "identity-agents.bbl" 1715124558 6033 c358cff1543975c38d52256eed38d3d0 "bibtex identity-agents"
-  "identity-agents.out" 1715125609 6705 fea1c1fc18db7d7d0d4ddffa3925e6d5 "pdflatex"
-  "identity-agents.tex" 1715125607 71346 16bf547c4196f55d9a8a0d3f98dec8a7 ""
+  "identity-agents.aux" 1715190679 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "identity-agents.bbl" 1715186265 6033 c358cff1543975c38d52256eed38d3d0 "bibtex identity-agents"
+  "identity-agents.out" 0 -1 0 "pdflatex"
+  "identity-agents.tex" 1715190679 72248 c0c681bf9da257de5589d1013fba95f5 ""
   "images/architecture.png" 1714359253 100258 025c907316c16a530ceb4610f7b44179 ""
   "images/container-classes.png" 1714359940 113445 6512c47fee94de6f67ae96ad79105d93 ""
   "images/context-with-protocol.png" 1708380439 81437 7bcec079acf566b7364fd0dc5c17fe39 ""
