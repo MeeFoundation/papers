@@ -184,7 +184,7 @@ In a growing number of jurisdictions new privacy regulations promise \emph{data 
 
 Convenience is one of the most important design considerations to drive user adoption of agents. An agent must provide out-of-the-box functionality related to control and management of personal information. Features like password management and form filling are the most compelling examples. They address everyday, well recognized pain points. 
 
-\subsection{Equity and Affordability}
+\subsection{Equity and affordability}
 
 Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For virtual (web-based) agents this creates a significant funding challenge. The situation is better, on the other hand, for \emph{local} agents that run on the user's device, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
 
@@ -212,11 +212,11 @@ Some apps will be willing to join a trust framework and \emph{license} the user'
 	mention trust framework?
 \end{comment}
 
-\subsection{Functional Requirements}
+\subsection{Capabilities}
 
 \subsubsection{Human-centricity}
 
-Many of the challenges described thus far have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
+Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
 For the individual the situation is reversed. They sit at the center of a hub with many dozens of connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections the resulting burden is practically impossible. 
 
@@ -256,7 +256,7 @@ For personal information held on-device, we need to solve the roaming problem wh
 
 Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open, and the relay should only store encrypted data. It should store message data only while waiting for the recipient agent to come online.
 
-\subsections{Trustworthiness}
+\subsection{Trustworthiness}
 
 \subsubsection{On-device storage and processing}
 If we assume a human-centric decentralized architecture, where should the person's personal datastore and associated processing live? Should it be on-device or in the cloud? By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant.
