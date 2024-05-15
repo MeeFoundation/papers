@@ -56,7 +56,7 @@ Power is allocated in society through both technology and law. We examine each i
 \subsubsection{Technology}
 For simplicity, we refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}. These apps process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
 
-\textbf{Account data}. Apps have at their core a database. As the user interacts with the application, whatever they type, click, enter, upload is stored in the user's ``account.'' Addition observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
+\textbf{Account data}. Apps have at their core a database. As the user interacts with the application, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
 
 Users have limited power (control) over this account data. At best there may be a means to review and update it via an online form. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data, although these rights are mostly formal and theoretical due to the unmanageable burden required to exercise them.
 
@@ -105,7 +105,7 @@ The problem is well summarized as follows:
 
 The most substantive lever for progress has been legislation such as GDPR and CPRA, along with regulatory fines by organizations like the FTC. 
 
-In a growing number of jurisdictions, including Europe under \hyperfootnote[GDPR][https://]{gdpr-info.eu/} and California under \hyperfootnote[CPRA][https://]{thecpra.org/}, the person's \emph{data rights}, (e.g. the right to access, recitfy and erase their data), are clearly described. Unfortunately in practice the time and effort required to exercise these rights at each app individually is enormous. The individual must, for example, send written requests to get copies of their data, update it, or have it be deleted. Until these processes are automated by personal agents, in practice these rights don't exist.
+In a growing number of jurisdictions, including Europe under \hyperfootnote[GDPR][https://]{gdpr-info.eu/} and California under \hyperfootnote[CPRA][https://]{thecpra.org/}, the person's \emph{data rights}, (e.g. the right to access, rectify and erase their data), are clearly described. Unfortunately in practice the time and effort required to exercise these rights at each app individually is enormous. The individual must, for example, send written requests to get copies of their data, update it, or have it be deleted. Until these processes are automated by personal agents, in practice these rights don't exist.
 
 \textbf{Privacy and protection of children}
 
@@ -131,7 +131,7 @@ In practice possession tends to shift power to the possessor. Unfortunately, wit
 
 \subsubsection{Peer-to-peer}
 
-We lack the ability to directly communicate person-to-person (e.g. chat) with others without having to rely all parties having accounts on the same server. With a few exceptions\hyperfootnote[][https://]{berty.tech}, we don't have the ability to do so \emph{peer-to-peer}--i.e. from on person's device to the other person's device. Instead, we're dependent on servers hosted by intermediaries. Further, whereas it is now standard practice that the content of messages is end-to-end encrypted, the metadata about them (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server.  
+We lack the ability to directly communicate person-to-person (e.g. chat) with others without having to rely all parties having accounts on the same server. With a few exceptions\hyperfootnote[][https://]{berty.tech}, we don't have the ability to do so \emph{peer-to-peer}--i.e. from one person's device to the other person's device. Instead, we're dependent on servers hosted by intermediaries. Further, whereas it is now standard practice that the content of messages is end-to-end encrypted, the metadata about them (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server.  
 
 \subsection{Agency}
 
@@ -174,7 +174,7 @@ Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
 \section{Design Considerations} % SECTION 
 
-In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary to for an agent work with legacy apps as wells new/adapted apps that work within a new trust framework.
+In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary to for an agent work with legacy apps as well as new/adapted apps that work within a new trust framework.
 
 \subsection{Privacy rights}
 
@@ -201,7 +201,7 @@ The transparency of open-source software can build confidence that any agent bui
 
 \subsubsection{Trusted agent providers}
 
-Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization hjave no no financial incentive to exploit the user's data for its own advantage. 
+Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization have no no financial incentive to exploit the user's data for its own advantage. 
 
 \subsubsection{Trust Framework}
 
@@ -279,7 +279,7 @@ In \emph{A Human Rights Approach to Personal Information Technology}\cite{Groppe
 \item \textbf{Storage} (e.g. labs, prescriptions, social contracts, transactions [, other human information])
 \end{itemize}
 
-The then asserts what could be called the \emph{Gropper Principle} as follows (our words, his ideas):
+He then asserts what could be called the \emph{Gropper Principle} as follows (our words, his ideas):
 \begin{quote}
 ``Any system that respects the human right to privacy must not bundle authentication, request, and storage.''
 \end{quote}
@@ -622,8 +622,7 @@ In the Persona schema, people are represented as instances of Person, a \emph{Pe
 
 \textbf{Extensions}
 
-Each protocol class will extend the Persona schema by defining Person subclasses, other new object classes and new kinds of relationships. For example the Google
-\hyperfootnote[Google Account][https://]{myaccount.google.com}  API includes (optional) claims of ``name", ``gender" and ``birthday". The protocol that supports the myaccount API would define these claim types in its schema, and insert a link to this schema in its corresponding context's \emph{schema} attribute.
+Each protocol class will extend the Persona schema by defining Person subclasses, other new object classes and new kinds of relationships. For example the \hyperfootnote[Google Account][https://]{myaccount.google.com}  API includes (optional) claims of ``name", ``gender" and ``birthday". The protocol that supports the myaccount API would define these claim types in its schema, and insert a link to this schema in its corresponding context's \emph{schema} attribute.
 
 \subsubsection{Datatypes}
 
@@ -660,7 +659,7 @@ The MNDL imposes obligations on the app provider, among which is the requirement
 The MDNL's provisions are intentionally generic. They are designed to meet the needs of the entire community of identity agent users. We expect that other contracts containing more specific provisions will be required to meet the needs of more specialized communities. Each community can amend the MDNL to meet the specifics they require, provided that they do not weaken the MDNL's existing provisions and protections. These specialized communities would organize, govern and operate independent MIDs that enforce their more specialized MDNL-based contracts. These specialized MIDs would enter into agreements with one or more providers which would be held to both the generic terms of the MDNL and the additional, specialized terms.
 
 \section{Acknowledgements}
-Contributors to this paper include Kirill Khalitov, Sergey Kucherenko, Maria Vasuytenko, and Alexander Yuhimenko.
+Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Sergey Kucherenko, Maria Vasuytenko, and Vlad Fisher.
 
 \bibliography{../library}
 \bibliographystyle{plainurl}
