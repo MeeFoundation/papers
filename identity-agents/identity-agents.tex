@@ -64,13 +64,13 @@ The app provider may sell the user's account data to \hyperfootnote[data brokers
 
 \textbf{Tracking data}. Tracking is a form of surveillance by businesses of individuals. It's performed using a combination of technologies in the apps (e.g. third-party cookies, transparent pixels, fingerprinting, etc.) as part of their integration with adtech systems from which many derive revenue. 
 
-Tracking data is behavioral data used to infer traits about the individual (e.g. age-range, income level, and many of other demographic and psychographic traits). Advertisers pay to get their messages (ads, images, videos, text, etc.) in front of cohorts with shared traits (called ``audiences'') irrespective of which app a member of that cohort is using. Apps sell ad inventory (i.e. ad ``slots'') to these advertisers. Although some are sold directly, most are sold via ad networks and ad exchanges that take part in a high volume, high-speed real-time auction process called \hyperfootnote[real-time bidding][https://]{en.wikipedia.org/wiki/Real-time\_bidding}. A complex ecosystem of thousands of adtech firms are involved in the supply chain stretching from advertisers, through ad exchanges, to the apps acting in the role of publishers. 
+Tracking data is behavioral data used to infer traits about the individual (e.g. age-range, income level, and many of other demographic and psychographic traits). Advertisers pay to get their messages (ads, images, videos, text, etc.) in front of cohorts with shared traits (called ``audiences'') irrespective of which app a member of that cohort is using. Apps sell ad inventory (i.e. ad ``slots'') to these advertisers. Although some are sold directly, most are sold via ad networks and ad exchanges that take part in a high volume, high-speed real-time auction process called \hyperfootnote[real-time bidding][https://]{en.wikipedia.org/wiki/Real-time\_bidding}. A complex ecosystem of thousands of adtech firms is involved in the supply chain stretching from advertisers, through ad exchanges, to the apps acting in the role of publishers. 
 
 \textbf{Payment data}. Apps that sell products or services leverage payment gateways that allow the app provider to receive funds from the user (e.g. via a payment card). In most cases this involves sending financial data (including identifiers) about the user through financial systems run by banks, credit card associations, and their service providers.
 
 In addition to the privacy risks associated with the flow of payment transactions, some app providers also earn money by selling purchase information to data brokers.
 
-\textbf{Harms}. In the data flows just mentioned, the user is relatively powerless over their data. We live today in what Alicia Solow-Niederman calls an ``inference economy.''\cite{Solow-Niederman2022} wherein big data and machine learning are used to infer traits that form new kinds of personal information--often more sensitive than the underlying source data. Harm and risk can rarely be evaluated outside a specific situation\cite{Solove2023}, yet it is useful to list representative types of harm. Individuals:
+\textbf{Harms}. In the data flows just mentioned, the user is relatively powerless over their data. We live today in what Alicia Solow-Niederman calls an ``inference economy''\cite{Solow-Niederman2022} wherein big data and machine learning are used to infer traits that form new kinds of personal information--often more sensitive than the underlying source data. Harm and risk can rarely be evaluated outside a specific situation\cite{Solove2023}, yet it is useful to list representative types of harm. Individuals:
 
 \begin{itemize}
 	\item Are vulnerable to data breaches by any of these thousands of apps.
@@ -152,7 +152,7 @@ These laws are largely not actionable. Without APIs on the service provider's si
 
 Our account identifiers and associated human data are bound to specific online service providers and can't be moved freely from one to another. In other words they are not \emph{portable}.
 
-In many jurisdictions service providers are required by law to provide individuals with access to our data, but they usually offer this by means of a set of files emailed to the individual as an attachment several hours or days after the request. There are significant problems with implementing portability in this manner. First, it is tedious, manual and slow. Service providers don't support data ``export'' APIs, so an individual can't use technology to automate the process. Second, the individual ends up with dozens of sets of files (one set from each provider) that are not largely unintelligible to them. 
+In many jurisdictions service providers are required by law to provide individuals with access to their data, but they usually offer this by means of a set of files emailed to the individual as an attachment several hours or days after the request. There are significant problems with implementing portability in this manner. First, it is tedious, manual and slow. Service providers don't support data ``export'' APIs, so an individual can't use technology to automate the process. Second, the individual ends up with dozens of sets of files (one set from each provider) that are not largely unintelligible to them. 
 
 Beyond access and export problems, providers generally don't provide ``import'' APIs to allow the individual to upload their data. Even if an individual could import their data, it first must be transformed into the format of the recipient, since each provider uses their own format. The result is a lack of practical portability.
 
@@ -174,7 +174,7 @@ Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
 \section{Design Considerations} % SECTION 
 
-In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary to for an agent work with legacy apps as well as new/adapted apps that work within a new trust framework.
+In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary for an agent work with legacy apps as well as new/adapted apps that work within a new trust framework.
 
 \subsection{Privacy rights}
 
@@ -201,7 +201,7 @@ The transparency of open-source software can build confidence that any agent bui
 
 \subsubsection{Trusted agent providers}
 
-Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization have no no financial incentive to exploit the user's data for its own advantage. 
+Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization have no financial incentive to exploit the user's data for its own advantage. 
 
 \subsubsection{Trust Framework}
 
@@ -224,7 +224,7 @@ Tools to manage these chores must sit on the person's side, and work on their be
 
 \subsubsection{Metacontextuality}
 
-Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force everyone using a single platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different the values of one attribute may be different in different contexts. 
+Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force everyone using a single platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different, but the values of one attribute may be different in different contexts. 
 
 \begin{quote} 
 	``[A]t various times in the same day, virtually every adult can be a friend, a worker, a supervisor, a citizen, a mentor, a student, a musician, a customer, a lover, a child and a parent. Each of these roles demands different behavior and different aspects of our selves, aspects that need not be consistent. We behave, for example, in different ways with loved ones than with those we encounter in commercial or professional settings. Even among our loved ones, we behave very differently (and often show very different sides of ourselves) to our children, our parents, and our sexual partners. But this is not dishonest, nor is it inconsistent. At the very least, it's no more inconsistent than is the complicated nature of having a self. It is human.''\cite[p122]{Richards2021}
@@ -600,7 +600,7 @@ In the Persona schema, people are represented as instances of Person, a \emph{Pe
 \item \textbf{Subject} - kind of digital subject about which the identity agent stores information
 \item \textbf{Person} - a natural person, a subclass of Subject. Each person has the following properties:
 	\begin{itemize}
-	\item \textbf{claims[]} - a set of zero or more properties. Here are a few examples: 
+	\item \textbf{claims[]} - a set of zero or more properties. These properties may be structured (e.g. a physical address (e.g. from vCard)) or scalars. Here are a few examples of scalar \emph{claim} properties: 
 		\begin{itemize}
 		\item givenName
 		\item familyName
@@ -608,13 +608,13 @@ In the Persona schema, people are represented as instances of Person, a \emph{Pe
 		\end{itemize}
 	\item \textbf{account} - an optional PersonalAccount at some other party's site or app
 	\item \textbf{correlation} - zero or more CrossContextPersonRefs each of which acts as a link to a target Person object in another Context. Both the source Person and the target Person can be thought of as contextualizations of the same underlying person.
-	\item \textbf{knows} - zero or more PersonRefs that link to a Person representing some other person (other than the identity agent user) in the same context
+	\item \textbf{knows} - zero or more PersonRefs that link to a Person representing some other person (other than the  agent user) in the same context
 	\end{itemize}
 \item \textbf{RP} - a Subject representing another person or a legal entity with which the identity agent user has a connection. Each RP object has:
 	\begin {itemize}
 	\item \textbf{consents} - zero or more Consent objects. Each Consent has:
 		\begin{itemize}
-		\item \textbf{dateTime} - time stamp of when the person consented to share this set of claims
+		\item \textbf{dateTime} - time stamp of when the user consented to share this set of claims
 		\item \textbf{claims[]}  - a set of zero or more claims (note: claim types (e.g. ``email address") not their values)
 		\end{itemize}
 	\end{itemize}
@@ -636,8 +636,9 @@ This section is largely incomplete, but will eventually describe lower level cla
 
 \begin{itemize}
 \item \textbf{EndpointId} -  an identifier of an endpoint (e.g. web service or a local app) supported by another party.
-\item \textbf{LocalAppId} - A specific kind of EndpointId. Uniquely identifies a service provider's mobile app. 
-\
+\item \textbf{LocalAppId} - an EndpointId that identifies a service provider's mobile application. 
+\item \textbf{URL} - an EndpointId that identifies a service providers's web service using a traditional URL
+\item \textbf{DID} - an EndpointId that identifies a service using a \hyperfootnote[DID][https://]{www.w3.org/TR/did-core/}
 \end{itemize}
 
 \begin{comment}{\textbf{Secret Recovery Phrase} - a 12-word textual phrase that the person creates. It is used to generate cryptographic keys that in turn are used to encrypt the person personal data whether it is stored locally on their device or in a backup location. It can be used to generate keys to digitally sign transactions (e.g., for crypto currency transactions). It should never be shared with anyone or any service provider. If the person loses this phrase, they lose the ability to decrypt their data. 
@@ -654,12 +655,12 @@ It is obvious that data held and/or managed by a user's agent and stored locally
 
 The legal mechanism we propose is the \hyperfootnote[Mee Data Network License (MDNL)][https://]{docs.google.com/document/d/13aGk5adoncMxxfl5637NfqP6fl6q\_op\_1CF50UrJNjg}. The MDNL is a pairwise contract between two parties. The first is the service provider providing an app. The second is an organization that represents the community of identity agent users (e.g. The Mee Foundation). This organization acts as a \emph{Mediator of Individual Data} (MID), a term coined by Lanier et al.\cite{Lanier2018}, that enforces the terms of the MDNL on behalf of the community. 
 
-The MNDL imposes obligations on the app provider, among which is the requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The MNDL covers information that the user may have shared information manually (e.g. by filling in a form, or other kinds of on-app interactions) or shared with them by a person's identity agent. The MNDL requires the provider to implement \emph{data rights} APIs that an identity agent uses to remotely control this app-held data. In this way, we tie the legal (MDNL) and technical means (identity agents and APIs) together.
+The MNDL imposes obligations on the app provider, among which is the requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The MNDL covers information that the user may have shared manually (e.g. by filling in a form, or other kinds of on-app interactions) or shared with them by a person's identity agent. The MNDL requires the provider to implement \emph{data rights} APIs that an identity agent uses to remotely control this app-held data. In this way, we tie the legal (MDNL) and technical means (identity agents and APIs) together.
 
 The MDNL's provisions are intentionally generic. They are designed to meet the needs of the entire community of identity agent users. We expect that other contracts containing more specific provisions will be required to meet the needs of more specialized communities. Each community can amend the MDNL to meet the specifics they require, provided that they do not weaken the MDNL's existing provisions and protections. These specialized communities would organize, govern and operate independent MIDs that enforce their more specialized MDNL-based contracts. These specialized MIDs would enter into agreements with one or more providers which would be held to both the generic terms of the MDNL and the additional, specialized terms.
 
 \section{Acknowledgements}
-Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Sergey Kucherenko, Maria Vasuytenko, and Vlad Fisher.
+Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Sergey Kucherenko, Maria Vasuytenko, Vlad Fisher, and Xenya Shatalova.
 
 \bibliography{../library}
 \bibliographystyle{plainurl}
