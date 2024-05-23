@@ -182,7 +182,7 @@ In a growing number of jurisdictions new privacy regulations promise \emph{data 
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations to drive user adoption of agents. An agent must provide out-of-the-box functionality related to control and management of personal information. Features like password management and form filling are the most compelling examples. They address everyday, well recognized pain points. 
+Convenience is one of the most important design considerations to drive user adoption of agents. An agent must provide out-of-the-box functionality related to control and management of personal information. 
 
 \subsection{Equity and affordability}
 
@@ -355,10 +355,6 @@ In the offline world one entity can grant access to some resource to another ent
 
 Social networking platforms have replaced human content editors with algorithmic filters. Individuals may think that they are seeing a balance of content whereas in reality they are trapped in what Pariser called ``filter bubbles."\cite{Pariser2011} Pariser's recommendation is that if platforms are going to be gatekeepers, they need to program a sense of civic responsibility into their algorithms, they need to be transparent about the rules that determine what gets through the filter, and ``they need to give user control of their bubble.''\cite[p66]{McNamee2020} Agents can achieve this.
 
-\textbf{Password management} 
-
-The average person uses roughly 100 websites and 25 apps on a regular basis. The burden of managing and periodically updating strong, unique passwords at each is impractical without a password manager, yet it has been estimated that less than five percent of people online currently use one. 
-
 \textbf{Account management} 
 
 The individual carries the burden of maintaining the timeliness and consistency of their account information at hundreds of apps. For example, updating contact or credit card information at each is tedious, time-consuming and encourages the individual to spend more time at sites that already have their information. The relative convenience of shopping on Amazon vs. other e-commerce sites is partly a consequence of the individual not having an easy way to manage and update their personal information at multiple sites--it's just easier to buy things on Amazon because Amazon already has all of their personal information.
@@ -379,13 +375,15 @@ The selfness of the person is represented by a person entity in a data container
 
 Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the person in each context. To ensure privacy, only the person knows that each of these separate contexts contain representations of them. Each context represents an interaction via some communications protocol with an external app. 
 
-We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the id DevilSpawn666, while communicating on a social networking site as @alicewalker and subscribing to the Olde York Times as alice.walker@gmail.com and using this same email address at some shopping site. Figure~\ref{fig:three-contexts} shows a simplified view of how this is represented:
+We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the id DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/example1.png}
 \caption{Alice in four contexts}
-\label{fig:three-contexts}
+\label{fig:four-contexts}
 \end{figure}
+
+In our example Alice has four digital relationships called \emph{connections}. Each of the four connections shown in the diagram has only a single context, although in general a connection may be represented by more than one context. Since, as will be described more fully later, a context is associated with exactly one communications protocol, in cases where N communications protocols are used in a single connection, the connection will contain N contexts. 
 
 \subsection{Functionality}
 
@@ -482,11 +480,11 @@ A virtual agent is a physically distributed system made up of a web app communic
 
 This section describes the data model of an agent. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
 
-These Person instances are connected into a directed graph that spans these three levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to or perceived by another party (e.g. another person's identity agent or a digital service provider's app)--that is their whoness. Note that any number of combinations of communications protocols, local apps and web services may be involved in the connection between the identity agent and another party. The Person node in the self container has no scalar attributes but usually contains a set of correlation links pointing to a corresponding Person node in multiple contexts.
+These Person instances are connected into a directed graph that spans these  levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to, or perceived by, another party (e.g. another person's identity agent or a digital service provider's app)--that is their whoness. The Person node in the Self container has no scalar attributes but usually contains a set of correlation links pointing to a corresponding Person node in multiple contexts.
 
-In the simplified example shown in Figure~\ref{fig:three-contexts} a person, Alice, whose selfness is represented by a blue person node in the Self context. Alice has a relationship with three apps: a game, a social network, and the Olde York Times. Each of these relationships is represented by a context. The whoness, i.e. the aspect of Alice that she exposes in each context, is represented by a person node in each.
+In the simplified example shown in Figure~\ref{fig:four-contexts} a person, Alice, whose selfness is represented by a blue Person node in the Self context. Alice has four connections, each to one of four apps: a game, a social network, the Olde York Times and a shopping site. Each of these connections is represented by a single context, although more complex connections may include more than one context. The whoness, i.e. the aspect of Alice that she exposes in each context, is represented by a Person node in each.
 
-The information in a context (most importantly Person nodes) is read and written to by the identity agent based on the data flowing through the identity agent's connection with the other party (or more precisely, with the apps of the other party). We have added three of these other ``relying parties'' explicitly to Figure~\ref{fig:RPs-container}, and added a new kind of container, called RPs, to contain them. 
+The information in a context, most importantly Person nodes, is read and written to by the identity agent based on the data flowing through the identity agent's connection with the other party (or more precisely, with the apps of the other party). We have added four of these other ``relying parties'' to Figure~\ref{fig:RPs-container}, and added a new kind of container, called RPs, to contain them. 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{./images/example2.png}
@@ -494,7 +492,7 @@ The information in a context (most importantly Person nodes) is read and written
 \label{fig:RPs-container}
 \end{figure}
 
-The personal data flowing through each of the three connections represented by the purple lines above may flow from the identity agent, to the identity agent, or in both directions. It may have originated on either side. It may be self-asserted claims (attributes) entered by the person directly into the identity agent. Or it may be claims entered by the person using an app of the other party, or sensed by a local app (or sensor), or generated by the other party based on direct on-site or on-app interactions with the person.
+The personal information flowing through the connections may flow from the identity agent, to the identity agent, or in both directions. It may have originated on either side. It may be self-asserted claims (attributes) entered by the person directly into the identity agent, or it may be claims entered by the person using an app, or sensed by a local app's sensor, or generated by the other party based on direct on-site or on-app interactions with the person.
 
 \subsubsection{Container classes}
 
