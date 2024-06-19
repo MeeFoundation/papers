@@ -47,22 +47,26 @@ Today's app-centric architecture for personal information has helped fuel the ra
 
 \subsection{Power}
 
-Power is allocated in society through both technology and law. We examine each in turn.
+Sadly, the following quote applies all too well to the internet of today:
 
 \begin{quote}
 	``The stronger becomes master of the weaker, in so far as the latter cannot assert its degree of independence --here there is no mercy, no forbearance, even less a respect for `laws'.''\cite{Nietzsche1901}
 \end{quote}
 
+The two main levers of power society are technology and law. The technology of the internet has resulted in an imbalance between the power concentrated in the hands of a few and the power, or lack thereof, of individuals. Data privacy law, on the other hand, while often based on sound principles has proven insufficient to shift meaningful power and privacy to individuals.
+
 \subsubsection{Technology}
-For simplicity, we refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}. These apps process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
+First we start with a definition to simplify our discussion. We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}. 
 
-\textbf{Account data}. Apps have at their core a database. As the user interacts with the application, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
+These apps process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
 
-Users have limited power (control) over this account data. At best there may be a means to review and update it via an online form. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data, although these rights are mostly formal and theoretical due to the unmanageable burden required to exercise them.
+\textbf{Account data}. As a user interacts with an app, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
+
+Users have limited power (i.e. control) over their own account data. At best there may be a means to review and update it via an online form. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data. Unfortunately, in practice these rights remain almost entirely formal and theoretical due to the unmanageable burden placed on the user to exercise them. 
 
 The app provider may sell the user's account data to \hyperfootnote[data brokers][https://]{theconversation.com/its-time-for-third-party-data-brokers-to-emerge-from-the-shadows-94298} who buy data from a variety of sources, collate information about individuals or groups of individuals, and then resell it.
 
-\textbf{Tracking data}. Tracking is a form of surveillance by businesses of individuals. It's performed using a combination of technologies in the apps (e.g. third-party cookies, transparent pixels, fingerprinting, etc.) as part of their integration with adtech systems from which many derive revenue. 
+\textbf{Tracking data}. Tracking is a form of surveillance of individuals by businesses. Businesses gain ad revenue by implementing surveillance using in-app technologies apps (e.g. third-party cookies, transparent pixels, fingerprinting, etc.) that integrate with hundreds of systems managed by the adtech ecosystem.
 
 Tracking data is behavioral data used to infer traits about the individual (e.g. age-range, income level, and many of other demographic and psychographic traits). Advertisers pay to get their messages (ads, images, videos, text, etc.) in front of cohorts with shared traits (called ``audiences'') irrespective of which app a member of that cohort is using. Apps sell ad inventory (i.e. ad ``slots'') to these advertisers. Although some are sold directly, most are sold via ad networks and ad exchanges that take part in a high volume, high-speed real-time auction process called \hyperfootnote[real-time bidding][https://]{en.wikipedia.org/wiki/Real-time\_bidding}. A complex ecosystem of thousands of adtech firms is involved in the supply chain stretching from advertisers, through ad exchanges, to the apps acting in the role of publishers. 
 
@@ -164,11 +168,11 @@ Many initiatives have arisen to address the challenges we've described. We menti
 
 The lock-in and lack of data portability and interoperability between service providers is being fought using both policy and technical means\cite{Doctorow2021}\cite{Cyphers2021}. 
 
-Work related to re-decentralizing the internet include: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{projectvrm.org/}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
+Work related to re-decentralizing the internet includes: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{projectvrm.org/}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
-Relevant is work on \emph{personal agents} \footnote{What Mozilla calls a \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent}}--software tools that work (i.e. provide agency and power) ``on the individual's side"\footnote{Project VRM\cite{Searls2019} refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the person. Personal datastores and the \emph{self-sovereign identity}\cite{Preukschat2021} movement are squarely aimed at addressing our lack of autonomy.
+See also work on \emph{personal agents} \footnote{What Mozilla calls a \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent}}--software tools that work (i.e. provide agency and power) ``on the individual's side"\footnote{Project VRM\cite{Searls2019} refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the person. Personal datastores and the \emph{self-sovereign identity}\cite{Preukschat2021} movement are squarely aimed at addressing our lack of autonomy.
 
-Jurcys defines ``user-held'' data\cite{Jurcys2021}, wherein the user's data is held by the user in a personal datastore\footnote{Examples of open-source personal datastores include \url{https://solidproject.org}, Decentralized Web Nodes(DWN). For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. 
+Particularly relevant is work on personal datastores\footnote{Examples of open-source personal datastores include \url{https://solidproject.org} Decentralized Web Nodes(DWN)is relevant here. For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. 
 
 Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
@@ -176,34 +180,31 @@ Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
 In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary for an agent work with legacy apps as well as new/adapted apps that work within a new trust framework.
 
-\subsection{Privacy rights}
+\subsection{Data rights}
 
 In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by apps providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Agents can provide this automation, although this is only half of the answer. The other half involves constraining how apps use this user's data, and having them implement APIs that the agents can use--this is described below in the section on Trust Frameworks.
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations to drive user adoption of agents. An agent must provide out-of-the-box functionality related to control and management of personal information. 
+Convenience is one of the most important design considerations to drive user adoption of agents. An agent must automate the work of controlling and managing a person's own information. 
 
-\subsection{Equity and affordability}
+\subsection{Inclusivity}
 
-Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For virtual (web-based) agents this creates a significant funding challenge. The situation is better, on the other hand, for \emph{local} agents that run on the user's device, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
+Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For virtual (web-based) agents this creates a significant funding challenge. The situation is better for \emph{local} agents that run on the user's device, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
 
-\subsection{Trust}
 
-Agents manage highly sensitive personal information the disclosure of which by malicious actors can bring great harm to the user. Agents must therefore be highly trustworthy. Users must be confident that the agent is designed such that it always works in the user's interest. 
+\subsection{Loyalty to the user}
+Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. They do just enough in the user's interest ensure that they keep using the service and co-creating personal data to monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For a user to trust that their agent works \emph{exclusively} on their behalf, the \emph{agent provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing agents so that the personal information that they process is never accessible to the agent provider. This largely eliminates the need to trust the agent provider organization, their security infrastructure, their processes, etc.
 
-\subsubsection{Loyalty to the user}
-Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. They do just enough in the user's interest ensure that they keep using the service and co-creating personal data to monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For a user to trust that their agent works \emph{exclusively} on their behalf, the \emph{agent provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing agents so that the personal information that they processes is never accessible to the agent provider. This largely eliminates the need to trust the agent provider organization, their security infrastructure, their processes, etc.
-
-\subsubsection{Open source agents}
+\subsection{Open source agents}
 
 The transparency of open-source software can build confidence that any agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
 
-\subsubsection{Trusted agent providers}
+\subsection{Trustworthy agents}
 
-Potential users need to trust that the agent provider organization is itself trustworthy. The organization's financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization have no financial incentive to exploit the user's data for its own advantage. 
+Users need to trust that the agent developer/provider organization is itself trustworthy. Their financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that agents offered by this organization have no financial incentive to exploit the user's data for its own advantage. 
 
-\subsubsection{Trust Framework}
+\subsection{Trust Framework}
 
 Once data is shared from an agent to a first-party app there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
 
@@ -212,9 +213,7 @@ Some apps will be willing to join a trust framework and \emph{license} the user'
 	mention trust framework?
 \end{comment}
 
-\subsection{Capabilities}
-
-\subsubsection{Human-centricity}
+\subsection{Human-centricity}
 
 Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
@@ -222,7 +221,7 @@ For the individual the situation is reversed. They sit at the center of a hub wi
 
 Tools to manage these chores must sit on the person's side, and work on their behalf across all of them. Technologies of this kind, that empower a person across multiple apps, e.g. browsers and password managers, are called are \emph{user-agents} since they act as agents of the person. 
 
-\subsubsection{Metacontextuality}
+\subsection{Metacontextuality}
 
 Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force everyone using a single platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different, but the values of one attribute may be different in different contexts. 
 
@@ -250,18 +249,18 @@ Figure~\ref{fig:multiple-contexts} illustrates these concepts and introduces the
 
 Using these terms we can say that in everyday life people have one \emph{selfness}, but they have many, context-dependent \emph{whonesses}. Any solution must be meta-contextual--it must embrace and support the complicated, multi-contextual nature of our lives.
 
-\subsubsection{Replication}
 
-For personal information held on-device, we need to solve the roaming problem when a person has two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The person's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that the person's identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between identity agents running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
+\subsection{Local-first}
+
+In this section we argue that a local-first architecture is preferred. 
+
+A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that if many people are using the solution, having a personal datastore on-device is more secure than in the cloud. Even if each alternative were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a much larger economic incentive for hackers. 
+
+\subsubsection{Synchronization}
+
+A user may have two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The user's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that the person's identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between identity agents running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
 
 Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open, and the relay should only store encrypted data. It should store message data only while waiting for the recipient agent to come online.
-
-\subsection{Trustworthiness}
-
-\subsubsection{On-device storage and processing}
-If we assume a human-centric decentralized architecture, where should the person's personal datastore and associated processing live? Should it be on-device or in the cloud? By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant.
-
-\emph{Security}. Although there are other points of view, we contend that if many people are using the solution, having a personal datastore on-device is more secure than in the cloud. Even if each alternative were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a much larger economic incentive for hackers. 
 
 \subsubsection{Backup} 
 
@@ -269,7 +268,7 @@ One disadvantage of \emph{noncustodial}, on-device architectures (as compared to
 
 Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however they are themselves complex and problematic. The agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
-\subsubsection{Delegation}
+\subsection{Delegation}
 
 In \emph{A Human Rights Approach to Personal Information Technology}\cite{Gropper2022} Gropper asserts that there is an architectural principle that must be adhered to in order to respect human rights [e.g. to privacy]. He identifies three universal components:
 
@@ -288,7 +287,7 @@ In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/84
 
 \section{Identity Agents} % SECTION 
 
- We now describe a solution to the problems described in the first section that takes into account the design considerations in the second section. An \emph{identity agent}, gives individuals control over their personal information as they interact with websites, mobile apps, and other people's identity agents through a combination of technical and legal mechanisms. It combines a legal contract and a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} with a traditional digital agent\cite{Graham2023}. 
+ \emph{Identity agents} are a solution to the problems described in the first section that takes into account the design considerations in the second section. An identity agent, gives individuals control over their personal information as they interact with websites, mobile apps, and other people's identity agents through a combination of technical and legal mechanisms. It combines a legal contract and a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} with a traditional digital agent\cite{Graham2023}. 
 
 We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. A virtual agent, is a cloud-hosted (or privately hosted) web app that does not include a personal datastore. 
 
@@ -305,7 +304,7 @@ The Mee Foundation is developing a Mee Data Network (MDN) specifically designed 
 
 An identity agent increases the user's privacy as follows:
 \begin{itemize}
-	\item If identity agent includes a browser extension component, it can include a Do Not Sell signal in the HTTP header expressing the user's privacy preference. The extension may also include the ability to delete third-party cookies and other kinds of trackers used in surveillance advertising. Agents can participate in new, \emph{private advertising} networks, that don't rely on cookies, trackers, data brokers, etc. but instead rely on user profiles that are anonymized, and never shared outside the ad network. 
+	\item If identity agent includes a browser extension component, it can add the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org} field in the HTTP header expressing the user's privacy preference. The extension may also include the ability to delete third-party cookies and other kinds of trackers used in surveillance advertising. Agents can participate in new, \emph{private advertising} networks, that don't rely on cookies, trackers, data brokers, etc. but instead rely on user profiles that are anonymized, and never shared outside the ad network. 
 	\item If the agent interacts with apps that are part of the MDN, these apps agree to process the user's personal information under the terms of MDN License. By default, the app can't sell, transfer or share the user's information without their consent. 
 \end{itemize}
 
@@ -315,7 +314,7 @@ Minors can be given a special child-oriented identity agent by their guardians. 
 
 \subsubsection{Autonomy}
 
-An identity agent provides the individual with a digital embodiment of themselves. Over time, the agent develops rich, context-specific data profiles about themselves. This embodiment can move autonomously under the user's control between first-party apps. A \emph{local} agent can do so independent of any external administrative authority. 
+Identity agents provide individuals with digital embodiment of themselves. Over time, the agent develops rich, context-specific data profiles about them. This embodiment can move autonomously under the user's control between first-party apps. A \emph{local} agent can do so independent of any external administrative authority. 
 
 Identity agents reduce lock-in, because they provide data portability. They provide a convenient way for the individual to retrieve their information from one app, and share it with another. 
 
