@@ -533,7 +533,7 @@ The \emph{DelegatedContext} subclass of Context is described in its own section 
 
 A Protocol class represents a communications protocol used between the identity agent and an endpoint provided by another party. Each subclass represents a different communications protocol such as SIOPv2, GoogleAccountSync, BasicMessage (DIDComm), etc.  
 
-A Protocol is an attribute of a Context. Typically, a Context has only one Protocol, although more than one is sometimes present. Figure~\ref{fig:protocol} shows an example of Alice who has a connection with LinkedIn. This connection has a single Context that contains the information that Alice shares with the bank via the OpenID Connect SIOPv2 protocol.
+A Protocol is an attribute of a Context. Typically, a Context has only one Protocol, although more than one is sometimes present. Figure~\ref{fig:protocol} shows an example of Alice who has a connection with LinkedIn. This connection has a single Context that contains the information that Alice shares with the LinkedIn via the OpenID Connect SIOPv2 protocol. Note: this example is hypothetical, since LinkedIn does not currently support SIOPv2.
 
 \begin{figure}[htbp]
 	\includegraphics[width=\textwidth]{./images/context-with-protocol.png}
