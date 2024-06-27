@@ -217,7 +217,7 @@ Some apps will be willing to join a trust framework and \emph{license} the user'
 
 Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
-For the individual the situation is reversed. They sit at the center of a hub with many dozens of connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections the resulting burden is practically impossible. 
+For the individual the situation is reversed. They sit at the center of a hub with many dozens of connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections, the resulting burden is unbearable. 
 
 Tools to manage these chores must sit on the person's side, and work on their behalf across all of them. Technologies of this kind, that empower a person across multiple apps, e.g. browsers and password managers, are called are \emph{user-agents} since they act as agents of the person. 
 
@@ -533,12 +533,20 @@ The \emph{DelegatedContext} subclass of Context is described in its own section 
 
 A Protocol class represents a communications protocol used between the identity agent and an endpoint provided by another party. Each subclass represents a different communications protocol such as SIOPv2, GoogleAccountSync, BasicMessage (DIDComm), etc.  
 
-A Protocol is an attribute of a Context. Typically, a Context has only one Protocol, although more than one is sometimes present. Figure~\ref{fig:protocol} shows an example of Alice who has a connection with LinkedIn. This connection has a single Context that contains the information that Alice shares with the LinkedIn via the OpenID Connect SIOPv2 protocol. Note: this example is hypothetical, since LinkedIn does not currently support SIOPv2.
+A Context has one or more Protocols. Figure~\ref{fig:protocol} shows an example of Alice who has a connection with LinkedIn. This connection's Context that contains the information that Alice shares with the LinkedIn via the OpenID Connect SIOPv2 protocol. Note: this example is hypothetical, since LinkedIn does not currently support SIOPv2.
 
 \begin{figure}[htbp]
 	\includegraphics[width=\textwidth]{./images/context-with-protocol.png}
 	\caption{Protocols}
 	\label{fig:protocol}
+\end{figure}
+
+Figure~\ref{fig:n-protocols} extends the previous example by showing the use of multiple Protocols. In addition to the hypothetical SIOPv2 protocol, the connection depicted also leverages a web scraping/filling Protocol to capture her data from the LinkedIn website. Lastly, the connection's context also uses the Mee Data Network protocol to allow the context's data to be exchanged with other apps and agents on this  network. 
+
+\begin{figure}[htbp]
+	\includegraphics[width=\textwidth]{./images/context-with-n-protocols.png}
+	\caption{Context with multiple protocols}
+	\label{fig:n-protocols}
 \end{figure}
 
 Each Protocol instance has these attributes:
@@ -550,14 +558,14 @@ Each Protocol instance has these attributes:
 
 \textbf{Multiple connections}
 
-In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice. Alice has five connections with other organizations and/or people. We discuss relationship moving left to right in the diagram:
+In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice. Alice has five connections contextualizing her relationships with each of five organizations and/or people. We discuss each connection moving left to right in the diagram:
 
 \begin{itemize}
-	\item \textbf{Bob}. Alice has a connection to Bob. It consists of a single context that uses DIDComm BasicMessage protocol, uses a DID identifier in this context.
-	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a single context representing this game. She uses id ``DevilSpawn666'' as her identifier in this context.  
-	\item \textbf{X}. Alice has a connection to X social network. It contains a single context representing her X account. Her id is ``@alicewalker'' on X.
-	\item \textbf{Google Account}. Alice has a connection to her Google account. It consists of a single context that contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' id. 
-	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times news media site. It consists of three contexts. The first context captures her sign-on relationship using OpenID SIOPv2. It uses id ``0x3443f23135839''. The second context captures information she has entered using a form filler. It uses another identifier for Alice, ``awalker@gmail.com'' (perhaps because Alice sometimes uses this id and a password to log in instead of SIOP and the form filler captured this). The third is a context that represents Alice's account information. 
+	\item \textbf{Bob}. Alice has a connection to Bob. It has a   context and uses the DIDComm BasicMessage protocol (which uses a DID identifier).
+	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a context representing this game. She uses id ``DevilSpawn666'' as her identifier in this context.  
+	\item \textbf{X}. Alice has a connection to X social network. It contains a context representing her X account. Her id is ``@alicewalker'' on X.
+	\item \textbf{Google Account}. Alice has a connection to her Google account. It consists of a context that contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' id. 
+	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site using four protocols. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her id ``0x3443f23135839''. The context holds information she has entered using a form filler as well as her account information managed by this site. 
 \end{itemize}
 
 \begin{figure}[htbp]
