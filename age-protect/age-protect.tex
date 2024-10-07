@@ -183,7 +183,7 @@ sequenceDiagram
 
 \subsection{Minor verifies age at a website}
 
-In this scenario we show how a minor can verify their age at a verfier leveraging the fact that they were previously registered by a guardian at an issuer and issued with an AVR. In this scenario, the minor is acting in the holder role and can take this AVR to any website without being tracked by the guardian or any other entity. 
+In this scenario we show how a minor can verify their age at a verifier leveraging the fact that they were previously registered by a guardian at an issuer and issued with an AVR. In this scenario, the minor is acting in the holder role and can take this AVR to any website without being tracked by the guardian or any other entity. 
 
 The guardian registers a minor (e.g. child) at an AVS issuer, shares a link (or QR code) with this minor, and the minor then visits a website that has implemented Age Protect. This flow, shown in Figure \ref{fig:guardian+minor}, has the following steps:
 \begin{enumerate}
@@ -229,7 +229,7 @@ A minor can attempt to disable Age Protect by uninstalling the wallet from their
 
 \subsection{Age Protect Signaling}
  
-An Age Protect-compatible wallet relies on a browser extension that implements the \hyperfootnote[Provider Discovery][https://]{providerdiscovery.org} specification. The browser extension includes the \emph{Sec-PD} HTTP header field with a value of \emph{"AgeProtectv1"}:
+An Age Protect-compatible wallet relies on a browser extension that implements the \hyperfootnote[Provider Discovery][https://]{providerdiscovery.org} specification. The browser extension includes the \emph{Sec-PD} HTTP header field with a value of \emph{AgeProtectv1}:
 \begin{lstlisting}[language=json,firstnumber=1]
 	Sec-PD: type=AgeProtectv1
 \end{lstlisting}
@@ -397,7 +397,7 @@ For performance reasons, we may recommend that the wallet compute a persistent u
 
 \section{Implementation}
 
-This section will describe an prototype implementation of Age Protect being developed by \hyperfootnote[PRIVO][https://]{privo.com}, an AVS provider, \hyperfootnote[The Mee Foundation][https://]{mee.foundation}, a (smart)wallet provider, and \hyperfootnote[Swift Invention.][https://]{swiftinvention.com}, a software development firm.
+To be written. This section will describe a prototype implementation of Age Protect being developed by \hyperfootnote[PRIVO][https://]{privo.com}, an AVS provider, \hyperfootnote[The Mee Foundation][https://]{mee.foundation}, a digital wallet provider, and \hyperfootnote[Swift Invention.][https://]{swiftinvention.com}, a software development firm.
 
 \section{Conclusions and further work}
 We have described the design of a new, opt-in, privacy-preserving age verification approach. This paper will be continuously updated as progress continues on the specifications and a prototype implementation.
