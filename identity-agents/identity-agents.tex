@@ -196,9 +196,9 @@ Agents must be affordable by all socio-economic classes--not just those better o
 \subsection{Loyalty to the user}
 Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. They do just enough in the user's interest ensure that they keep using the service and co-creating personal data to monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For a user to trust that their agent works \emph{exclusively} on their behalf, the \emph{agent provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing agents so that the personal information that they process is never accessible to the agent provider. This largely eliminates the need to trust the agent provider organization, their security infrastructure, their processes, etc.
 
-\subsection{Open source agents}
+\subsection{Open source}
 
-The transparency of open-source software can build confidence that any agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
+The transparency of open-source software builds confidence that any agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
 
 \subsection{Trustworthy agents}
 
@@ -434,25 +434,23 @@ Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol
 \label{fig:architecture}
 \end{figure}
 
-\subsubsection{UI Layer}
+\subsubsection{Local Agent Layer}
 
-User Interface (UI) component provides a user interface to manage the individual's data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values.
+User Interface (UI) subcomponent in this layer provides an interface to manage the individual's data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
-\subsubsection{Controller layer}
-
-The controller layer handles requests from the UI. It translates these requests into the Controller component. The Controller manages the Self and the RPs data containers. It updates the attributes of Person objects in contexts via the Data Access component. It is responsible for creating and deleting connections. Lastly, it is responsible for replicating the Self and RPs data containers to other identity agent replicas.
+The Controller subcomponent handles requests from the UI. The Controller manages the Self and the RPs data containers. It updates the attributes of Person objects in contexts via the Data Access component. It is responsible for creating and deleting connections. Lastly, it is responsible for replicating the Self and RPs data containers to other identity agent replica nodes the user may have.
 
 \subsubsection{Authorization Layer}
 
-The Authorization Layer contains the user's \emph{Authorization Server} which responds to requests for access to the individual's contexts--contexts which are managed by the data access layer described below. The AS sends these requests to the controller layer (which may in turn call back to the UI Layer) to allow the user, either interactively or by policy, to grant or deny them. These requests may be from service providers who integrate the identity agent SDK or from individuals' identity agents.
+The Authorization Layer manages the granting, verification and revocation of capabilities. 
 
 \subsubsection{Data Access Layer}
 
-The Data Access component is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider. It exposes data contexts via the Controller to the User Interface where it can be viewed and in some cases edited. It is responsible for replicating local contexts to other identity agent replicas.
+The Mee Data Query subcomponent supports the Mee Data Query Language and is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts via the Controller to the User Interface where it can be viewed and in some cases edited. 
 
-\subsubsection{Context Storage Layer}
+\subsubsection{Personal Datastore Layer}
 
-This layer persists local data contexts (some of which may be accessed by Connectors). Data managed by the resource server is encrypted using FIPS-compatible algorithms. Note: this layer is only present in a local, not a virtual, identity agent.
+This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. Note: this layer is only present in local, not a virtual, identity agents.
 
 \subsubsection{Connectors}
 
@@ -460,7 +458,7 @@ Now that we've described the horizontal layers of an identity agent, we turn to 
 
 \emph{Communications aspect}. A connector implements the communications protocol used by the other party (e.g. a service provider or another person's identity agent). We use the term protocol very loosely since the nature of the other party varies considerably. It could for example be an API of a service provider, another person's identity agent, an authentication protocol exposed by an endpoint, or something entirely different.
 
-\emph{Storage aspect}. A connector persists its state in a context container managed by the Data Access component. The Data Access component requires this context state to be represented in the Persona data model, so the connector is responsible for dynamic, bidirectional schema transformation between the data model of the protocol and the Persona data model.
+\emph{Storage aspect}. A connector persists its state in a context container managed in the Data Access layer. The Data Access layer requires this context state to be represented in the Persona data model. The connector is responsible for dynamic, bidirectional schema transformation between the data model used by the protocol and the Persona data model. 
 
 \subsection{Physical architectures}
 
