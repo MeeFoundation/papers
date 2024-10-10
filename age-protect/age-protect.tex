@@ -187,13 +187,13 @@ In this scenario we show how a minor can verify their age at a verifier leveragi
 
 The guardian registers a minor (e.g. child) at an AVS issuer, shares a link (or QR code) with this minor, and the minor then visits a website that has implemented Age Protect. This flow, shown in Figure \ref{fig:guardian+minor}, has the following steps:
 \begin{enumerate}
-	\item The guardian goes to an AVS(issuer), logs in, and begins identity verification on themselves (using whatever methods are supported by the issuer) and then register the minor, a process that includes specifying the minor's birthdate.
+	\item The guardian goes to an AVS (issuer) website, logs in, and begins identity verification on themselves (using whatever methods are supported by the issuer). They then register the minor, a process that includes specifying the minor's birthdate.
 	\item A link (and QR code) is generated for the minor and made available to the guardian.
 	\item The guardian shares this link (or QR code) with the minor.
-	\item The minor scans the QR code (or taps the URL) which brings them to the issuer. An AVR is transmitted to their wallet.
+	\item The minor scans the QR code (or taps the URL) which brings them to the issuer's website. An AVR is transmitted to their wallet.
 	\item The minor goes to the verifier's website. The HTTP header contains the Age Protect header (defined using \hyperfootnote[ProviderDiscovery][https://]{providerdiscovery.org}) which is observed by the verifier.
 	\item When the verifier needs to verify the age of their visitor it displays a page with a Verify Age button prompting the minor to tap it and thereby request the minor's age.
-	\item The minor taps the Verify Age button which begins a presentation request to the minor's wallet. The wallet response with a verifiable presentation containing the requested information.
+	\item The minor taps the Verify Age button. Doing so begins a presentation request to the minor's wallet. The wallet response with a verifiable presentation containing the requested information.
 \end{enumerate}
 
 \begin{figure}
