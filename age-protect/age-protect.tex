@@ -303,7 +303,7 @@ The \emph{credential-subject} property may include the following optional sub-pr
 	\item \emph{age60OrOver} - boolean
 	\item \emph{age65OrOver} - boolean
 	\item \emph{id} - a subject identifier defined by the issuer
-	\item \emph{ageVerificationMethod} - oneOf {"AgeEstimation", "GovernmentID", "ThirdParty"}
+	\item \emph{ageVerificationMethod} - oneOf (``AgeEstimation'', ``GovernmentID'', ``ThirdParty'')
 \end{itemize}
 
 \textbf{credentialStatus property}
@@ -312,11 +312,11 @@ The \hyperfootnote[\emph{credentialStatus}][https://]{w3.org/TR/vc-data-model/\#
 
 \textbf{ageAssertionProvider property}
 
-The \emph{ageAssertionProvider} property must be present. Allowed values are oneOf {"Guardian", "Parent", "Self"}
+The \emph{ageAssertionProvider} property must be present. Allowed values are oneOf (``Guardian'', ``Parent'', ``Self'')
 
 \textbf{assuranceLevel property}
 
-The \emph{assuranceLevel} property must be present. Its values are defined by \hyperfootnote[fhir.org][https://]{https://build.fhir.org/ig/HL7/fhir-identity-matching-ig/guidance-on-identity-assurance.html} which we summarize as oneOf {"IAL1", "IAL1.2", "IAL1.5", "IAL1.6", "IAL1.8", "IAL2"}
+The \emph{assuranceLevel} property must be present. Its values are defined by \hyperfootnote[fhir.org][https://]{https://build.fhir.org/ig/HL7/fhir-identity-matching-ig/guidance-on-identity-assurance.html} which we summarize as oneOf (``IAL1'', ``IAL1.2'', ``IAL1.5'', ``IAL1.6'', ``IAL1.8'', ``IAL2'')
 
 \textbf{issuanceDate property}
 
