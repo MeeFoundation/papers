@@ -422,9 +422,9 @@ Here are user functions of an agent:
 \item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
-\subsection{Architecture}
+\subsection{Local Identity Agent Architecture}
 
-The multi-layered architecture of an identity agent is shown in the center of Figure~\ref{fig:architecture}. 
+The multi-layered architecture of a local identity agent is shown in the center of Figure~\ref{fig:architecture}. 
 
 Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol} used in the following are described in section \ref{data_model_subsection} where we describe the Persona data model.
 
@@ -434,7 +434,7 @@ Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol
 \label{fig:architecture}
 \end{figure}
 
-\subsubsection{Local Agent Layer}
+\subsubsection{Smartwallet Layer}
 
 User Interface (UI) subcomponent in this layer provides an interface to manage the individual's data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
@@ -462,9 +462,7 @@ Now that we've described the horizontal layers of an identity agent, we turn to 
 
 \emph{Storage aspect}. A connector persists its state in a context container managed in the Data Access layer. The Data Access layer requires this context state to be represented in the Persona data model. The connector is responsible for dynamic, bidirectional schema transformation between the data model used by the protocol and the Persona data model. 
 
-\subsection{Physical architectures}
-
-A local identity agent includes all logical layers mentioned in the previous section, deployed as a native application on a mobile or laptop device.
+\subsection{Virtual Identity Agent Architecture}
 
 A virtual agent is a physically distributed system made up of a web app communicating with multiple ``satellite'' Agent SDKs. The web app implements all but the Context Storage Layer mentioned in the previous section. The \emph{Agent SDKs} we refer here to are shown at the left of Figure~\ref{fig:architecture} and embedded within an RP's app. Figure~\ref{fig:virtual-agent-deployment} shows a single virtual agent and three satellite SDKs. The leftmost Agent SDK is embedded within an RP's web app. To the right of this is a Agent SDK embedded within an RP's local on-device app. On the right a Agent SDK is embedded within a web browser is shown acting as a scraping/filling proxy for yet another RP's web app. 
 
