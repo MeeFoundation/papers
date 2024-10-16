@@ -438,7 +438,9 @@ Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol
 
 User Interface (UI) subcomponent in this layer provides an interface to manage the individual's data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
-The Controller subcomponent handles requests from the UI. The Controller manages the Self and the RPs data containers. It updates the attributes of Person objects in contexts via the Data Access component. It is responsible for creating and deleting connections. Lastly, it is responsible for replicating the Self and RPs data containers to other identity agent replica nodes the user may have.
+The Controller subcomponent handles requests from the UI. It manages the Self and the RPs data containers. If we consider that a single logical identity agent of a user is represented by multiple identity agent nodes on different devices, the Controller is responsible for replicating and synchronizing the state of the identity agent between these nodes. Since the storage capacity of each node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated, some Contexts may be omitted on some devices.
+
+The Controller updates the attributes of Person objects in contexts via the Data Access component. It is responsible for creating and deleting connections.
 
 \subsubsection{Authorization Layer}
 
@@ -447,10 +449,6 @@ The Authorization Layer manages the granting, verification and revocation of cap
 \subsubsection{Data Access Layer}
 
 The Mee Data Query subcomponent supports the Mee Data Query Language and is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts via the Controller to the User Interface where it can be viewed and in some cases edited. 
-
-\subsubsection{Identity Layer}
-
-This layer manages the one-to-many mapping of a single subject's (e.g. a user's or RP's) identity (e.g. a \hyperfootnote[DID][https://]{www.w3.org/TR/did-core/} identifier) to one or more identifiers (nodeIds) for each of the identity agent instances (nodes) owned and controlled by the subject. 
 
 \subsubsection{Personal Datastore Layer}
 
