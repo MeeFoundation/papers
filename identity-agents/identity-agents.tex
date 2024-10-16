@@ -430,17 +430,19 @@ Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/architecture.png}
-\caption{Identity Agent Architecture}
+\caption{Local Identity Agent Architecture}
 \label{fig:architecture}
 \end{figure}
 
-\subsubsection{Smartwallet Layer}
+\subsubsection{Application Layer}
 
-User Interface (UI) subcomponent in this layer provides an interface to manage the individual's data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
+The topmost, Application, layer of a local identity agent consists of a User Interface (UI) subcomponent and the high level business logic in the Controller subcomponent. 
 
-The Controller subcomponent handles requests from the UI. It manages the Self and the RPs data containers. If we consider that a single logical identity agent of a user is represented by multiple identity agent nodes on different devices, the Controller is responsible for replicating and synchronizing the state of the identity agent between these nodes. Since the storage capacity of each node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated, some Contexts may be omitted on some devices.
+The UI provides an interface that enables the user to manage their data sharing relationships with provider apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
-The Controller updates the attributes of Person objects in contexts via the Data Access component. It is responsible for creating and deleting connections.
+The Controller handles requests from the UI. It manages the Self and the RPs data containers. If we consider that a single \emph{logical} identity agent of a user is represented by multiple identity agent \emph{nodes} on different devices, the Controller is responsible for replicating and synchronizing the state of the identity agent between these nodes. Note that since the storage capacity of each node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated on each node, some Contexts may be omitted on the nodes running on storage-constrained devices.
+
+The Controller, using the Data Access layer, updates the attributes of Person objects in contexts. It is responsible for creating and deleting connections.
 
 \subsubsection{Authorization Layer}
 
@@ -464,13 +466,9 @@ Now that we've described the horizontal layers of an identity agent, we turn to 
 
 \subsection{Virtual Identity Agent Architecture}
 
-A virtual agent is a physically distributed system made up of a web app communicating with multiple ``satellite'' Agent SDKs. The web app implements all but the Context Storage Layer mentioned in the previous section. The \emph{Agent SDKs} we refer here to are shown at the left of Figure~\ref{fig:architecture} and embedded within an RP's app. Figure~\ref{fig:virtual-agent-deployment} shows a single virtual agent and three satellite SDKs. The leftmost Agent SDK is embedded within an RP's web app. To the right of this is a Agent SDK embedded within an RP's local on-device app. On the right a Agent SDK is embedded within a web browser is shown acting as a scraping/filling proxy for yet another RP's web app. 
+In contrast to a local identity agent that runs entirely on a local device, a virtual agent is a distributed system consisting of a web app for the user that communicates with agent ``shard'' embedded within providers' apps. Each separate agent shard within a specific provider's app maintains the data that represents the user's relationship with that provider. 
 
-\begin{figure}[htbp]
-	\includegraphics[width=\textwidth]{./images/virtual-web-app.drawio.png}
-	\caption{Virtual agent deployment}
-	\label{fig:virtual-agent-deployment}
-\end{figure}
+The central web app does not persistent any of this context-specific data. In its UI the user can see their connections to providers. They can see and edit the context data within a connection, although the data involved is only stored transiently within the user's browser and is permanently stored within provider's embedded agent shard.
 
 \subsection{Persona Data model}\label{data_model_subsection} 
 
