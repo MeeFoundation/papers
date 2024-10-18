@@ -162,7 +162,7 @@ Beyond access and export problems, providers generally don't provide ``import'' 
 
 Advocacy groups, including the EFF, are pushing for interoperability as an antidote to corporate concentration. This is good, but they should insist that apps implement import/export APIs that can be leveraged by agents such as identity agents. ``A new regime of interoperability can revitalize competition in the space, encourage innovation, and give users more agency over their data...''\cite{Cyphers2021} 
 
-\section{Related Work} % SECTION 
+\section{Related work} % SECTION 
 
 Many initiatives have arisen to address the challenges we've described. We mention a few of them here.
 
@@ -176,7 +176,7 @@ Particularly relevant is work on personal datastores\footnote{Examples of open-s
 
 Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
 
-\section{Design Considerations} % SECTION 
+\section{Design considerations} % SECTION 
 
 In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that agents enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary for an agent work with legacy apps as well as new/adapted apps that work within a new trust framework.
 
@@ -297,13 +297,15 @@ Apps can request personal information from, and provide information to, a local 
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
-Apps can also request personal information from and provide information to virtual agents using the MDN protocol (see next section).
+Apps can also request personal information from and provide information to virtual agents using the MDN protocols (see section \ref{sec:MDN}).
 
-\subsection{Mee Data Network}
+\subsection{Mee Data Network}\label{sec:MDN}
 
 The Mee Foundation is developing a Mee Data Network (MDN)--a set of protocols designed to support (i) data sharing between apps and local agents and (ii) data sharing multiple partial agents embedded within provider's apps or sites as orchestrated by the user's virtual agent.
 
 MDN provides a trust framework wherein apps \emph{authorized} by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
+
+For more about MDN see section \ref{sec:MDN2}.
 
 \subsection{Benefits for the individual}
 
@@ -367,7 +369,7 @@ The individual carries the burden of maintaining the timeliness and consistency 
 
 %\subsection{Benefits for businesses} - to be written                                                             
 
-\section{Implementation} % SECTION 
+\section{Agent implementation} % SECTION 
 
 An identity agent sits at the center of an architecture wherein the user's interactions with apps radiate out from it. ``When we put the user at the center, and make them the point of integration, the entire system becomes simpler, more robust, more scalable, and more useful.''\cite{Andrieu2007}
 
@@ -482,7 +484,7 @@ Using the UI of the controller the user can see and edit data within each connec
 
 Although the data flow involved when a user of a \emph{local} agent shares data with an app is straightforward, if the user is using a \emph{virtual} agent, the flow is a more complicated. The added complexity is caused by the fact that a virtual identity agent does not contain its own personal datastore, and instead the storage of the user's data is distributed among multiple apps or sites. Although a virtual agent doesn't hold \emph{specific} data about any of the user's connections, it does know which provider holds which \emph{kinds} of information (i.e. which attributes) about the user.\footnote{In some cases the same attribute may be held by more than one provider, and it's possible that the values of the attribute differ across providers.}
 
-When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the source provider and given to the destination provider, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end so the host of the virtual agent has no access to the the data. 
+When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the source provider and given to the destination provider, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end, so the host of the virtual agent has no access to the data. 
 
 \subsection{Persona data model}\label{data_model_subsection} 
 
@@ -659,7 +661,7 @@ This section is largely incomplete, but will eventually describe lower level cla
 }
 \end{comment}
 
-\section{Mee Data Network} % SECTION 
+\section{Mee Data Network}\label{sec:MDN2} % SECTION 
 
 Although agents can form connections with many kinds of existing apps using a variety of protocols, we describe here a network of apps and agents called the Mee Data Network that use a specific set of protocols and adhere to a specific trust framework. These two, taken together, offer agent users particularly strong privacy guarantees.
 
