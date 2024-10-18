@@ -288,14 +288,22 @@ In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/84
 
  \emph{Identity agents} are a solution to the problems described in the first section that takes into account the design considerations in the second section. An identity agent, gives individuals control over their personal information as they interact with websites, mobile apps, and other people's identity agents through a combination of technical and legal mechanisms. It combines a legal contract and a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} with a traditional digital agent\cite{Graham2023}. 
 
-We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. A virtual agent, is a cloud-hosted (or privately hosted) web app that does not include a personal datastore. 
+We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. 
 
-Apps can request personal information from, and provide information to, an identity agent using a wide variety of data sharing protocols. The information may flow between the first-party and the agent in one direction, the other direction or bi-directionally. It may use whatever data formats and schemas are defined by that first-party. The data being exchanged may include structured data, unstructured data, or digitally signed documents (e.g. Verifiable Credentials, etc.). 
+A virtual agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple \emph{partial} agents each of which is embedded within a provider's app or website. Each partial agent maintains the data that related to the user's relationship (aka connection) with that app or website. A virtual agent's controller web app does not persistent any of this connection-specific data. 
+
+Apps can request personal information from, and provide information to, a local agent using a wide variety of data sharing protocols. The information may flow between the app and the local agent in one direction, the other direction or bi-directionally. It may use whatever data formats and schemas are defined by the app. The data being exchanged may include structured data, unstructured data, or digitally signed documents (e.g. Verifiable Credentials, etc.). 
 \begin{comment}
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
-The Mee Foundation is developing a Mee Data Network (MDN) specifically designed for first-party to agent communications. It defines a trust framework wherein first-parties \emph{authorized} by The Mee Foundation implement specific APIs and to agree to the terms of a data sharing license. This license requires that they abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN APIs. These APIs enable \emph{private sharing} between the identity agent and the first-party. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the first-party rather than transferring a copy of it in the hope that the first-party will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the first-party.
+Apps can also request personal information from and provide information to virtual agents using the MDN protocol (see next section).
+
+\subsection{Mee Data Network}
+
+The Mee Foundation is developing a Mee Data Network (MDN)--a set of protocols designed to support (i) data sharing between apps and local agents and (ii) data sharing multiple partial agents embedded within provider's apps or sites under as orchestrated by the user's virtual agent.
+
+MDN provides a trust framework wherein apps \emph{authorized} by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
 
 \subsection{Benefits for the individual}
 
@@ -422,7 +430,7 @@ Here are user functions of an agent:
 \item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
-\subsection{Local Identity Agent Architecture}
+\subsection{Local agent architecture}
 
 The multi-layered architecture of a local identity agent is shown in the center of Figure~\ref{fig:architecture}. 
 
@@ -434,7 +442,7 @@ Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol
 \label{fig:architecture}
 \end{figure}
 
-\subsubsection{Application Layer}
+\subsubsection{Application layer}
 
 The topmost, Application, layer of a local identity agent consists of a User Interface (UI) subcomponent and the high level business logic in the Controller subcomponent. 
 
@@ -444,15 +452,15 @@ The Controller handles requests from the UI. It manages the Self and the RPs dat
 
 The Controller, using the Data Access layer, updates the attributes of Person objects in contexts. It is responsible for creating and deleting connections.
 
-\subsubsection{Authorization Layer}
+\subsubsection{Authorization layer}
 
 The Authorization Layer manages the granting, verification and revocation of capabilities. 
 
-\subsubsection{Data Access Layer}
+\subsubsection{Data access layer}
 
 The Mee Data Query Language subcomponent is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts via the Controller to the User Interface where it can be viewed and in some cases edited. 
 
-\subsubsection{Personal Datastore Layer}
+\subsubsection{Personal datastore layer}
 
 This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. Note: this layer is only present in local, not a virtual, identity agents.
 
@@ -464,17 +472,19 @@ Now that we've described the horizontal layers of an identity agent, we turn to 
 
 \emph{Storage aspect}. A connector persists its state in a context container managed in the Data Access layer. The Data Access layer requires this context state to be represented in the Persona data model. The connector is responsible for dynamic, bidirectional schema transformation between the data model used by the protocol and the Persona data model. 
 
-\subsection{Virtual Identity Agent Architecture}
+\subsection{Virtual agent architecture}
 
-In contrast to a local identity agent that runs entirely on a local device, a virtual agent is a distributed system. It consists of a web app that communicates with multiple agent ``shards'' each of which is embedded within provider' app. Each shard maintains the data that related to the user's relationship with that provider. 
+A virtual identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple \emph{partial} agents each of which is embedded within a provider's app or website. Each partial agent maintains the data that related to the user's relationship (aka connection) with that app or website. A virtual agent's controller web app does not persistent any of this connection-specific data. 
 
-The central web app does not persistent any of this context-specific data. In its UI the user can see their connections to providers. They can see and edit the context data within a connection, although the data involved is only stored transiently within the user's browser and is permanently stored within provider's embedded agent shard.
+Using the UI of the controller the user can see and edit data within each connection. During these edits the data involved is stored transiently in the user's browser.
 
-Although it is relatively simple for a user of a local identity agent to share data with a provider, if the user is using a virtual agent sharing data with a provider is a bit more complicated. The reason is that a virtual identity agent doesn't have a personal datastore to act as the source of the data. Instead, the user's data is distributed among multiple different providers each of which is compatible Mee Data Network (MDN) protocols. Each provider holds only that portion of the user's data related to user's relationship with it. Although a virtual agent doesn't data about any of the user's connections, it does know which provider holds which kinds of information (i.e. which attributes) about the user. In some cases the same attribute may be held by more than one provider, although it's possible that the values of the attribute differ.
+\subsection{Virtual agent data sharing}
 
-When, via the MDN, a provider requests one or more attributes about the user, the virtual agent determines which providers are able to provide the attributes. It routes the request to one or more source providers. If the virtual agent user authorizes this transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the source provider and given to the destination provider, so it can accompany the request for an attribute from the source provider. 
+Although the data flow involved when a user of a \emph{local} agent shares data with an app is straightforward, if the user is using a \emph{virtual} agent, the flow is a more complicated. The added complexity is caused by the fact that a virtual identity agent does not contain its own personal datastore, and instead the storage of the user's data is distributed among multiple apps or sites. Although a virtual agent doesn't hold \emph{specific} data about any of the user's connections, it does know which provider holds which \emph{kinds} of information (i.e. which attributes) about the user.\footnote{In some cases the same attribute may be held by more than one provider, and it's possible that the values of the attribute differ across providers.}
 
-\subsection{Persona Data model}\label{data_model_subsection} 
+When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the source provider and given to the destination provider, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end so the host of the virtual agent has no access to the the data. 
+
+\subsection{Persona data model}\label{data_model_subsection} 
 
 This section describes the data model of an agent. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
 
