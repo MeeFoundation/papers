@@ -263,9 +263,9 @@ Since relays are a necessary part of the deployment architecture, for privacy, a
 
 \subsubsection{Backup} 
 
-One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability agent users who are not diligent about backing up their devices (e.g. to an online service) face of losing their agent-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. There remains of course the worst-case scenario wherein the person hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
+One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability that agent users who are not diligent about backing up their devices (e.g. to an online service) face of losing their agent-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. There remains of course the worst-case scenario wherein the person hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
 
-Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however they are themselves complex and problematic. The agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
+Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however these approaches are complex and problematic. The agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
 \subsection{Delegation}
 
@@ -297,13 +297,13 @@ Apps can request personal information from, and provide information to, a local 
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
-Apps can also request personal information from and provide information to virtual agents using the MDN protocols (see section \ref{sec:MDN}).
+Apps can also request personal information from virtual agents using the MDN protocols (see section \ref{sec:MDN}).
 
 \subsection{Mee Data Network}\label{sec:MDN}
 
 The Mee Foundation is developing a Mee Data Network (MDN)--a set of protocols designed to support (i) data sharing between apps and local agents and (ii) data sharing multiple partial agents embedded within provider's apps or sites as orchestrated by the user's virtual agent.
 
-MDN provides a trust framework wherein apps \emph{authorized} by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
+MDN provides a trust framework wherein apps authorized by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
 
 For more about MDN see section \ref{sec:MDN2}.
 
