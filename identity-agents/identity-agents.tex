@@ -38,7 +38,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Today's app-centric architecture for personal information has helped fuel the rapid growth of internet apps and sites. Unfortunately and concurrently it has reduced autonomy, agency, and privacy for individuals. People lack the technical means to manage the information involved in interactions they have with hundreds of apps/sites, and data privacy law has proven inadequate to prevent the disclosure of this data by these apps/sites to other actors. To address these issues we present design considerations for, and the architecture of, \emph{identity agents}.
+Today's app-centric architecture for personal information has helped fuel the rapid growth of internet apps and sites. Unfortunately and concurrently it has reduced individual autonomy, agency, and privacy. Individuals have no practical means to manage their personal data held by apps/sites. Unfortunately, even if they did, data privacy law has proven inadequate to prevent the disclosure of this information to other app/sites and third parties. We present design considerations for, and the architecture of, \emph{identity agents}, which can address these issues and restore, at least partially, the power imbalance between individuals and apps/sites.
 \end{abstract}
 
 %keywords: personal data, digital wallet, personal datastore, personal data service, personal agent, digital identity, privacy
@@ -47,18 +47,11 @@ Today's app-centric architecture for personal information has helped fuel the ra
 
 \subsection{Power}
 
-Sadly, the following quote applies all too well to the internet of today:
-
-\begin{quote}
-	``The stronger becomes master of the weaker, in so far as the latter cannot assert its degree of independence --here there is no mercy, no forbearance, even less a respect for `laws'.''\cite{Nietzsche1901}
-\end{quote}
-
-The two main levers of power society are technology and law. The technology of the internet has resulted in an imbalance between the power concentrated in the hands of a few and the power, or lack thereof, of individuals. Data privacy law, on the other hand, while often based on sound principles has proven insufficient to shift meaningful power and privacy to individuals.
+The two main levers of power society are technology and law. Internet technology has resulted in an imbalance between the power concentrated in the hands of a few and the power, or lack thereof, of individuals. Data privacy law, on the other hand, while often based on sound principles has proven insufficient to shift meaningful power and privacy to individuals.
 
 \subsubsection{Technology}
-First we start with a definition to simplify our discussion. We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}. 
 
-These apps process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
+Apps\footnote{We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}.} process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
 
 \textbf{Account data}. As a user interacts with an app, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
 
@@ -484,11 +477,11 @@ Using the UI of the controller the user can see and edit data within each connec
 
 Although the data flow involved when a user of a \emph{local} agent shares data with an app is straightforward, if the user is using a \emph{virtual} agent, the flow is a more complicated. The added complexity is caused by the fact that a virtual identity agent does not contain its own personal datastore, and instead the storage of the user's data is distributed among multiple apps or sites. Although a virtual agent doesn't hold \emph{specific} data about any of the user's connections, it does know which provider holds which \emph{kinds} of information (i.e. which attributes) about the user.\footnote{In some cases the same attribute may be held by more than one provider, and it's possible that the values of the attribute differ across providers.}
 
-When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the virtual agent user so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end, so the host of the virtual agent has no access to the data. 
+When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the virtual agent user, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end, so the host of the virtual agent has no access to the data. 
 
 \subsection{Persona data model}\label{data_model_subsection} 
 
-This section describes the data model of an agent. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
+This section describes the data model used by agents to represent personal information. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
 
 These Person instances are connected into a directed graph that spans these  levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to, or perceived by, another party (e.g. another person's identity agent or a digital service provider's app)--that is their whoness. The Person node in the Self container has no scalar attributes but usually contains a set of correlation links pointing to a corresponding Person node in multiple contexts.
 
