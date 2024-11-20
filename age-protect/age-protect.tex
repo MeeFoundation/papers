@@ -90,7 +90,7 @@ If Age Protect were widely adopted it would provide an age-aware experience for 
 	\item \textbf{Opt-in}. The experience a person has at apps, websites and other online services remains unchanged unless Age Protect is enabled. If the person is an adult, they can turn it on themselves for their own benefit (e.g. to gain access to age-restricted services). If the person is a minor it can be turned on by their adult guardian on the minor's behalf. 
 	\item \textbf{Protect minors}. Allow a guardian to enable Age Protect for a minor so that when the minor uses an online service the service receives an Age Protect signal. This signal indicates that this minor is capable of verifying their age on request (usually with one tap). Based on the age of the minor, the app/site can thereafter restrict access only to those services, features, activities, and marketing practices that are age-appropriate.
 	\item \textbf{Age verify adults} so that they can prove (usually with one tap) that they are of sufficient age to access age-restricted apps and sites.
-	\item \textbf{Respects the privacy} and anonymity of all participants.
+	\item \textbf{Respects the privacy} and anonymity of all participants. Age Protect is a local solution. The user places credentials into their wallet as one interaction, and then as some future point initiates a completely separate interaction to present these credentials to an app or site. These two interactions cannot be linked by the issuer of the credentials or the recipient app/site. There is no back channel between the issuer and the recipient apps/sites.
 	\item \textbf{Ease of use}. Provide a simple, intuitive user experience.
 	\item \textbf{Reduce liability} for online service providers and protect their brand by helping them comply with laws and regulations such as \hyperfootnote[COPPA][https:]{ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa}, \hyperfootnote[GDPR][https://]{gdpr-info.eu/} (including the \hyperfootnote[UK Children's Code][https://]{ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/}) and United States state age-appropriate design code regulations.
 	\item \textbf{Cross-platform}. Age Protect can be implemented by service providers, digital wallets, and AVSes on a wide variety of internet connected platforms.
@@ -234,17 +234,17 @@ An Age Protect-compatible wallet relies on a browser extension that implements t
 	Sec-PD: type=AgeProtectv1
 \end{lstlisting}
 
-Optionally, if the person already has a relationship with a specific age verification provider, e.g. PRIVO.com, they could configure their browser extension to send an enriched HTTP header field:
+Optionally, if the person already has a relationship with a specific age verification provider, e.g. example.com, they can advertise this fact by configuring their browser extension to send an enriched HTTP header field as follows:
 \begin{lstlisting}[language=json,firstnumber=1]
-	Sec-PD: type=AgeProtectv1; cfg="https://privo.com/age-protect.pcf"
+	Sec-PD: type=AgeProtectv1; cfg="https://example.com/age-protect.pcf"
 \end{lstlisting}
 \subsection{Verify Age button}
 
-This subsection will describe how the Verify Age button is implemented. 
+The Verify Age button is a button on the verifier app/site whose text label is “Verify Age”. When tapped it initiates a standard OIDC4VP VC presentation ceremony requesting an AVR from the user’s repository. 
 
 \subsection{Age Verification Record}
 
-An AVR is a Verifiable Credential (VC)\hyperfootnote[Verifiable Credential][https://]{w3.org/TR/vc-data-model/} JSON document. 
+An AVR is a JSON documented whose format follows the Verifiable Credential (VC)\hyperfootnote[Verifiable Credential][https://]{w3.org/TR/vc-data-model/} standard. This is a standards-based approach similar to how Mobile Driver's License (mDL) follows the VC format.
 
 \textbf{@Context property}
 
