@@ -33,7 +33,7 @@
 %\SetWatermarkScale{4}
 
 \title{Identity Agents}
-\author{Paul Trevithick, Sergey Kucherenko}
+\author{Paul Trevithick and Sergey Kucherenko, The Mee Foundation}
 \date{March 3, 2023. Revised \today}							
 \begin{document}
 \maketitle
@@ -365,7 +365,7 @@ The individual carries the burden of maintaining the timeliness and consistency 
 
 An identity agent sits at the center of an architecture wherein the user's interactions with apps radiate out from it. ``When we put the user at the center, and make them the point of integration, the entire system becomes simpler, more robust, more scalable, and more useful.''\cite{Andrieu2007}
 
-This human-centered architecture necessitates that an agent must be, using the term \emph{protocol} loosely, protocol-agnostic. Consider the user's interactions with four apps. One might want to know the user's email address, it might ask for it in a web form. The agent would use its form-filler ``protocol'' to fill in the value. The second might support password-less sign-in (e.g. using OpenID Connect) that leverages an agent acting as the so-called \emph{identity provider}. The third might request a digital driver's license credential. The agent, acting as a digital wallet, can present this credential--a credential that it had presumably been installed into it from a fourth credential-issuing app. 
+This human-centered architecture necessitates that an agent must be able to interact with a wide variety of different kinds of apps. Consider the user's interactions with six apps. The first app might want to know the user's email address, and it might ask for it in a web form. A second form-filler app (which might be a browser extension integrated with the agent) uses this value to fill in the form. A third app might support password-less sign-in (e.g. using OpenID Connect) that leverages an agent acting as the so-called \emph{identity provider}. A fourth might request a digital driver's license credential from a fifth digital wallet app which can present this credential--a credential that had presumably been installed into it from a sixth credential-issuing app. 
 
 \subsection{Self and Contexts}
 
@@ -373,7 +373,7 @@ The identity agent represents both the person's single \emph{selfness} and a set
 
 The selfness of the person is represented by a person entity in a data container called the \emph{self}. The person entity in the self is the point of integration across contexts each of which may use differing identifier namespaces, protocols for communication, and data schemas. The contents of the self are holistic and therefore quite sensitive and would normally not be shared with others. 
 
-Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the person in each context. To ensure privacy, only the person knows that each of these separate contexts contain representations of them. Each context represents an interaction via some communications protocol with an external app. 
+Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the person in each context. To ensure privacy, only the agent user knows that each of these separate contexts contain representations of them. Each context represents an interaction with an external app. 
 
 We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the id DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
 
@@ -387,7 +387,7 @@ In our example Alice has four digital relationships called \emph{connections}. E
 
 \subsection{Functionality}
 
-Figure~\ref{fig:functionality} summarizes the functionality of an agent. The upper rows list a set of potential identity provider protocols that the web based core of the agent could implmement. The lower rows list a set basic identity agent functions.  The ``Agent SDK'' refers to a reusable component that can form the heart of a local identity agent, or can be used as a satellite component embedded in a relying party's app. The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. 
+Figure~\ref{fig:functionality} summarizes the functionality of an agent.  The first set of rows list the set basic identity agent functions.  The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. The second set of rows list potential identity provider protocols that the agents may implement.
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/identity-agent-functionality.png}
@@ -411,7 +411,7 @@ Here are the connection management and data management functions of an agent:
 \item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
-An agent also acts as an identity provider and may choose to implement open protocols such as:
+An agent also acts as an identity provider and may implement open protocols such as:
 
 \begin{itemize}
 	\item \hyperfootnote[FedID][https://]{fedid.me}
@@ -423,7 +423,7 @@ An agent also acts as an identity provider and may choose to implement open prot
 
 The architecture of a smartwallet that may be optionally included as part of the user's identity agent is shown in the center of Figure~\ref{fig:architecture}. 
 
-Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol} used in the following are described in section \ref{data_model_subsection} where we describe the Persona data model.
+Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the following are described in section \ref{data_model_subsection} where the Persona data model is described.
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/architecture.png}
@@ -507,55 +507,16 @@ We describe the data model in two parts. The first part describes the data conta
 	\item \textbf{Context} - a Container holding a Person node that represents the user in a specific aspect of their relationship (called a \emph{Connection}) with some RP. 
 \end{itemize}
 
-\textbf{More about Contexts}
-
-A Context is a Container holding a Person node that represents the identity agent user in a specific aspect of their relationship (called a \emph{Connection}) with some RP. We say ``specific aspect'' because the relationship between the person a given other, may be represented by more than one context, each representing a different aspect. A Context has the following attribute:
-
-\begin{itemize}
-\item \textbf{protocols[]} - array of one or more Protocol instances.
-\end{itemize}
-
-The kinds of data held by a context depends on the communications protocol (using the term loosely) between the agent and the other party. 
-
-The \emph{DelegatedContext} subclass of Context is described in its own section below.
-
-\textbf{Protocols}
-
-A Protocol class represents a communications protocol used between the identity agent and an endpoint provided by another party. Each subclass represents a different communications protocol such as SIOPv2, GoogleAccountSync, BasicMessage (DIDComm), etc.  
-
-A Context has one or more Protocols. Figure~\ref{fig:protocol} shows an example of Alice who has a connection with LinkedIn. This connection's Context that contains the information that Alice shares with the LinkedIn via the OpenID Connect SIOPv2 protocol. Note: this example is hypothetical, since LinkedIn does not currently support SIOPv2.
-
-\begin{figure}[htbp]
-	\includegraphics[width=\textwidth]{./images/context-with-protocol.png}
-	\caption{Protocols}
-	\label{fig:protocol}
-\end{figure}
-
-Figure~\ref{fig:n-protocols} extends the previous example by showing the use of multiple Protocols. In addition to the hypothetical SIOPv2 protocol, the connection depicted also leverages a web scraping/filling Protocol to capture her data from the LinkedIn website. Lastly, the connection's context also uses the Mee Data Network protocol to allow the context's data to be exchanged with other apps and agents on this  network. 
-
-\begin{figure}[htbp]
-	\includegraphics[width=\textwidth]{./images/context-with-n-protocols.png}
-	\caption{Context with multiple protocols}
-	\label{fig:n-protocols}
-\end{figure}
-
-Each Protocol instance has these attributes:
-\begin{itemize}
-\item \textbf{namespace} - a string that indicates the namespace used by the ``endpoint'' attribute
-\item \textbf{endpoint} - a string identifier that unique identifies the other party with which the person has a relationship within the above namespace attribute
-\item \textbf{dataflow} - one of {to-identity agent, from-identity agent, bidirectional} - indicates the direction of data flow between the identity agent and the endpoint
-\end{itemize}
-
 \textbf{Multiple connections}
 
 In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice. Alice has five connections contextualizing her relationships with each of five organizations and/or people. We discuss each connection moving left to right in the diagram:
 
 \begin{itemize}
-	\item \textbf{Bob}. Alice has a connection to Bob. It has a   context and uses the DIDComm BasicMessage protocol (which uses a DID identifier).
+	\item \textbf{Bob}. Alice has a connection to Bob mediated by an app that uses the DIDComm \hyperfootnote[BasicMessage protocol][https://]{didcomm.org/basicmessage/1.0/}.
 	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a context representing this game. She uses id ``DevilSpawn666'' as her identifier in this context.  
 	\item \textbf{X}. Alice has a connection to X social network. It contains a context representing her X account. Her id is ``@alicewalker'' on X.
-	\item \textbf{Google Account}. Alice has a connection to her Google account. It consists of a context that contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' id. 
-	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site using four protocols. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her id ``0x3443f23135839''. The context holds information she has entered using a form filler as well as her account information managed by this site. 
+	\item \textbf{Google Account}. Alice has a connection mediated by an app that accesses her Google account. The context for this app contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' id. 
+	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her id, ``0x3443f23135839''. The context holds information she has entered using a form filler app as well as her account information managed by this site. 
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -564,7 +525,7 @@ In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice
 \label{fig:groups}
 \end{figure}
 
-A relationship between the agent and another party is called a \emph{connection}. It is represented by one or more other contexts each of which has a protocol (and sometimes more than one). Alice is shown with five connections--one for each of the five RP nodes in her RPs container. 
+A relationship between the agent and another party is called a \emph{connection}. It is represented by one or more other contexts. Alice is shown with five connections--one for each of the five RP nodes in her RPs container. 
 
 \textbf{Delegated Contexts}
 
@@ -615,26 +576,6 @@ In the Persona schema, people are represented as instances of Person, a \emph{Pe
 	\end{itemize}
 \end{itemize}
 
-\textbf{Extensions}
-
-Each protocol class will extend the Persona schema by defining Person subclasses, other new object classes and new kinds of relationships. For example the \hyperfootnote[Google Account][https://]{myaccount.google.com}  API includes (optional) claims of ``name", ``gender" and ``birthday". The protocol that supports the myaccount API would define these claim types in its schema, and insert a link to this schema in its corresponding context's \emph{schema} attribute.
-
-\subsubsection{Datatypes}
-
-This section is largely incomplete, but will eventually describe lower level classes that we call \emph{datatypes} that are used by the higher level classes mentioned above. Some datatype classes are shown in Figure~\ref{fig:datatypes}.
-
-\begin{figure}[htbp]
-\includegraphics[width=\textwidth]{./images/datatypes.png}
-\caption{Datatypes}
-\label{fig:datatypes}
-\end{figure}
-
-\begin{itemize}
-\item \textbf{EndpointId} -  an identifier of an endpoint (e.g. web service or a local app) supported by another party.
-\item \textbf{LocalAppId} - an EndpointId that identifies a service provider's mobile application. 
-\item \textbf{URL} - an EndpointId that identifies a service providers's web service using a traditional URL
-\item \textbf{DID} - an EndpointId that identifies a service using a \hyperfootnote[DID][https://]{www.w3.org/TR/did-core/}
-\end{itemize}
 
 \begin{comment}{\textbf{Secret Recovery Phrase} - a 12-word textual phrase that the person creates. It is used to generate cryptographic keys that in turn are used to encrypt the person personal data whether it is stored locally on their device or in a backup location. It can be used to generate keys to digitally sign transactions (e.g., for crypto currency transactions). It should never be shared with anyone or any service provider. If the person loses this phrase, they lose the ability to decrypt their data. 
 }
