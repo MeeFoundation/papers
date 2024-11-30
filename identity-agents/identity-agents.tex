@@ -33,7 +33,7 @@
 %\SetWatermarkScale{4}
 
 \title{Identity Agents}
-\author{Paul Trevithick, The Mee Foundation}
+\author{Paul Trevithick, Sergey Kucherenko}
 \date{March 3, 2023. Revised \today}							
 \begin{document}
 \maketitle
@@ -183,7 +183,7 @@ Convenience is one of the most important design considerations to drive user ado
 
 \subsection{Inclusivity}
 
-Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For virtual (web-based) agents this creates a significant funding challenge. The situation is better for \emph{local} agents that run on the user's device, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
+Agents must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. For web-based agents this creates a significant funding challenge. The situation is better for the (optional) smartwallets that the user may choose to run on their device, although even here there may be additional costs incurred for any additional storage required for larger on-device datastores.
 
 
 \subsection{Loyalty to the user}
@@ -281,22 +281,21 @@ In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/84
 
  \emph{Identity agents} are a solution to the problems described in the first section that takes into account the design considerations in the second section. An identity agent, gives individuals control over their personal information as they interact with websites, mobile apps, and other people's identity agents through a combination of technical and legal mechanisms. It combines a legal contract and a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} with a traditional digital agent\cite{Graham2023}. 
 
-We envision two kinds of identity agents, \emph{local} and \emph{virtual}. A local agent is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. When an app wants to know something about the user, the user uses their agent to share as much or as little as they wish. 
+An identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple MDN nodes, each of which is integrated with, and under the control of a provider's app or website or is embedded within a user's smartwallet(s). Each MDN node maintains the data that related to the user's relationship (aka connection) with that app or website. The agent does not persistent any connection-specific data. 
 
-A virtual agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple \emph{partial} agents each of which is integrated with, and under the control of a provider's app or website. Each partial agent maintains the data that related to the user's relationship (aka connection) with that app or website. A virtual agent's controller web app does not persistent any of this connection-specific data. 
+As mentioned, an agent may optionally include one or more smartwallets. A smartwallet is a native app (e.g. written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.) and integrates with the user's identity agent. It maintains a local, private database of the user's personal information. By default, none of this information is shared with any other entity. 
 
-Apps can request personal information from, and provide information to, a local agent using a wide variety of data sharing protocols. The information may flow between the app and the local agent in one direction, the other direction or bi-directionally. It may use whatever data formats and schemas are defined by the app. The data being exchanged may include structured data, unstructured data, or digitally signed documents (e.g. Verifiable Credentials, etc.). 
+Apps can request personal information from, and provide information to, the user's agent using the MDN protocols (see section \ref{sec:MDN}). The information may flow between the app and the  agent in one direction, the other direction or in both. The app must read and write data using the agent's data model. The data being exchanged may include structured data, unstructured data, or digitally signed documents (e.g. Verifiable Credentials, etc.). 
 \begin{comment}
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
-Apps can also request personal information from virtual agents using the MDN protocols (see section \ref{sec:MDN}).
 
 \subsection{Mee Data Network}\label{sec:MDN}
 
-The Mee Foundation is developing a Mee Data Network (MDN)--a set of protocols designed to support (i) data sharing between apps and local agents and (ii) data sharing multiple partial agents embedded within provider's apps or sites as orchestrated by the user's virtual agent.
+The Mee Data Network (MDN) is a set of protocols designed to support data sharing between MDN nodes. These nodes may be integrated with a provider's apps or websites, and within the user's smartwallet if they choose to install and configure one or more of them on their devices.
 
-MDN provides a trust framework wherein apps authorized by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
+MDN includes a trust framework wherein apps authorized by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles in how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols combined with the license enable \emph{private sharing} between the identity agent and the app or site. Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their agent, the user can exercise their rights to access, correct and delete their information stored by the app.
 
 For more about MDN see section \ref{sec:MDN2}.
 
@@ -388,7 +387,7 @@ In our example Alice has four digital relationships called \emph{connections}. E
 
 \subsection{Functionality}
 
-Figure~\ref{fig:functionality} summarizes the functionality of an identity agent, and contrasts the local vs. virtual variants. The upper rows list a set of connectors each implementing a different protocol. The lower rows list a set basic identity agent functions. The ``BX'' term is an abbreviation for a browser extension. The ``Agent SDK'' refers to a reusable component that can form the heart of a local identity agent, or can be used as a satellite component embedded in a relying party's app. The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. 
+Figure~\ref{fig:functionality} summarizes the functionality of an agent. The upper rows list a set of potential identity provider protocols that the web based core of the agent could implmement. The lower rows list a set basic identity agent functions.  The ``Agent SDK'' refers to a reusable component that can form the heart of a local identity agent, or can be used as a satellite component embedded in a relying party's app. The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. 
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/identity-agent-functionality.png}
@@ -396,22 +395,9 @@ Figure~\ref{fig:functionality} summarizes the functionality of an identity agent
 \label{fig:functionality}
 \end{figure}
 
-\subsubsection{Connectors}
-
-An identity agent is a tool that allows its user to manage data \emph{connections} with apps (including other people's identity agents). Since a variety of communication protocols and data storage approaches are involved in these connections, identity agents are extensible via \emph{connectors}. 
-
-Here are a few examples of connectors:
-\begin{itemize}
-\item SD JWT-based VC presentation - present Verifiable Credentials from the identity agent
-\item SD JWT-based VC issuance - store a Verifiable Credential in the identity agent
-\item Google Account - pull data from myaccount.google.com 
-\item Global Privacy Control - sends a ``Do Not Sell My Personal Information'' signal to apps
-\item OpenID SIOPv2 - allows the person to authenticate with an app without using passwords, without first creating an account, and with surveillance by an external so-called \emph{identity provider}.
-\end{itemize}
-
 \subsubsection{Functionality}
 
-Here are user functions of an agent:
+Here are the connection management and data management functions of an agent:
 
 \begin{itemize}
 \item \textbf{Organize} the relationships the user has with other apps into a set of connections and contexts.
@@ -425,25 +411,33 @@ Here are user functions of an agent:
 \item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
-\subsection{Local agent architecture}
+An agent also acts as an identity provider and may choose to implement open protocols such as:
 
-The multi-layered architecture of a local identity agent is shown in the center of Figure~\ref{fig:architecture}. 
+\begin{itemize}
+	\item FedID (see fedid.me)
+	\item OpenID SIOPv2
+	\item OpenID
+\end{itemize}
+
+\subsection{Smartwallet architecture}
+
+The architecture of a smartwallet that may be optionally included as part of the user's identity agent is shown in the center of Figure~\ref{fig:architecture}. 
 
 Terms such as \emph{self}, \emph{context}, \emph{connection}, and \emph{protocol} used in the following are described in section \ref{data_model_subsection} where we describe the Persona data model.
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/architecture.png}
-\caption{Local Identity Agent Architecture}
+\caption{Smartwallet Architecture}
 \label{fig:architecture}
 \end{figure}
 
 \subsubsection{Application layer}
 
-The topmost, Application, layer of a local identity agent consists of a User Interface (UI) subcomponent and the high level business logic in the Controller subcomponent. 
+The topmost, Application, layer of a smartwallet consists of a User Interface (UI) subcomponent and the high level business logic in the Controller subcomponent. 
 
-The UI provides an interface that enables the user to manage their data sharing relationships with provider apps. Using this UI the user can add and delete connections. Within each connection they can consent to data shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
+The UI provides an interface that enables the user to manage their data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data being shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
-The Controller handles requests from the UI. It manages the Self and the RPs data containers. If we consider that a single \emph{logical} identity agent of a user is represented by multiple identity agent \emph{nodes} on different devices, the Controller is responsible for replicating and synchronizing the state of the identity agent between these nodes (e.g. using the \hyperfootnote[Willow Protocol][https://]{willlowprotocol.org}). Note that since the storage capacity of each node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated on each node, some Contexts may be omitted on the nodes running on storage-constrained devices.
+The Controller handles requests from the UI. It manages the Self and the RPs data containers and synchronizes their state with the user's (web-based) identity agent. Controller is responsible for replicating and synchronizing the state of the user's agents multiple smartwalletnodes (e.g. using the \hyperfootnote[Willow Protocol][https://]{willlowprotocol.org}). Note that since the storage capacity of each smartwallet node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated on each node, some Contexts may be omitted on the nodes running on storage-constrained devices.
 
 The Controller, using the Data Access layer, updates the attributes of Person objects in contexts. It is responsible for creating and deleting connections.
 
@@ -457,27 +451,19 @@ The Mee Data Query Language subcomponent is responsible for management of the us
 
 \subsubsection{Personal datastore layer}
 
-This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. Note: this layer is only present in local, not a virtual, identity agents.
+This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. 
 
-\subsubsection{Connectors}
+\subsection{Identity agent architecture}
 
-Now that we've described the horizontal layers of an identity agent, we turn to the \emph{connector} extension point. An identity agent typically has multiple \emph{connections} each of which is implemented by one or more \emph{connectors}. Each connector has a communications aspect and a storage aspect.
-
-\emph{Communications aspect}. A connector implements the communications protocol used by the other party (e.g. a service provider or another person's identity agent). We use the term protocol very loosely since the nature of the other party varies considerably. It could for example be an API of a service provider, another person's identity agent, an authentication protocol exposed by an endpoint, or something entirely different.
-
-\emph{Storage aspect}. A connector persists its state in a context container managed in the Data Access layer. The Data Access layer requires this context state to be represented in the Persona data model. The connector is responsible for dynamic, bidirectional schema transformation between the data model used by the protocol and the Persona data model. 
-
-\subsection{Virtual agent architecture}
-
-A virtual identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple \emph{partial} agents each of which is embedded within a provider's app or website. Each partial agent maintains the data that related to the user's relationship (aka connection) with that app or website. A virtual agent's controller web app does not persist any of this connection-specific data. 
+An identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple MDN nodes. MDN nodes are integrated within a provider's app or website, and each of the users one or more smartwallets is also considered an MDN node. agent's controller web app does not persist any of this connection-specific data. 
 
 Using the UI of the controller the user can see and edit data within each connection. During these edits the data involved is stored transiently in the user's browser.
 
-\subsection{Virtual agent data sharing}
+\subsection{Agent data sharing}
 
-Although the data flow involved when a user of a \emph{local} agent shares data with an app is straightforward, if the user is using a \emph{virtual} agent, the flow is a more complicated. The added complexity is caused by the fact that a virtual identity agent does not contain its own personal datastore, and instead the storage of the user's data is distributed among multiple apps or sites. Although a virtual agent doesn't hold \emph{specific} data about any of the user's connections, it does know which provider holds which \emph{kinds} of information (i.e. which attributes) about the user.\footnote{In some cases the same attribute may be held by more than one provider, and it's possible that the values of the attribute differ across providers.}
+Although the data flow involved when a user of a smartwallet shares data with an app is straightforward, if the user is using their main agent, the flow is a more complicated. An identity agent does not contain its own personal datastore, and instead the storage of the user's data is distributed among multiple MDN nodes (whether hosted by a provider or embedded within the user's smartwallet(s). Although the agent doesn't hold \emph{specific} data about any of the user's connections, it does know which provider holds what \emph{kinds} of information (i.e. which attributes) about the user.\footnote{In some cases the same attribute may be held by more than one provider, and it's possible that the values of the attribute differ across providers.}
 
-When a provider requests one or more attributes about the user, the virtual agent knows which providers are able to provide the attribute(s). If the virtual agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the virtual agent user, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end, so the host of the virtual agent has no access to the data. 
+When a provider requests one or more attributes about the user, the agent knows which providers are able to provide the attribute(s). If the agent user authorizes a transfer from a source provider to a destination provider, a \hyperfootnote[capability][https://]{en.wikipedia.org/wiki/Capability-based\_security} is generated by the agent user, so it can accompany the request for an attribute from the source provider. The data flows directly from the source provider(s) to the destination provider. This data flow is encrypted end-to-end, so the host of the agent has no access to the data. 
 
 \subsection{Persona data model}\label{data_model_subsection} 
 
@@ -669,7 +655,7 @@ The MNDL imposes obligations on the app provider, among which is the requirement
 The MDNL's provisions are intentionally generic. They are designed to meet the needs of the entire community of identity agent users. We expect that other contracts containing more specific provisions will be required to meet the needs of more specialized communities. Each community can amend the MDNL to meet the specifics they require, provided that they do not weaken the MDNL's existing provisions and protections. These specialized communities would organize, govern and operate independent MIDs that enforce their more specialized MDNL-based contracts. These specialized MIDs would enter into agreements with one or more providers which would be held to both the generic terms of the MDNL and the additional, specialized terms.
 
 \section{Acknowledgements}
-Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Sergey Kucherenko, Maria Vasuytenko, Vlad Fisher, and Xenya Shatalova.
+Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Maria Vasuytenko, Vlad Fisher, and Xenya Shatalova.
 
 \bibliography{../library}
 \bibliographystyle{plainurl}
