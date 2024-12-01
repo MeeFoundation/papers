@@ -398,10 +398,10 @@ Figure~\ref{fig:functionality} summarizes the functionality of an agent.  The fi
 
 \subsubsection{Functionality}
 
-Here are the connection management and data management functions of an agent:
+In addition to authenticating the user to the agent, an agent performs the following functions related to the management of the user's connections :
 
 \begin{itemize}
-\item \textbf{Organize} the relationships the user has with other apps into a set of connections and contexts.
+\item \textbf{Organize} the relationships the user has with apps into a set of connections and contexts.
 \item \textbf{Request} access to a context managed by another app.
 \item \textbf{Grant} access to a context managed by the user.
 \item \textbf{Sync} contexts across user's devices.
@@ -412,17 +412,15 @@ Here are the connection management and data management functions of an agent:
 \item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
-An agent also acts as an identity provider and may implement open protocols such as:
+\subsection{Identity agent architecture}
 
-\begin{itemize}
-	\item \hyperfootnote[FedID][https://]{fedid.me}
-	\item \hyperfootnote[OpenID SIOP][https://]{openid.net/specs/openid-connect-self-issued-v2-1\_0.html}
-	\item OpenID Connect
-\end{itemize}
+An identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple MDN nodes. MDN nodes are integrated within a provider's app or website, and each of the users one or more smartwallets is also considered an MDN node. The agent does not persist any connection-specific data. 
+
+Using the UI of the controller the user can see and edit data within each connection. During these edits the data involved is stored transiently in the user's browser.
 
 \subsection{Smartwallet architecture}
 
-The architecture of a smartwallet that may be optionally included as part of the user's identity agent is shown in the center of Figure~\ref{fig:architecture}. 
+The user may choose to include one or more smartwallets with their agent. The architecture of a smartwallet is shown in the center of Figure~\ref{fig:architecture}. 
 
 Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the following are described in section \ref{data_model_subsection} where the Persona data model is described.
 
@@ -434,7 +432,7 @@ Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the fo
 
 \subsubsection{Application layer}
 
-The Application layer of a smartwallet consists of a User Interface (UI) subcomponent and the high level business logic in the Controller subcomponent. 
+The Application layer of a smartwallet consists of a User Interface (UI) subcomponent and the business logic in the Controller subcomponent. 
 
 The UI provides an interface that enables the user to manage their data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data being shared from their agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
@@ -453,12 +451,6 @@ The Mee Data Query Language subcomponent is responsible for management of the us
 \subsubsection{Personal datastore layer}
 
 This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. 
-
-\subsection{Identity agent architecture}
-
-An identity agent is a distributed system. It consists of a single cloud-hosted (or privately hosted) web app controller which communicates with multiple MDN nodes. MDN nodes are integrated within a provider's app or website, and each of the users one or more smartwallets is also considered an MDN node. agent's controller web app does not persist any of this connection-specific data. 
-
-Using the UI of the controller the user can see and edit data within each connection. During these edits the data involved is stored transiently in the user's browser.
 
 \subsection{Agent data sharing}
 
