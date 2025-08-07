@@ -175,11 +175,11 @@ In this section, we discuss design considerations for solutions that intend to a
 
 \subsection{Data rights}
 
-In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by apps providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how apps use this user's data, and having them implement APIs that the smartwallets can use--this is described below in the section on Trust Frameworks.
+In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by app providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how apps use this user's data, and having them implement APIs that the smartwallets can use--this is described below in the section on Trust Frameworks.
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations to drive user adoption of smartwallets. An smartwallet must automate the work of controlling and managing a person's own information. 
+Convenience is one of the most important design considerations to drive user adoption of smartwallets. A smartwallet must automate the work of controlling and managing a person's own information. 
 
 \subsection{Inclusivity}
 
@@ -199,7 +199,7 @@ Users need to trust that the smartwallet developer/provider organization is itse
 
 \subsection{Trust Framework}
 
-Once data is shared from an smartwallet to a first-party app there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
+Once data is shared from a smartwallet to a first-party app there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
 
 Some apps will be willing to join a trust framework and \emph{license} the user's information received from the user's smartwallet. If so, they would agree to the terms of a license agreement which include terms which respect the person's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of smartwallet users thereby making the processes effortless for them. Lastly, this organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
 \begin{comment}
@@ -364,7 +364,7 @@ The individual carries the burden of maintaining the timeliness and consistency 
 
 A smartwallet sits at the center of an architecture wherein the user's interactions with apps radiate out from it. ``When we put the user at the center, and make them the point of integration, the entire system becomes simpler, more robust, more scalable, and more useful.''\cite{Andrieu2007}
 
-This human-centered architecture necessitates that an smartwallet must be able to interact with a wide variety of different kinds of apps. Consider the user's interactions with six apps. The first app might want to know the user's email address, and it might ask for it in a web form. A second form-filler app (which might be a browser extension integrated with the smartwallet) uses this value to fill in the form. A third app might support password-less sign-in (e.g. using OpenID Connect) that leverages an smartwallet acting as the so-called \emph{identity provider}. A fourth might request a digital driver's license credential from a fifth digital wallet app which can present this credential--a credential that had presumably been installed into it from a sixth credential-issuing app. 
+This human-centered architecture necessitates that a smartwallet must be able to interact with a wide variety of different kinds of apps. Consider the user's interactions with six apps. The first app might want to know the user's email address, and it might ask for it in a web form. A second form-filler app (which might be a browser extension integrated with the smartwallet) uses this value to fill in the form. A third app might support password-less sign-in (e.g. using OpenID Connect) that leverages a smartwallet acting as the so-called \emph{identity provider}. A fourth might request a digital driver's license credential from a fifth digital wallet app which can present this credential--a credential that had presumably been installed into it from a sixth credential-issuing app. 
 
 \subsection{Self and Contexts}
 
@@ -512,7 +512,7 @@ A relationship between the smartwallet and another party is called a \emph{conne
 
 \textbf{Delegated Contexts}
 
-Alice takes care of her elderly mother, and helps her mother manage her bank account at Santander Bank. Her mother has an smartwallet containing a connection to her bank, the data for which (e.g. her mother's OpenID Connect SIOP claims) is stored in one of the contexts representing this connection. Using her smartwallet, Alice's mother has delegated access to this context to her daughter Alice.
+Alice takes care of her elderly mother, and helps her mother manage her bank account at Santander Bank. Her mother has a smartwallet containing a connection to her bank, the data for which (e.g. her mother's OpenID Connect SIOP claims) is stored in one of the contexts representing this connection. Using her smartwallet, Alice's mother has delegated access to this context to her daughter Alice.
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/delegated-contexts.png}
