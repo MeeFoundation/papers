@@ -175,19 +175,18 @@ In this section, we discuss design considerations for solutions that intend to a
 
 \subsection{Data rights}
 
-In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by app providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how apps use this user's data, and having them implement APIs that the smartwallets can use--this is described below in the section on Trust Frameworks.
+In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by app providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how apps use the user's data, and requiring them to implement APIs that the smartwallets can consume. 
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations to drive user adoption of smartwallets. A smartwallet must automate the work of controlling and managing a person's own information. 
+Convenience is one of the most important design considerations to drive user adoption of smartwallets. To achieve this a smartwallet must \emph{automate} tasks related to controlling and managing a person's information. 
 
 \subsection{Inclusivity}
 
-Smartwallets must be affordable by all socio-economic classes--not just those better off. For this reason, solutions that incur monthly hosting cost are disqualified. The user can install a smartwallet on a device they already own, although there may be additional costs incurred for any additional storage required for larger on-device datastores.
-
+Smartwallets must be affordable by all socio-economic classes, not just those better off. Thus, solutions that incur monthly hosting costs to the user are disqualified. Smartwallets should be available at no charge and run on a device the user already owns, although there may be additional costs incurred for any additional storage required for large on-device datastores.
 
 \subsection{Loyalty to the user}
-Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. They do just enough in the user's interest ensure that they keep using the service and co-creating personal data to monetize. Personal data, after all, is now considered to be an asset class--the more of it that's collected the better. For a user to trust that their smartwallet works \emph{exclusively} on their behalf, the \emph{smartwallet provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing smartwallets so that the personal information that they process is never accessible to the smartwallet provider. This largely eliminates the need to trust the smartwallet provider organization, their security infrastructure, their processes, etc.
+Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. Providers do just enough in the user's interest to ensure that they keep using the service, so they can capture personal data to monetize. Personal data, after all, is now considered to be an asset class, and the more of it that's collected the better. For a user to trust that their smartwallet works \emph{exclusively} on their behalf, the \emph{smartwallet provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing smartwallets such that the personal information that they process is never accessible to the smartwallet provider. This largely eliminates the need to trust the smartwallet provider organization, their security infrastructure, their processes, etc.
 
 \subsection{Open source}
 
@@ -195,11 +194,11 @@ The transparency of open-source software builds confidence that any smartwallet 
 
 \subsection{Trustworthy smartwallets}
 
-Users need to trust that the smartwallet developer/provider organization is itself trustworthy. Their financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that smartwallets offered by this organization have no financial incentive to exploit the user's data for its own advantage. 
+Users need to trust that the smartwallet developer/provider organization is itself trustworthy. Their financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that smartwallets offered by them have no financial incentive to exploit the user's data for their own advantage. 
 
 \subsection{Trust Framework}
 
-Once data is shared from a smartwallet to a first-party app there are no technical means to constrain what the recipient can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
+Once data is shared from a smartwallet to an app there are no technical means available to constrain what the recipient app can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
 
 Some apps will be willing to join a trust framework and \emph{license} the user's information received from the user's smartwallet. If so, they would agree to the terms of a license agreement which include terms which respect the person's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of smartwallet users thereby making the processes effortless for them. Lastly, this organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
 \begin{comment}
