@@ -133,7 +133,7 @@ In practice possession tends to shift power to the possessor. Unfortunately, wit
 
 \subsubsection{Peer-to-peer}
 
-We lack the ability to directly communicate person-to-person (e.g. chat) with others without having to rely all parties having accounts on the same server. With a few exceptions\hyperfootnote[][https://]{berty.tech}, we don't have the ability to do so \emph{peer-to-peer}--i.e. from one person's device to the other person's device. Instead, we're dependent on servers hosted by intermediaries. Further, whereas it is now standard practice that the content of messages is end-to-end encrypted, the metadata about them (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server.  
+We lack the ability to communicate (e.g. chat) directly from one person to another without requiring that all parties have accounts on some shared server. With rare exceptions\hyperfootnote[][https://]{berty.tech}, we don't have the ability to do so \emph{peer-to-peer}--i.e. from one person's device to the other person's device. Instead, we're dependent on servers hosted by intermediaries. Further, whereas it is standard practice that the content of messages is encrypted end-to-end, the \emph{metadata} about this content (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server.
 
 \subsection{Agency}
 
@@ -148,15 +148,15 @@ Privacy laws such as the GDPR provide the individual the following rights over t
 	\item Right to erasure
 \end{itemize}
 
-These laws are largely not actionable. Without APIs on the service provider's side, as well as personal software to consume them on the individual's side, the burden required to exercise these access rights is unbearable.
+However, in practice, these rights are largely not actionable. Why? Because the burden required to exercise these them using the provider-side mechanism places an unbearable workload on the individual. To be actionable the service provider would have to implement APIs on their side, and the consumer would have to have personal agents to consume these APIs on theirs. But this is not the case at present.
 
 \subsubsection{Portability}
 
-Our account identifiers and associated human data are bound to specific online service providers and can't be moved freely from one to another. In other words they are not \emph{portable}.
+Unfortunately, an individual's account identifiers and associated human data are bound to specific online service providers and can't be moved freely from one to another. In other words they are not \emph{portable}.
 
 In many jurisdictions service providers are required by law to provide individuals with access to their data, but they usually offer this by means of a set of files emailed to the individual as an attachment several hours or days after the request. There are significant problems with implementing portability in this manner. First, it is tedious, manual and slow. Service providers don't support data ``export'' APIs, so an individual can't use technology to automate the process. Second, the individual ends up with dozens of sets of files (one set from each provider) that are not largely unintelligible to them. 
 
-Beyond access and export problems, providers generally don't provide ``import'' APIs to allow the individual to upload their data. Even if an individual could import their data, it first must be transformed into the format of the recipient, since each provider uses their own format. The result is a lack of practical portability.
+Beyond access and export problems, providers generally don't provide ``import'' APIs to allow the individual to upload their data. Even if an individual could import their data, it first must be transformed into the format of the recipient, since each provider uses their own format. The result is a lack of portability.
 
 Advocacy groups, including the EFF, are pushing for interoperability as an antidote to corporate concentration. This is good, but they should insist that apps implement import/export APIs that can be leveraged by agents such as smartwallets. ``A new regime of interoperability can revitalize competition in the space, encourage innovation, and give users more agency over their data...''\cite{Cyphers2021} 
 
@@ -176,22 +176,24 @@ Extremely relevant to smartwallets is work on ``local-first" software.\cite{Klep
 
 \section{Design considerations} % SECTION 3
 
-In this section, we discuss design considerations for solutions that intend to address the symptoms described in the previous section. We first discuss design considerations related to ensure that smartwallets enforce the user's privacy data rights and are trustworthy. Then, we turn to functional requirements necessary for a smartwallet work with legacy apps as well as new/adapted apps that work within a new trust framework.
+In this section, we discuss design considerations to address the symptoms described in the previous section. We first discuss requirements related to ensuring that smartwallets enforce the user's privacy data rights, and are trustworthy. Then we turn to functional requirements necessary for a smartwallet work with apps that work within a proposed new trust framework.
 
 \subsection{Data rights}
 
-In a growing number of jurisdictions new privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by app providers. In practice the burden of exercising them across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how apps use the user's data, and requiring them to implement APIs that the smartwallets can consume. 
+In a growing number of jurisdictions privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by service provider's apps. In practice the user burden of exercising these rights across hundreds of apps is unmanageable. Automation on the user's side is required. Smartwallets can provide this automation, although this is only half of the answer. The other half involves constraining how service providers use the user's data, and requiring them to implement APIs that the smartwallets can user on the user's behalf. 
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations to drive user adoption of smartwallets. To achieve this a smartwallet must \emph{automate} tasks related to controlling and managing a person's information. 
+Convenience is one of the most important design considerations necessary to drive the adoption of smartwallets. To provide convenience a smartwallet must \emph{automate} currently burdensome tasks related to controlling and managing a person's information. 
 
 \subsection{Inclusivity}
 
-Smartwallets must be affordable by all socio-economic classes, not just those better off. Thus, solutions that incur monthly hosting costs to the user are disqualified. Smartwallets should be available at no charge and run on a device the user already owns, although there may be additional costs incurred for any additional storage required for large on-device datastores.
+Smartwallets must be affordable by all socio-economic classes, not just those better off. For this reason, solutions that incur monthly hosting costs to the user are disqualified. Smartwallets should be available at no charge and run on a device the user already owns, although admittedly there may be additional costs incurred for if the user wishes to store extremely large datasets on their device.
 
 \subsection{Loyalty to the user}
-Much of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. Providers do just enough in the user's interest to ensure that they keep using the service, so they can capture personal data to monetize. Personal data, after all, is now considered to be an asset class, and the more of it that's collected the better. For a user to trust that their smartwallet works \emph{exclusively} on their behalf, the \emph{smartwallet provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing smartwallets such that the personal information that they process is never accessible to the smartwallet provider. This largely eliminates the need to trust the smartwallet provider organization, their security infrastructure, their processes, etc.
+Most of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. Providers have competing loyalties. They do just enough in the user's interest to ensure that users keep using their services, whereas their main motivation is the monetization of the data to their actual customers--the sources of their revenues. Personal data, after all, is an asset class, and the more of it that can be collected the better off the provider is economically. 
+
+For a user to trust that their smartwallet works \emph{exclusively} on their behalf, the \emph{smartwallet provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing smartwallets such that the personal information that they process is never accessible to the smartwallet provider. This largely eliminates the need to trust the smartwallet provider organization, their security infrastructure, their processes, etc.
 
 \subsection{Open source}
 
@@ -203,18 +205,18 @@ Users need to trust that the smartwallet developer/provider organization is itse
 
 \subsection{Trust Framework}
 
-Once data is shared from a smartwallet to an app there are no technical means available to constrain what the recipient app can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means (trust frameworks) must be employed. 
+Once data is shared from a smartwallet to a service provider there are no technical means available to constrain what the provider can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means, called trust frameworks, must be employed. 
 
-Some apps will be willing to join a trust framework and \emph{license} the user's information received from the user's smartwallet. If so, they would agree to the terms of a license agreement which include terms which respect the person's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of smartwallet users thereby making the processes effortless for them. Lastly, this organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
+Some providers may be willing to join a trust framework and \emph{license} the user's information received from the user's smartwallet. If so, they would agree to the terms of a license agreement which include terms that respect the user's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of smartwallet users thereby making the processes effortless for individual users. This organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
 \begin{comment}
 	mention trust framework?
 \end{comment}
 
 \subsection{Human-centricity}
 
-Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own app[s]. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
+Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own apps. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
-For the individual the situation is reversed. They sit at the center of a hub with many dozens of connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections, the resulting burden is unbearable. 
+For the individual the situation is reversed. The user sits at the center of a hub with connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections, the resulting burden is unbearable. 
 
 Tools to manage these chores must sit on the person's side, and work on their behalf across all of them. Technologies of this kind, that empower a person across multiple apps, e.g. browsers and password managers, are called are \emph{user-agents} since they act as agents of the person. 
 
@@ -248,19 +250,19 @@ Using these terms we can say that in everyday life people have one \emph{selfnes
 
 \subsection{Local-first}
 
-In this section we argue that a local-first architecture is preferred. 
+In this section we explain why a local-first architecture is required. 
 
-A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that if many people are using the solution, having a personal datastore on-device is more secure than in the cloud. Even if each alternative were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a much larger economic incentive for hackers. 
+A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that as long as a relatively large number of many people are using the solution, having a personal datastore on-device is more secure than one in the cloud. Even if these alternatives were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a proportionately larger economic incentive for hackers. 
 
 \subsubsection{Synchronization}
 
-A user may have two or more smartwallets running on multiple devices each of which is only intermittently connected to the internet. The user's data needs to be kept consistent across these smartwallets and devices, at least eventually. This requires that the person's smartwallets implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between smartwallets running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
+A user may have two or more smartwallets running on multiple devices each of which is only intermittently connected to the internet. The user's data needs to be kept consistent across these smartwallets and devices, at least eventually. This requires that these smartwallets implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between smartwallets running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
 
-Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open, and the relay should only store encrypted data. It should store message data only while waiting for the recipient system or smartwallet to come online.
+Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open. The relay should only handle encrypted data transiently. That is, it should temporarily buffer (encrypted) message data while waiting for the recipient to come back online.
 
 \subsubsection{Backup} 
 
-One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability that smartwallet users who are not diligent about backing up their devices (e.g. to an online service) face of losing their smartwallet-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. There remains of course the worst-case scenario wherein the person hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
+One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability that smartwallet users who are not diligent about backing up their devices (e.g. to an online service) face of losing their smartwallet-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. The worst-case scenario is when the user hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
 
 Smartwallets could implement backup/restore approaches that would provide recovery from even this disaster, however these approaches are complex and problematic. The smartwallet's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
