@@ -38,7 +38,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Today's app-centric architecture for personal information has helped fuel the rapid growth of internet apps and sites. Unfortunately and concurrently it has reduced individual autonomy, agency, and privacy. Individuals have no practical means to manage their personal data held by apps/sites. Unfortunately, even if they did, data privacy law has proven inadequate to prevent the disclosure of this information to other app/sites and third parties. We present design considerations for, and the architecture of, \emph{smartwallets}, which can address these issues and restore, at least partially, the power imbalance between individuals and apps/sites.
+Today's app-centric architecture for personal information has helped fuel the rapid growth of internet apps and sites. Unfortunately and concurrently it has reduced individual autonomy, agency, and privacy. Individuals have no practical means to manage their personal data held by apps/sites. Unfortunately, even if they did, data privacy law has proven inadequate to prevent the disclosure of this information to other app/sites and third parties. We present design considerations for, and the architecture of \emph{smartwallets} which can address these issues and mitigate the power imbalance between individuals and apps/sites.
 \end{abstract}
 
 %keywords: personal data, digital wallet, personal datastore, personal data service, personal agent, digital identity, privacy
@@ -47,15 +47,20 @@ Today's app-centric architecture for personal information has helped fuel the ra
 
 \subsection{Power}
 
-The two main levers of power society are technology and law. Internet technology has resulted in an imbalance between the power concentrated in the hands of a few and the power, or lack thereof, of individuals. Data privacy law, on the other hand, while often based on sound principles has proven insufficient to shift meaningful power and privacy to individuals.
+The two main levers of power in society are \emph{technology} and \emph{law}. Internet technology has resulted in an imbalance between the power concentrated in industry and the power, or lack thereof, of individuals. Data privacy law, on the other hand, while often based on sound principles has proven insufficient to shift meaningful power and privacy to individuals. We discuss each of these two levers in turn.
 
 \subsubsection{Technology}
 
-Apps\footnote{We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}.} process personal data in a few different ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
+Today's power imbalance between internet technology users and service providers has been recognized for some time. It was, for example, described in 2014 by the World Economic Forum\cite{Hoffman2014} as follows:
+\begin{quote}
+	An asymmetry of power exists today between institutions and individuals---created by an imbalance in the amount of information about individuals held by, or that is accessible to, industry and governments, and the lack of knowledge and ability of the same individuals to control the use of that information. While people are generally willing to share personal information in exchange for valued services, recent surveys indicate growing unease in how personal data are being used.
+\end{quote}
 
-\textbf{Account data}. As a user interacts with an app, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. 
+Apps\footnote{We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}.} process personal data three main ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
 
-Users have limited power (i.e. control) over their own account data. At best there may be a means to review and update it via an online form. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data. Unfortunately, in practice these rights remain almost entirely formal and theoretical due to the unmanageable burden placed on the user to exercise them. 
+\textbf{Account data}. As a user interacts with an app/site, whatever they type, click, enter, upload is stored in the user's ``account.'' Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. What we're referring to as account data is usually called \hyperfootnote[first-party data][https://]{www.salesforce.com/ap/blog/first-party-customer-data/} by commercial service providers.
+
+Users have limited power (control) over their own account data. At best there may be a means to review and update selected portions of it via an online form--often in the user's \emph{profile}. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data. Unfortunately, in practice these rights remain almost entirely formal and theoretical due to the unmanageable burden placed on the user to exercise them. 
 
 The app provider may sell the user's account data to \hyperfootnote[data brokers][https://]{theconversation.com/its-time-for-third-party-data-brokers-to-emerge-from-the-shadows-94298} who buy data from a variety of sources, collate information about individuals or groups of individuals, and then resell it.
 
@@ -161,13 +166,13 @@ Many initiatives seek to address various subsets of the challenges we've enumera
 
 The lock-in and lack of data portability and interoperability between service providers is being fought using both policy and technical means\cite{Doctorow2021}\cite{Cyphers2021}. 
 
-Work related to re-decentralizing the internet includes: \hyperfootnote[rececentralize.org][https://]{redecentralize.org}, \hyperfootnote[nlnet.nl][https://]{nlnet.nl}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first" software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{projectvrm.org/}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
+Work on re-decentralizing the internet includes: \hyperfootnote[redecentralize.org][https://]{redecentralize.org}, \hyperfootnote[nlnet.nl][https://]{nlnet.nl}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first'' software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{projectvrm.org/}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
 See also work on \emph{personal agents} \footnote{What Mozilla calls a \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent}}--software tools that work (i.e. provide agency and power) ``on the individual's side"\footnote{Project VRM\cite{Searls2019} refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the person. Personal datastores and the \emph{self-sovereign identity}\cite{Preukschat2021} movement are squarely aimed at addressing our lack of autonomy.
 
 Particularly relevant is work on personal datastores\footnote{Examples of open-source personal datastores include \url{https://solidproject.org} Decentralized Web Nodes(DWN)is relevant here. For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}}. 
 
-Also relevant is work on ``local-first" software.\cite{Kleppmann2019}
+Extremely relevant to smartwallets is work on ``local-first" software.\cite{Kleppmann2019}
 
 \section{Design considerations} % SECTION 3
 
