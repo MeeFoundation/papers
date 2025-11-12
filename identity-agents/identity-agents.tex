@@ -250,7 +250,7 @@ Using these terms we can say that in everyday life people have one \emph{selfnes
 
 \subsection{Local-first}
 
-In this section we explain why a local-first architecture is required. 
+In this section we explain the motivation for a local-first architecture. 
 
 A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that as long as a relatively large number of many people are using the solution, having a personal datastore on-device is more secure than one in the cloud. Even if these alternatives were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a proportionately larger economic incentive for hackers. 
 
@@ -289,20 +289,20 @@ In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/84
 
 An identity agent is a native software application (e.g., written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private datastore of the user's personal information. 
 
-Apps can request personal information from, and provide information to, the user's identity agent using the MDN protocols (see section \ref{sec:MDN}). The information may flow between the app and the identity agent in one direction, the other, or in both. The app reads and writes data using the identity agent's data model. This data may include both structured and unstructured data and may include digitally signed documents (e.g. Verifiable Credentials, etc.). 
+Apps can request personal information from, and provide information to, the user's identity agent using the PDN protocols (see section \ref{sec:PDN}). The information may flow between the app and the identity agent in one direction, the other, or in both. The app reads and writes data using the identity agent's data model. This data may include both structured and unstructured data and may include digitally signed documents (e.g. Verifiable Credentials, etc.). 
 \begin{comment}
 	Talk about using browser extension as a proxy for first-parties that don't provide real-time API access to personal data 
 \end{comment}
 
 \subsection{Private Data Network}\label{sec:PDN}
 
-The Private Data Network (PDN) is a set of protocols designed to support data sharing between MDN nodes. These nodes may be integrated with a provider's apps or websites, and/or within the user's identity agent if they choose to install and configure one or more of them on their devices.
+The Private Data Network (PDN) is a set of protocols designed to support data sharing between PDN nodes. These nodes may be integrated with a provider's apps or websites, and/or within the user's identity agent if they choose to install and configure one or more of them on their devices.
 
-The MDN includes a trust framework wherein apps authorized by The Mee Foundation implement MDN protocols and to agree to the terms of the MDN License. This license requires that apps abide by certain privacy principles regarding how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the MDN protocols. These protocols, combined with the license, enable \emph{private sharing} between the identity agent and the app or site. 
+The PDN includes a trust framework wherein apps authorized by The Mee Foundation implement PDN protocols and to agree to the terms of the PDN License. This license requires that apps abide by certain privacy principles regarding how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the PDN protocols. These protocols, combined with the license, enable \emph{private sharing} between the identity agent and the app or site. 
 
 Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their identity agent, the user can exercise their rights to access, correct and delete their information stored by the app.
 
-The MDN is described in more detail in section \ref{sec:MDN2}.
+The PDN is described in more detail in section \ref{sec:PDN2}.
 
 \subsection{Benefits for the individual}
 
@@ -311,7 +311,7 @@ The MDN is described in more detail in section \ref{sec:MDN2}.
 An identity agent increases the user's privacy as follows:
 \begin{itemize}
 	\item If the identity agent includes a browser extension component, it can add the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org} field in the HTTP header expressing the user's privacy preference. The extension may also include the ability to delete third-party cookies and other kinds of trackers used in surveillance advertising. Identity agents can participate in new, \emph{private advertising} networks, that don't rely on cookies, trackers, data brokers, etc. but instead rely on user profiles that are anonymized, and never shared outside the ad network. 
-	\item If the identity agent interacts with apps that are part of the MDN, these apps agree to process the user's personal information under the terms of MDN License. By default, the app can't sell, transfer or share the user's information without their consent. 
+	\item If the identity agent interacts with apps that are part of the PDN, these apps agree to process the user's personal information under the terms of the PDN License. By default, the app can't sell, transfer or share the user's information without their consent. 
 \end{itemize}
 
 \subsubsection{Protection of Minors}
@@ -430,13 +430,9 @@ Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the fo
 
 \subsubsection{Application layer}
 
-The Application layer of an identity agent consists of a User Interface (UI) subcomponent and the business logic in the Controller subcomponent. 
+The Application layer of an identity agent consists of a User Interface (UI) subcomponent and associated business logic. 
 
 The UI provides an interface that enables the user to manage their data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data being shared from their identity agent, see what data is involved in the connection, and in some cases edit attribute values. 
-
-The Controller handles requests from the UI. It manages the Self and the RPs data containers. Controller is also responsible for replicating and synchronizing the state of the user's identity agents (e.g. using the \hyperfootnote[Willow Protocol][https://]{willlowprotocol.org}). Note that since the storage capacity of each identity agent node may vary based on the storage capabilities of its host device, whereas all Self and RPs data is always replicated on each node, some Contexts may be omitted on the nodes running on storage-constrained devices.
-
-The Controller, using the Data Access layer, updates the attributes of Person objects in contexts. It is responsible for creating and deleting connections.
 
 \subsubsection{Authorization layer}
 
@@ -444,15 +440,15 @@ The Authorization Layer manages the granting, verification and revocation of cap
 
 \subsubsection{Data access layer}
 
-The Mee Data Query Language subcomponent is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts via the Controller to the User Interface where it can be viewed and in some cases edited. 
+The Mee Data Query Language subcomponent is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts in the User Interface where it can be viewed and in some cases edited. 
 
 \subsubsection{Personal datastore layer}
 
-This layer manages local data contexts (some of which may be accessed by Connectors). Data is encrypted using FIPS-compatible algorithms. 
+This layer manages local data contexts (some of which may be accessed by Connectors), representations of the Self and the set of relying parties with which the user is connected. Data is encrypted at rest using FIPS-compatible algorithms. 
 
 \subsection{Data sharing}
 
-An identity agent contains an embedded personal datastore, although storage of the user's data may also be distributed among multiple MDN nodes within MDN-compatible apps. 
+An identity agent contains an embedded personal datastore, although storage of the user's data may also be distributed among multiple PDN nodes within PDN-compatible apps. 
 
 \subsection{Persona data model}\label{data_model_subsection} 
 
