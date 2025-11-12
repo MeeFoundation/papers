@@ -56,6 +56,8 @@ Today's power imbalance between internet technology users and service providers 
 	An asymmetry of power exists today between institutions and individuals---created by an imbalance in the amount of information about individuals held by, or that is accessible to, industry and governments, and the lack of knowledge and ability of the same individuals to control the use of that information. While people are generally willing to share personal information in exchange for valued services, recent surveys indicate growing unease in how personal data are being used.
 \end{quote}
 
+Note: Since our discussion applies equally to an online service provider's mobile app, web app, or website, we will simply use the term \emph{app} to refer to all of them.
+
 Apps\footnote{We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}.} process personal data three main ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
 
 \textbf{Account data}. As a user interacts with an app/site, whatever they type, click, enter, upload is stored in the user's account. Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. What we're referring to as account data includes what is called \hyperfootnote[first-party data][https://]{www.salesforce.com/ap/blog/first-party-customer-data/} by commercial service providers. Our definition also includes data the service provider has acquired from third parties (e.g. data brokers).
@@ -84,7 +86,7 @@ In addition to the privacy risks associated with the flow of payment transaction
 	\item Can be stalked.
 \end{itemize}
 
-\subsubsection{Privacy}
+\subsubsection{Privacy Law}
 
 ``Debates over privacy are really debates about how power will be allocated in an information society and how much power the humans in that society will get as consumers or citizens.''\cite{Richards2021} Today, despite significant new regulation, the basic approach to protecting privacy hasn't changed since the 1970s. It is often called \emph{notice and consent}. Solove described it using the term \emph{privacy-self management}, as follows:
 
@@ -121,13 +123,12 @@ Many approaches have been proposed and tried without much success. Existing laws
 
 \subsubsection{Independence} 
 
-We each have a self that embodies our unique individuality. We ``bring'' that independent selfness to our interactions with others. However, online ``we have no \emph{digital embodiment}.''\footnote{Phil Windley, personal communication, September 2022} Our identifiers and their associated account data are provided to us by online service providers (e.g. in the form of a Facebook or an Amazon account) and without them, we don't exist. We can't ``bring'' them anywhere. Anyone who has been banned from a platform, or uses a platform that has been shut down, is sharply reminded that their account and its data exists at the pleasure of that platform. 
+We each have a self that embodies our unique individuality. We ``bring'' that independent selfness to our interactions with others. However, online ``we have no \emph{digital embodiment}.''\footnote{Phil Windley, personal communication, September 2022} Our identifiers and their associated account data are provided to us by online service providers (e.g. in the form of a Facebook or an Amazon account) and without them, we don't exist. We can't ``bring'' them anywhere. Anyone who has been banned from a platform, or uses a platform that has been shut down, is sharply reminded that their account and its data exists at the pleasure of that platform. We believe that each of us has an inalienable right to a digital identity that we create and control and that neither a business nor a government can revoke.
 
-Note: Since our discussion applies equally to an online service provider's mobile app, web app, or website, we will simply use the term \emph{app} to refer to all of them.
 
 \subsubsection{Possession} 
 
-In theory, and as we have just discussed, ownership doesn't require possession. That is, with sufficiently strong legal mechanisms (some of which we will propose later in this paper) a sense of ownership can be provided irrespective of where our data is stored and by whom. 
+In theory, and as we have discussed, ownership doesn't require possession. That is, with sufficiently strong legal mechanisms (some of which we will propose later in this paper) a sense of ownership can be provided irrespective of where our data is stored and by whom. 
 
 In practice possession tends to shift power to the possessor. Unfortunately, with few exceptions our personal information is stored and managed by service providers. This pattern of what could be called \emph{app-held data} by the \emph{first-parties} we interact with is so common that it's hard to imagine an alternative. Beyond first-parties, our data is also collected and held by \emph{third-parties} (e.g. data brokers) with whom we have no direct interaction. In short, as Johannes Ernst has put it, \hyperfootnote[“everybody has our data … except us.”][https://]{reb00ted.org/personaldata/20210620-who-has-my-personal-data/}. Giving people possession of their data doesn't mean that it doesn't also exist in many other places, but what it does mean is that \emph{at least} we too have it!
 
@@ -199,9 +200,9 @@ For a user to trust that their identity agent works \emph{exclusively} on their 
 
 The transparency of open-source software builds confidence that any identity agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the identity agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
 
-\subsection{Trustworthy identity agents}
+\subsection{Trustworthiness}
 
-Users need to trust that the identity agent developer/provider organization is itself trustworthy. Their financial incentives should be aligned with the user's interests. Nonprofit or similar organization structures can increase trust that identity agents offered by them have no financial incentive to exploit the user's data for their own advantage. 
+Users need to trust developer/provider organization behind their agent is trustworthy. To achieve this, the agent organization's financial incentives must be aligned with the user's interests. Providers using nonprofit or similar organizational forms have the compelling benefit that they have no financial incentive to exploit the user's data. 
 
 \subsection{Trust Framework}
 
@@ -330,7 +331,7 @@ As usage of identity agents grows, surveillance free, end-to-end encrypted commu
 
 \textbf{A foundation for Personal AI}
 
-Rather than requiring individuals to trust a shared AI-in-the-cloud service with all of their sensitive personal information, a better approach is to have the \emph{Personal AI} algorithms run on the individual's devices. These algorithms read and write personal information to/from the person's identity agent.\footnote{Iron Man's \hyperfootnote[J.A.R.V.I.S.][https://]{en.wikipedia.org/wiki/J.A.R.V.I.S.} is an example of this architecture and offered Iron Man complete privacy.}
+Rather than requiring individuals to trust a shared AI-in-the-cloud service with all of their sensitive personal information, a better approach is to have the \emph{Personal AI} algorithms run on the individual's devices. These algorithms read and write personal information to/from the person's identity agent.\footnote{Iron Man's \hyperfootnote[J.A.R.V.I.S.][https://]{en.wikipedia.org/wiki/J.A.R.V.I.S.} is an example of this architecture.}
 
 \textbf{Logging in without passwords}
 
@@ -374,13 +375,13 @@ This necessitates that an identity agent be able to interact with a wide variety
 
 \subsection{Self and Contexts}
 
-The identity agent represents both the person's single \emph{selfness} and a set of \emph{whonesses}, each used in the context of their interaction with a different app.
+The identity agent represents both the person's single \emph{selfness} and a set of \emph{whonesses}, each used in the context of their interaction with a different relying party.
 
 The selfness of the person is represented by a person entity in a data container called the \emph{self}. The person entity in the self is the point of integration across contexts each of which may use differing identifier namespaces, protocols for communication, and data schemas. The contents of the self are holistic and therefore quite sensitive and would normally not be shared with others. 
 
-Each context is represented by a \emph{context} data container. A directed \emph{correlation} link points from an entity in the self to the entities representing the person in each context. To ensure privacy, only the identity agent user knows that each of these separate contexts contain representations of them. Each context represents an interaction with an external app. 
+Each context, representing an interaction between the agent user and some relying party, is represented by a \emph{context} data container. A directed \emph{correlation} link points from the singleton entity in the self to the entities representing the user in each context. The identifier of the entity representing the user may differ by context. To ensure privacy, i.e. to prevent correlation across contexts, only the agent user knows that each of these separate contexts contain representations of them. 
 
-We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the id DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
+We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the identifier DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/example1.png}
