@@ -177,24 +177,24 @@ Extremely relevant to identity agents is work on ``local-first" software.\cite{K
 
 \section{Design considerations} % SECTION 3
 
-In this section, we discuss design considerations to address the symptoms described in the previous section. We first discuss requirements related to ensuring that identity agents enforce the user's privacy data rights, and are trustworthy. Then we turn to functional requirements necessary for an identity agent work with apps that work within a proposed new trust framework.
+In this section, we discuss design considerations to address the symptoms described in the previous section. We first discuss requirements related to ensuring that identity agents enforce the user's privacy data rights, and are trustworthy. Then we discuss the functional requirements necessary for an identity agent to interoperate with agent-compatible apps within a proposed trust framework.
 
 \subsection{Data rights}
 
-In a growing number of jurisdictions privacy regulations promise \emph{data rights} to access, correct and delete the personal information about users that is managed by service provider's apps. In practice the user burden of exercising these rights across hundreds of apps is unmanageable. Automation on the user's side is required. Identity agents can provide this automation, although this is only half of the answer. The other half involves constraining how service providers use the user's data, and requiring them to implement APIs that the identity agents can user on the user's behalf. 
+In a growing number of jurisdictions privacy regulations describe \emph{data rights} to access, correct and delete the personal information about users that is managed by service provider's apps. In practice the user burden of exercising these rights across hundreds of apps is unmanageable without automation on the user's side. Although identity agents provide this automation, this is only half the answer. The other half involves constraining how service providers use the user's data, and requiring them to implement APIs that the identity agents can consume on the user's behalf. 
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations necessary to drive the adoption of identity agents. To provide convenience an identity agent must \emph{automate} currently burdensome tasks related to controlling and managing a person's information. 
+Convenience is one of the most important design considerations necessary to drive the adoption of identity agents. To provide it agents must \emph{automate} the exceedingly burdensome tasks related to controlling and managing a person's information. 
 
 \subsection{Inclusivity}
 
-Identity agents must be affordable by all socio-economic classes, not just those better off. For this reason, solutions that incur monthly hosting costs to the user are disqualified. Identity agents should be available at no charge and run on a device the user already owns, although admittedly there may be additional costs incurred for if the user wishes to store extremely large datasets on their device.
+Identity agents must be affordable by all socio-economic classes, not just those better off. For this reason, solutions that incur monthly hosting costs to the user are disqualified at least for a useful baseline level of functionality. Agents should be available at no charge and run on devices the user already owns, although admittedly there may be additional costs incurred if the user wishes to store extremely large datasets on their device.
 
 \subsection{Loyalty to the user}
-Most of the power asymmetry described in the first section is created by the economic incentives for online service providers to monetize user's personal information. Providers have competing loyalties. They do just enough in the user's interest to ensure that users keep using their services, whereas their main motivation is the monetization of the data to their actual customers--the sources of their revenues. Personal data, after all, is an asset class, and the more of it that can be collected the better off the provider is economically. 
+Most of the power asymmetry described in the first section is created by the economic incentives online service providers have to monetize user's personal information. Providers have competing loyalties. They do just enough in the user's interest to ensure that their \emph{users} continue to use their services, so they can continue to collect and monetize as much of their user's data as possible through their \emph{customers} (e.g. advertisers).  
 
-For a user to trust that their identity agent works \emph{exclusively} on their behalf, the \emph{identity agent provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing identity agents such that the personal information that they process is never accessible to the identity agent provider. This largely eliminates the need to trust the identity agent provider organization, their security infrastructure, their processes, etc.
+For a user to trust that their agent works \emph{exclusively} on their behalf, the agent \emph{provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing identity agents such that the personal information that they process is never accessible to the identity agent provider. Doing so largely eliminates the need to trust the agent provider organization, their security infrastructure, and their processes.
 
 \subsection{Open source}
 
@@ -215,21 +215,21 @@ Some providers may be willing to join a trust framework and \emph{license} the u
 
 \subsection{Human-centricity}
 
-Many of the challenges described in Section 1, The status quo, have their origin in an architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own apps. In this provider-centric model each provider's app sees a narrow slice of the individual through the lens of their direct interactions with them. 
+Many of the challenges described in Section 1 have their origin in an internet architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own apps. In this provider-centric model each provider sees a narrow slice of the individual through the lens of their direct interactions with them. 
 
-For the individual the situation is reversed. The user sits at the center of a hub with connections to apps radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by perhaps one hundred connections, the resulting burden is unbearable. 
+For the individual the situation is reversed. The user sits at the center of a hub with connections to apps (and relying parties) radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by often as many as one hundred or more connections, the resulting burden is unbearable. 
 
-Tools to manage these chores must sit on the person's side, and work on their behalf across all of them. Technologies of this kind, that empower a person across multiple apps, e.g. browsers and password managers, are called are \emph{user-agents} since they act as agents of the person. 
+Tools to manage these chores must sit on the user's side, and work on their behalf across all of their interactions. Technologies of this kind, that empower a person across multiple apps (relying parties), e.g. browsers and password managers, are called are \emph{user-agents} as they act as agents of the user. 
 
 \subsection{Metacontextuality}
 
-Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force everyone using a single platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different, but the values of one attribute may be different in different contexts. 
+Zuckerberg once said that ``[h]aving two identities for yourself is an example of a lack of integrity"\cite{Kirkpatrick2011}. However, even if one could force all users of a given platform (e.g. Facebook) to have a single identity\footnote{Note: \emph{identity} is term we prefer to avoid due to its semantic ambiguity, but this is the word he used.}, this approach is clearly unworkable for a solution that represents the person across multiple, widely varying systems and contexts. People need the freedom to be themselves--selves that are complicated and messy. Our identities vary depending on whom we are interacting. We choose to express different parts of ourselves within different contexts. Not only are the attributes we share different, but the values of one attribute may be different in different contexts. 
 
 \begin{quote} 
 	``[A]t various times in the same day, virtually every adult can be a friend, a worker, a supervisor, a citizen, a mentor, a student, a musician, a customer, a lover, a child and a parent. Each of these roles demands different behavior and different aspects of our selves, aspects that need not be consistent. We behave, for example, in different ways with loved ones than with those we encounter in commercial or professional settings. Even among our loved ones, we behave very differently (and often show very different sides of ourselves) to our children, our parents, and our sexual partners. But this is not dishonest, nor is it inconsistent. At the very least, it's no more inconsistent than is the complicated nature of having a self. It is human.''\cite[p122]{Richards2021}
 \end{quote}
 
-Let's look at a person's age as an example. We see that across contexts they might share, their exact chronological age among their close friends, a fictional age to a music recommendation service, no age at all in contexts wherein doing so might cause discrimination against them, or a merely a statement that they exceed the legal drinking age. 
+Let's look at a person's age as an example. We see that across contexts they might share, their exact chronological age among their close friends, a fictional age to a music recommendation service, no age at all in contexts wherein doing so might cause discrimination against them, or a merely a statement that they exceed the minimum legal drinking age. 
 
 In his \hyperfootnote[last public speech][https://]{www.youtube.com/watch?v=9DExNTY3QAk}  
 \hyperfootnote[Kim Cameron][https://]{en.wikipedia.org/wiki/Kim\_Cameron\_(computer\_scientist)} introduced two useful definitions based on archaic English:
@@ -261,11 +261,11 @@ A user may have two or more identity agents running on multiple devices each of 
 
 Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open. The relay should only handle encrypted data transiently. That is, it should temporarily buffer (encrypted) message data while waiting for the recipient to come back online.
 
-\subsubsection{Backup} 
+\subsubsection{Backup and recovery} 
 
-One disadvantage of \emph{noncustodial}, on-device architectures (as compared to cloud-based architectures) is the vulnerability that identity agent users who are not diligent about backing up their devices (e.g. to an online service) face of losing their identity agent-managed personal data. For people with more than one device this is less likely since data is replicated (as mentioned above) across their devices, and a repaired or replaced device's data can be restored from one of the person's other devices. The worst-case scenario is when the user hasn't backed up any of their devices and all of them are lost or damaged simultaneously. 
+One disadvantage of noncustodial, on-device architectures, as opposed to more conventional cloud-based architectures, is that they are vulnerability to data loss in the event that all the user's devices are lost or damaged simultaneously, and no backups exist. For users with more than one device this kind of catastrophic loss is less likely since data is replicated across their devices and a repaired or replaced device's data can be restored from one of the user's other devices. 
 
-Identity agents could implement backup/restore approaches that would provide recovery from even this disaster, however these approaches are complex and problematic. The identity agent's data must be stored in remote storage location(s) and encrypted using a master passphrase that the person must never be able to forget or lose. To do this, various approaches including sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
+Since we envision that a person would use an agent for their entire life, agents must implement backup/restore approaches that would provide recovery from even the worst case disaster scenario. The identity agent's data must be backed up in secure remote storage location(s) and encrypted. The user's private key(s) must also be recoverable. Approaches combining sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
 \subsection{Delegation}
 
@@ -309,11 +309,9 @@ The PDN is described in more detail in section \ref{sec:PDN2}.
 
 \subsubsection{Privacy}
 
-An identity agent increases the user's privacy as follows:
-\begin{itemize}
-	\item If the identity agent includes a browser extension component, it can add the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org} field in the HTTP header expressing the user's privacy preference. The extension may also include the ability to delete third-party cookies and other kinds of trackers used in surveillance advertising. Identity agents can participate in new, \emph{private advertising} networks, that don't rely on cookies, trackers, data brokers, etc. but instead rely on user profiles that are anonymized, and never shared outside the ad network. 
-	\item If the identity agent interacts with apps that are part of the PDN, these apps agree to process the user's personal information under the terms of the PDN License. By default, the app can't sell, transfer or share the user's information without their consent. 
-\end{itemize}
+When an identity agent interacts with apps that are part of the PDN, these apps agree to process the user's personal information under the terms of the PDN License. By default, the app can't sell, transfer or share the user's information without their consent. 
+
+If the identity agent includes a browser extension component, it can add the \hyperfootnote[Global Privacy Control][https://]{globalprivacycontrol.org} field in the HTTP header expressing the user's privacy preference. The extension may also include the ability to delete third-party cookies and other kinds of trackers used in surveillance advertising. Identity agents can participate in new, \emph{private advertising} networks, that don't rely on cookies, trackers, data brokers, etc. but instead rely on user profiles that are anonymized, and never shared outside the ad network. 
 
 \subsubsection{Protection of Minors}
 
@@ -323,19 +321,15 @@ Minors can be given a special child-oriented identity agent by their guardians. 
 
 Identity agents provide individuals with digital embodiment of themselves. Over time, the identity agent develops rich, context-specific data profiles about them. This embodiment can move autonomously under the user's control between first-party apps. A \emph{local} identity agent can do so independent of any external administrative authority. 
 
-Identity agents reduce lock-in, because they provide data portability. They provide a convenient way for the individual to retrieve their information from one app, and share it with another. 
+Identity agents reduce the user being locked-in to provider apps/sites by supporting data portability. Using the PDN APIs of provider apps, the agent allows the user to automatically retrieve their personal information from one app, and share it with another. 
 
-As usage of identity agents grows, surveillance free, end-to-end encrypted communications interconnect these users. These communications can be designed with minimal reliance on cloud-based relay servers which are often needed to buffer messages to endpoints that are temporarily offline.
+As the usage of agents grows, surveillance free, end-to-end encrypted, peer-to-peer communications can interconnect these users to allow messaging and data sharing. These communications can be designed with minimal reliance on cloud-based relay servers which are often needed to buffer messages to endpoints that are temporarily offline.
 
 \subsubsection{Agency}
 
 \textbf{A foundation for Personal AI}
 
 Rather than requiring individuals to trust a shared AI-in-the-cloud service with all of their sensitive personal information, a better approach is to have the \emph{Personal AI} algorithms run on the individual's devices. These algorithms read and write personal information to/from the person's identity agent.\footnote{Iron Man's \hyperfootnote[J.A.R.V.I.S.][https://]{en.wikipedia.org/wiki/J.A.R.V.I.S.} is an example of this architecture.}
-
-\textbf{Logging in without passwords}
-
-Identity agents enable the user to log in to apps using a variety of password-less authentication technologies. The identity agent knows who the user is because the user authenticates to it, so the identity agent can represent the user in their interactions with apps, and can do so without revealing correlatable identifiers. This is both private and convenient.
 
 \textbf{Wielding credentials}
 
@@ -348,6 +342,10 @@ Apps rely on form filling and other kinds of tedious, manual data entry because 
 This endless repetition is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The individual has the hassle of repeated data entry, and the app offers a less-than-optimal user experience. With an identity agent the user no longer has to repeat themselves as they move from app to app.
 
 This inability to present ourselves digitally is a contributing factor to the concentration of corporate power on the internet. For example, it's simply easier to buy something from Amazon because so many of us have already entered so much information to them. We have a preferential attachment to Amazon that goes beyond their intrinsic advantages. Continuing with the shopping example, identity agents can represent an individual to any e-commerce website, and thereby provide the same Amazon-like, frictionless user experience that can mitigate corporate concentration and ``natural'' monopolies. 
+
+\textbf{Password-less login}
+
+Identity agents enable the user to log in to apps using a variety of password-less authentication technologies. The identity agent knows who the user is because the user authenticates to it, so the identity agent can represent the user in their interactions with apps, and can do so without revealing correlatable identifiers. This is both private and convenient.
 
 \textbf{Infer and present ad profiles}
 
@@ -377,9 +375,9 @@ This necessitates that an identity agent be able to interact with a wide variety
 
 The identity agent represents both the person's single \emph{selfness} and a set of \emph{whonesses}, each used in the context of their interaction with a different relying party.
 
-The selfness of the person is represented by a person entity in a data container called the \emph{self}. The person entity in the self is the point of integration across contexts each of which may use differing identifier namespaces, protocols for communication, and data schemas. The contents of the self are holistic and therefore quite sensitive and would normally not be shared with others. 
+The selfness of the person is represented by a person entity in a data container called the \emph{self}. The person entity in the self is the point of integration across contexts each of which may use differing identifier namespaces, protocols for communication, and data schemas. The contents of the self entity are secret to the user. 
 
-Each context, representing an interaction between the agent user and some relying party, is represented by a \emph{context} data container. A directed \emph{correlation} link points from the singleton entity in the self to the entities representing the user in each context. The identifier of the entity representing the user may differ by context. To ensure privacy, i.e. to prevent correlation across contexts, only the agent user knows that each of these separate contexts contain representations of them. 
+Each context represents a relationship between the agent user and some relying party and is represented by a \emph{context} data container. A directed \emph{correlation} link points from the singleton entity in the self to the individual entities representing the user in each context. The identifier of the entity representing the user may differ by context. To ensure privacy, i.e. to prevent correlation across contexts, only the agent user knows that each of these separate contexts contain representations of them. 
 
 We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the identifier DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
 
@@ -389,7 +387,7 @@ We can illustrate these concepts with a simple example. A person named Alice mig
 \label{fig:four-contexts}
 \end{figure}
 
-In our example Alice has four digital relationships called \emph{connections}. Each of the four connections shown in the diagram has only a single context, although in general a connection may be represented by more than one context. Since, as will be described more fully later, a context is associated with exactly one communications protocol, in cases where N communications protocols are used in a single connection, the connection will contain N contexts. 
+In our example Alice has four digital relationships called \emph{connections}. Each of the four connections shown in the diagram has a single context representing a specific relying party such as the Olde York Times. Each context contains an entity (blue circle, representing a facet of Alice) with an identifier. The information about Alice that she chooses to present in each context may differ from context to context, and usually does. 
 
 \subsection{Functionality}
 
@@ -401,12 +399,10 @@ Figure~\ref{fig:functionality} summarizes the functionality of an identity agent
 \label{fig:functionality}
 \end{figure}
 
-\subsubsection{Functionality}
-
-In addition to authenticating the user to the identity agent, an identity agent performs the following functions related to the management of the user's connections :
+In addition to authenticating the user to the identity agent, an identity agent performs the following functions:
 
 \begin{itemize}
-\item \textbf{Organize} the relationships the user has with apps into a set of connections and contexts.
+\item \textbf{Organize} the relationships the user has with relying party's apps into a set of connections and contexts.
 \item \textbf{Request} access to a context managed by another app.
 \item \textbf{Grant} access to a context managed by the user.
 \item \textbf{Sync} contexts across user's devices.
@@ -414,12 +410,11 @@ In addition to authenticating the user to the identity agent, an identity agent 
 \item \textbf{Consent} to share data with an app.
 \item \textbf{Edit} data in self-asserted contexts within a connection.
 \item \textbf{View} data in a context (connection).
-\item \textbf{Authenticate} the identity agent user.
 \end{itemize}
 
 \subsection{Identity agent architecture}
 
-The architecture of an identity agent is shown in the center of Figure~\ref{fig:architecture}. The user must have at least one identity agent running on a mobile phone. They may choose to have additional identity agents running on other devices. The state of the identity agents is replicated and synchronized across this pool of identity agents.
+The architecture of an identity agent is shown in the center of Figure~\ref{fig:architecture}. The state of the identity agents is replicated and synchronized across this pool of identity agents.
 
 Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the following are described in section \ref{data_model_subsection} where the Persona data model is described.
 
