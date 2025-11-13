@@ -38,53 +38,40 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Today's app-centric architecture for personal information has helped fuel the rapid growth of internet apps and sites. Unfortunately and concurrently it has reduced individual autonomy, agency, and privacy. Individuals have no practical means to manage their personal data held by apps/sites. Unfortunately, even if they did, data privacy law has proven inadequate to prevent the disclosure of this information to other app/sites and third parties. We present design considerations for, and the architecture of, \emph{identity agents} which can address these issues and mitigate the power imbalance between individuals and apps/sites.
+	The internet has evolved to exhibit a power asymmetry between organizations and individuals--an asymmetry that comes at the expense of the autonomy, agency, and privacy of the individual. We argue that this asymmetry arises because individuals lack (i) the technical means to create their own digital identities independent of businesses or governments, (ii) practical and convenient means to control their own data, and (iii) effective legal protections to prevent the disclosure of their information to third parties. We present design considerations for, and the architecture of, \emph{identity agents} whose goal is to restore the power balance for individuals.
 \end{abstract}
 
 %keywords: personal data, digital wallet, personal datastore, personal data service, personal agent, digital identity, privacy
 
-\section{The status quo} % SECTION 1 
+\section{Imbalance} % SECTION 1 
 
-\subsection{Power}
-
-The two main levers of power in society are \emph{technology} and \emph{law}. Internet technology has resulted in an imbalance between the power of businesses and governments, and the power, or lack thereof, of individuals. Data privacy law, on the other hand, has proven insufficient to shift meaningful power to individuals. We discuss both of these levers in turn.
-
-\subsubsection{Technology}
-
-The power imbalance between internet technology users and service providers has been recognized for some time. It was, for example, described in 2014 by the World Economic Forum\cite{Hoffman2014} as follows:
+The power imbalance between internet technology users and service providers (businesses and governments) has been recognized for some time. It was described over a decade ago by the World Economic Forum\cite{Hoffman2014}:
 \begin{quote}
-	An asymmetry of power exists today between institutions and individuals---created by an imbalance in the amount of information about individuals held by, or that is accessible to, industry and governments, and the lack of knowledge and ability of the same individuals to control the use of that information. While people are generally willing to share personal information in exchange for valued services, recent surveys indicate growing unease in how personal data are being used.
+	An asymmetry of power exists today between institutions and individuals---created by an imbalance in the amount of information about individuals held by, or that is accessible to, industry and governments, and the lack of knowledge and ability of the same individuals to control the use of that information. 
 \end{quote}
+We argue that this asymmetry arises because individuals lack (i) the technical means to create their own digital identities independent of businesses or governments, (ii) practical and convenient means to control their own data, and (iii) effective legal protections to prevent the disclosure of their information by service providers to third parties. 
 
-Apps\footnote{We refer to the mobile or local apps, websites, web services, and even other people's digital agents, that a user interacts with as \emph{apps}.} process personal data three main ways: (i) data related to user interactions is stored in \emph{accounts}, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. We discuss each of these in turn.
+Before we discuss solutions that could restore power to individual, we will provide an overview of how personal data is managed and handled on the internet today. 
 
-\textbf{Account data}. As a user interacts with an app/site, whatever they type, click, enter, upload is stored in the user's account. Additional observations, e.g. the kinds of things they click on, and spend time on, are also collected. What we're referring to as account data includes what is called \hyperfootnote[first-party data][https://]{www.salesforce.com/ap/blog/first-party-customer-data/} by commercial service providers. Our definition also includes data the service provider has acquired from third parties (e.g. data brokers).
+Digital service providers (businesses, organizations of any kind, and governments) interact with their users via websites, local and mobile apps, chatbots that we will refer to simply as \emph{apps}. We will also include in this term another person's identity agent which appears to the first person as an app.
 
-Users have limited power (control) over their own account data. At best there may be a means to review and update selected portions of it via an online form--often in the user's \emph{profile}. In some cases the app allows the user to download a copy of their account data, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase account data. Unfortunately, in practice these rights remain almost entirely formal and theoretical due to the unmanageable burden placed on the user to exercise them. 
+App process personal data three main ways: (i) data related to user interactions is collected and stored in user accounts, (ii) third-party adtech systems track the user and display ads on these apps, and (iii) transaction systems process the user's payment data. 
 
-The app provider may sell the user's account data to \hyperfootnote[data brokers][https://]{theconversation.com/its-time-for-third-party-data-brokers-to-emerge-from-the-shadows-94298} who buy data from a variety of sources, collate information about individuals or groups of individuals, and then resell it.
+As a user interacts with an app/site, whatever they type, click, enter, upload is (or can be) collected by the service provider's app. Observations, e.g. the kinds of things they click on, and spend time on, may also be collected. These data include what is called \hyperfootnote[first-party data][https://]{www.salesforce.com/ap/blog/first-party-customer-data/} by commercial service providers as well as data the service provider has acquired from third parties (e.g. data brokers).
 
-\textbf{Tracking data}. Tracking is a form of surveillance of individuals by businesses. Businesses gain ad revenue by implementing surveillance using in-app technologies apps (e.g. third-party cookies, transparent pixels, fingerprinting, etc.) that integrate with hundreds of systems managed by the adtech ecosystem.
+Users have very limited control over what is collected and how it is used. At best apps provide a means to review and update selected portions of it via an online form--often in the user's profile. In some cases the app allows the user to download a copy of the data collected about them, although doing so is time-consuming, labor-intensive, and produces dozens of files that the user probably don't know how to use. In some jurisdictions the user has the right to rectify and/or erase their data. Unfortunately, in practice these rights remain almost entirely formal and theoretical due to the unmanageable burden placed on the user to exercise them. 
+
+The app provider may share collected data (sometimes partially anonymizing it first) with third parties. They may sell it to \hyperfootnote[data brokers][https://]{theconversation.com/its-time-for-third-party-data-brokers-to-emerge-from-the-shadows-94298} who buy data from a variety of sources, and then resell it to other aggregators and providers.
+
+Businesses earn ad revenue by implementing tracking using in-app technologies apps (e.g. third-party cookies, transparent pixels, fingerprinting, etc.) and monetize it through integrations with the adtech ecosystem.
 
 Tracking data is behavioral data used to infer traits about the individual (e.g. age-range, income level, and many of other demographic and psychographic traits). Advertisers pay to get their messages (ads, images, videos, text, etc.) in front of cohorts with shared traits (called ``audiences'') irrespective of which app a member of that cohort is using. Apps sell ad inventory (i.e. ad ``slots'') to these advertisers. Although some are sold directly, most are sold via ad networks and ad exchanges that take part in a high volume, high-speed real-time auction process called \hyperfootnote[real-time bidding][https://]{en.wikipedia.org/wiki/Real-time\_bidding}. A complex ecosystem of thousands of adtech firms is involved in the supply chain stretching from advertisers, through ad exchanges, to the apps acting in the role of publishers. 
 
-\textbf{Payment data}. Apps that sell products or services leverage payment gateways that allow the app provider to receive funds from the user (e.g. via a payment card). In most cases this involves sending financial data (including identifiers) about the user through financial systems run by banks, credit card associations, and their service providers.
+Apps that sell products or services leverage payment gateways that allow the app provider to receive funds from the user (e.g. via a payment card). In most cases this involves sending financial data (including identifiers) about the user through financial systems run by banks, credit card associations, and their service providers.
 
 In addition to the privacy risks associated with the flow of payment transactions, some app providers also earn money by selling purchase information to data brokers.
 
-\textbf{Harms}. In the data flows just mentioned, the user is relatively powerless over their data. We live today in what Alicia Solow-Niederman calls an ``inference economy''\cite{Solow-Niederman2022} wherein big data and machine learning are used to infer traits that form new kinds of personal information--often more sensitive than the underlying source data. Harm and risk can rarely be evaluated outside a specific situation\cite{Solove2023}, yet it is useful to list representative types of harm. Individuals:
-
-\begin{itemize}
-	\item Are vulnerable to data breaches by any of these thousands of apps.
-	\item Have no visibility into what's being gathered, where it's being shared and how it's used.
-	\item Can be spammed by marketers.
-	\item Are vulnerable to identity theft.
-	\item Can be exposed to price discrimination.
-	\item Can be exposed to from hiring discrimination.
-	\item Can be stalked.
-\end{itemize}
-
-\subsubsection{Privacy Law}
+In the data flows just mentioned, the user is relatively powerless over their data. They have little or no visibility into what's being gathered, where it's being shared and how it's used. Users live in what Alicia Solow-Niederman calls an ``inference economy''\cite{Solow-Niederman2022} wherein big data and machine learning are used to infer traits that form new kinds of personal information--often more sensitive than the underlying source data. Harm and risk can rarely be evaluated outside a specific situation\cite{Solove2023}, yet it is useful to list representative types of harm. Individuals, are vulnerable to data breaches, can be spammed by marketers, are vulnerable to identity theft, can be exposed to price and/or hiring discrimination, and can be stalked. 
 
 ``Debates over privacy are really debates about how power will be allocated in an information society and how much power the humans in that society will get as consumers or citizens.''\cite{Richards2021} Today, despite significant new regulation, the basic approach to protecting privacy hasn't changed since the 1970s. It is often called \emph{notice and consent}. Solove described it using the term \emph{privacy-self management}, as follows:
 
@@ -101,51 +88,27 @@ The U.S. population consistently misunderstands the meaning of the term privacy 
 
 ``We agree to all these `privacy notices' so we must have privacy, right? Notice and choice is thus an elaborate trap, and we're all caught in it.''\cite{Richards2021}
 
-\textbf{Progress: GDPR and CPRA}
-
 The most substantive lever for progress has been legislation such as GDPR and CPRA, along with regulatory fines by organizations like the FTC. 
 
 In a growing number of jurisdictions, including Europe under \hyperfootnote[GDPR][https://]{gdpr-info.eu/} and California under \hyperfootnote[CPRA][https://]{thecpra.org/}, the person's \emph{data rights}, (e.g. the right to access, rectify and erase their data), are clearly described. In practice, the time and effort required to exercise these rights at each app individually is enormous. The individual must, for example, send written requests to get copies of their data, update it, or have it be deleted. Until these processes are automated by personal agents, these rights don't meaningfully exist.
-
-\textbf{Privacy and protection of minors}
 
 Society agrees to supervise the places children inhabit, protect them from environments they should not encounter, and regulate the products they use. As a result, businesses are not permitted to sell tobacco, alcohol, pornography, handguns, certain kinds of fireworks, and other products and services to minors. However, none of this is true online. In the virtual world children are largely unprotected despite being exposed to wide range of potential harms. 
 
 Many approaches have been proposed and tried without much success. Existing laws have proven to be insufficient, and industry self-regulation has largely failed. Today there is a renewed global push to protect children's safety through stronger laws and regulations. Although some use other approaches\footnote{Such as requiring online services that are likely to be used by young people to default to the highest privacy setting possible for minors, as mandated by California's Age-Appropriate Design Code Act.}, many mandate age verification.\cite{Griswold2023}\cite{Jackson2023} However, privacy advocates and others have shown that many of the mechanisms for verifying age online weaken anonymity and privacy.\cite{Roth2023}
 
 \subsection{Autonomy}
-Autonomy is defined as freedom from external control or influence; independence.\hyperfootnote[][https://]{languages.oup.com/google-dictionary-en/}
 
-\subsubsection{Independence} 
+In real life we each have a self that embodies our unique individuality. We ``bring'' that independent selfness to our interactions with others. However, online ``we have no \emph{digital embodiment}.''\footnote{Phil Windley, personal communication, September 2022} Our identifiers and their associated account data are provided to us by online service providers (e.g. in the form of a Facebook or an Amazon account) and without them, we don't exist. We can't ``bring'' them anywhere. Anyone who has been banned from a platform, or uses a platform that has been shut down, is sharply reminded that their account and its data exists at the pleasure of that platform. We believe that each of us has an inalienable right to a digital identity that we create and control and that neither a business nor a government can delete, revoke or withdraw.
 
-In real life we each have a self that embodies our unique individuality. We ``bring'' that independent selfness to our interactions with others. However, online ``we have no \emph{digital embodiment}.''\footnote{Phil Windley, personal communication, September 2022} Our identifiers and their associated account data are provided to us by online service providers (e.g. in the form of a Facebook or an Amazon account) and without them, we don't exist. We can't ``bring'' them anywhere. Anyone who has been banned from a platform, or uses a platform that has been shut down, is sharply reminded that their account and its data exists at the pleasure of that platform. We believe that each of us has an inalienable right to a digital identity that we create and control and that neither a business nor a government can revoke.
-
-\subsubsection{Possession} 
-
-In theory ownership doesn't require possession. That is, with sufficiently strong legal mechanisms (some of which we will propose later in this paper) a sense of ownership can be provided irrespective of where our data is stored and by whom. 
-
-In practice possession tends to shift power to the possessor. Unfortunately, with few exceptions our personal information is stored and managed by service providers. This pattern of what could be called \emph{app-held data} by the \emph{first-parties} we interact with is so common that it's hard to imagine an alternative. Beyond first-parties, our data is also collected and held by \emph{third-parties} (e.g. data brokers) with whom we have no direct interaction. In short, as Johannes Ernst has put it, \hyperfootnote[“everybody has our data … except us.”][https://]{reb00ted.org/personaldata/20210620-who-has-my-personal-data/}. Giving people possession of their data doesn't mean that it doesn't also exist in many other places, but what it does mean is that \emph{at least} we too have it!
-
-\subsubsection{Peer-to-peer}
+In theory to autonomously \emph{own} our own digital identity and personal data doesn't require physical possession of it because through technical and legal mechanisms control over it can be achieved irrespective of where the data is stored and by whom. In practice, however, possession tends to shift power to the possessor. Since with few exceptions our personal information is possessed by service provider's apps, power shifts to them. This pattern of what could be called \emph{app-held data} by the \emph{first-parties} we interact with is so common that it's hard to imagine an alternative. Beyond first-parties, our data is also collected and held by \emph{third-parties} (e.g. data brokers) with whom we have no direct interaction. In short, as Johannes Ernst has put it, \hyperfootnote[“everybody has our data … except us.”][https://]{reb00ted.org/personaldata/20210620-who-has-my-personal-data/}. Giving individuals possession of their data doesn't mean that it doesn't also exist in many other places, but what it does mean is that \emph{at least} they have it as well.
 
 We lack the ability to communicate (e.g. chat) directly from one person to another without requiring that all parties have accounts on some shared server. With rare exceptions\hyperfootnote[][https://]{berty.tech}, we don't have the ability to do so \emph{peer-to-peer}--i.e. from one person's device to the other person's device. Instead, we're dependent on servers hosted by intermediaries. Further, whereas it is standard practice that the content of messages is encrypted end-to-end, the \emph{metadata} about this content (e.g. who a person communicates with, from where, at what time, how often and from which device, etc.) is in many cases visible to the intermediary server.
 
 \subsection{Agency}
 
-Agency is defined as the capacity, condition, or state of acting or of exerting power.\hyperfootnote[][https://]{www.merriam-webster.com/dictionary/agency}
+Individuals lack computational power ``on their side'' to enable them to easily manage, control and protect their personal information being shared with and collected by apps.
 
-\subsubsection{Access}
-
-Privacy laws such as the GDPR provide the individual the following rights over their personal information regardless of where it is stored:
-\begin{itemize}
-	\item Right to rectify
-	\item Right to access
-	\item Right to erasure
-\end{itemize}
-
-However, in practice, these rights are largely not actionable. Why? Because the burden required to exercise these them using the provider-side mechanism places an unbearable workload on the individual. To be actionable the service provider would have to implement APIs on their side, and the consumer would have to have personal agents to consume these APIs on theirs. But this is not the case at present.
-
-\subsubsection{Portability}
+Privacy laws such as the GDPR provide the individual (data subject) formal rights over their personal information regardless of where it is stored. These include the right to rectification, access and erasure. Unfortunately, in practice, these rights are largely not actionable because the burden required to exercise them using the provider-side mechanisms is extreme. To be actionable the service provider apps would have to implement APIs on their side, and the individual would have to have software agents to consume these APIs on theirs. 
 
 Unfortunately, an individual's account identifiers and associated human data are bound to specific online service providers and can't be moved freely from one to another. In other words they are not \emph{portable}.
 
@@ -157,17 +120,17 @@ Advocacy groups, including the EFF, are pushing for interoperability as an antid
 
 \section{Related work} % SECTION 2
 
-Many initiatives seek to address various subsets of the challenges we've enumerated. We mention a few of them here.
+Many initiatives seek to address various subsets of the power imbalance we've described. We mention a few of them here.
 
 The lock-in and lack of data portability and interoperability between service providers is being fought using both policy and technical means\cite{Doctorow2021}\cite{Cyphers2021}. 
 
 Work on re-decentralizing the internet includes: \hyperfootnote[redecentralize.org][https://]{redecentralize.org}, \hyperfootnote[nlnet.nl][https://]{nlnet.nl}, \hyperfootnote[DWeb principles][https://]{getdweb.net/principles/}, \hyperfootnote[The Web3 Foundation][https://]{web3.foundation/}, \hyperfootnote[the Decentralized Identity Foundation(DIF)][https://]{identity.foundation}, \hyperfootnote[``local-first'' software principles][https://]{inkandswitch.com/local-first/}, \hyperfootnote[ProjectVRM][https://]{projectvrm.org/}, \hyperfootnote[Blue Sky][https://]{blueskyweb.xyz/}, and Berners-Lee's \hyperfootnote[Decentralized Information Group][https://]{dig.csail.mit.edu}. 
 
-See also work on \emph{personal agents} \footnote{What Mozilla calls a \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent}}--software tools that work (i.e. provide agency and power) ``on the individual's side"\footnote{Project VRM\cite{Searls2019} refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the person. Personal datastores\footnote{Examples of open-source personal datastores include \url{https://solidproject.org} Decentralized Web Nodes(DWN)is relevant here. For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}} and the \emph{self-sovereign identity}\cite{Preukschat2021} movement are squarely aimed at addressing our lack of autonomy. Also relevant to identity agents is work on ``local-first" software.\cite{Kleppmann2019}
+See also work on \emph{personal agents} \footnote{What Mozilla calls a \hyperfootnote[\emph{user agent}][https://]{developer.mozilla.org/en-US/docs/Glossary/User\_agent}}--software tools that work (i.e. provide agency and power) ``on the individual's side"\footnote{Project VRM\cite{Searls2019} refers to this as ``tools for individuals to manage relationships with organizations'' to which we would add ``...or with other individuals."} for, and \emph{exclusively} on behalf of, the person. Personal datastores\footnote{Examples of open-source personal datastores include \url{https://solidproject.org} Decentralized Web Nodes(DWN) is relevant here. For more about personal datastores see \url{https://wikipedia.org/wiki/Personal\_data\_service}} and the \emph{self-sovereign identity}\cite{Preukschat2021} movement are squarely aimed at addressing our lack of autonomy. Also relevant to identity agents is work on ``local-first" software.\cite{Kleppmann2019}
 
 \section{Design considerations} % SECTION 3
 
-In this section, we discuss design considerations to address the symptoms described in the previous section. We first discuss requirements related to ensuring that identity agents enforce the user's privacy data rights, and are trustworthy. Then we discuss the functional requirements necessary for an identity agent to interoperate with agent-compatible apps within a proposed trust framework.
+In this section, we discuss design considerations for identity agents that promise to restore the power imbalance individuals experience on the internet. We discuss requirements related to ensuring that identity agents enforce the user's privacy data rights, shift control to the individual and are trustworthy. 
 
 \subsection{Data rights}
 
@@ -175,28 +138,28 @@ In a growing number of jurisdictions privacy regulations describe \emph{data rig
 
 \subsection{Convenience}
 
-Convenience is one of the most important design considerations necessary to drive the adoption of identity agents. To provide it agents must \emph{automate} the exceedingly burdensome tasks related to controlling and managing a person's information. 
+Identity agents must make the individual's life easier. To do so they must \emph{automate} the burdensome tasks related to controlling and managing a person's information and not introduce new friction and effort.
 
 \subsection{Inclusivity}
 
 Identity agents must be affordable by all socio-economic classes, not just those better off. For this reason, solutions that incur monthly hosting costs to the user are disqualified at least for a useful baseline level of functionality. Agents should be available at no charge and run on devices the user already owns, although admittedly there may be additional costs incurred if the user wishes to store extremely large datasets on their device.
 
 \subsection{Loyalty to the user}
-Most of the power asymmetry described in the first section is created by the economic incentives online service providers have to monetize user's personal information. Providers have competing loyalties. They do just enough in the user's interest to ensure that their \emph{users} continue to use their services, so they can continue to collect and monetize as much of their user's data as possible through their \emph{customers} (e.g. advertisers).  
+Much of the power asymmetry described in the first section is created by the economic incentives online service providers have to collect and monetize user's personal information. Providers are loyal to their \emph{customers} (e.g. an advertiser) not \emph{users} (individuals). Thus, they do just enough in the user's interest to ensure that users continue to use their services, while collecting and monetizing as much of their user's data as possible.  
 
 For a user to trust that their agent works \emph{exclusively} on their behalf, the agent \emph{provider} (i.e. organization that develops and provides it) must not have an economic incentive to be disloyal to the user. This can be ensured by designing identity agents such that the personal information that they process is never accessible to the identity agent provider. Doing so largely eliminates the need to trust the agent provider organization, their security infrastructure, and their processes.
 
 \subsection{Open source}
 
-The transparency of open-source software builds confidence that any identity agent built from this source code is trustworthy. In open-source software the source code is visible to anyone to review and audit to ensure that the identity agent is secure, free from vulnerabilities, works in the person's interest, and performs as expected.
+The transparency of open-source software can increase the confidence that an identity agent built from this source code is trustworthy. The source code is visible to all and can be reviewed and audited to ensure that the agent is secure, works as expected, and truly works in the person's interest.
 
 \subsection{Trustworthiness}
 
-Users need to trust developer/provider organization behind their agent is trustworthy. To achieve this, the agent organization's financial incentives must be aligned with the user's interests. Providers using nonprofit or similar organizational forms have the compelling benefit that they have no financial incentive to exploit the user's data. 
+Users require the developer organization behind their agent is trustworthy. To achieve this, the organization's financial incentives should be aligned with the user's interests. Providers using nonprofit or similar organizational forms have the important benefit that they have no financial incentive to exploit the user's data. 
 
 \subsection{Trust Framework}
 
-Once data is shared from an identity agent to a service provider there are no technical means available to constrain what the provider can do with it. No technical means, for example, can prevent them from selling it others. Instead, legal means, called trust frameworks, must be employed. 
+Once data is shared from an agent to a service provider no purely technical means exists to constrain what the provider can do with it. Technical means, for example, can't prevent them from selling it to or sharing it with others. Instead, legal means called trust frameworks, can be employed. 
 
 Some providers may be willing to join a trust framework and \emph{license} the user's information received from the user's identity agent. If so, they would agree to the terms of a license agreement which include terms that respect the user's privacy rights. This contract is signed by a trusted organization\footnote{These kinds of organizations have been variously described in the literature as ``data unions,'' ``data coalitions,'' ``Mediators of Individual Data'' (MIDs) by Lanier et al.\cite{Lanier2018}, etc.} that represents the community of identity agent users thereby making the processes effortless for individual users. This organization is responsible for enforcement of the contract's terms, again, on behalf of the user.
 \begin{comment}
@@ -205,7 +168,7 @@ Some providers may be willing to join a trust framework and \emph{license} the u
 
 \subsection{Human-centricity}
 
-Many of the challenges described in Section 1 have their origin in an internet architecture that is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own apps. In this provider-centric model each provider sees a narrow slice of the individual through the lens of their direct interactions with them. 
+The internet is \emph{provider-centric} rather than \emph{human-centric}. The internet includes millions of providers, each offering their own apps. In this provider-centric model each app sees a thin slice of the individual through their direct interactions with them. The burden of managing personal data across these apps falls to the individual. 
 
 For the individual the situation is reversed. The user sits at the center of a hub with connections to apps (and relying parties) radiating outwards from them. Even for a single app there is considerable burden for the person to enter and update personal information, payment details, and preferences, and review privacy policies, and set cookie preferences, and so on. Multiplied by often as many as one hundred or more connections, the resulting burden is unbearable. 
 
@@ -257,26 +220,13 @@ One disadvantage of noncustodial, on-device architectures, as opposed to more co
 
 Since we envision that a person would use an agent for their entire life, agents must implement backup/restore approaches that would provide recovery from even the worst case disaster scenario. The identity agent's data must be backed up in secure remote storage location(s) and encrypted. The user's private key(s) must also be recoverable. Approaches combining sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
-\subsection{Delegation}
+\subsection{Guardianship and delegation}
 
-In \emph{A Human Rights Approach to Personal Information Technology}\cite{Gropper2022} Gropper asserts that there is an architectural principle that must be adhered to in order to respect human rights [e.g. to privacy]. He identifies three universal components:
-
-\begin{itemize}
-\item \textbf{Authentication} (signing-in and signing documents)
-\item \textbf{Request} for information (e.g. forms, searches, conversations)
-\item \textbf{Storage} (e.g. labs, prescriptions, social contracts, transactions [, other human information])
-\end{itemize}
-
-He then asserts what could be called the \emph{Gropper Principle} as follows (our words, his ideas):
-\begin{quote}
-``Any system that respects the human right to privacy must not bundle authentication, request, and storage.''
-\end{quote}
-
-In his presentation\hyperfootnote[][https://]{identiverse.com/idv2022/session/841489/} at the 2022 Identiverse conference provides additional detail (see \hyperfootnote[slides][https://]{drive.google.com/file/d/1lwaMVkG4kLi7z6cXhqMx-DGkUww9azW3/view}). It explains that only a decentralized architecture can implement the Gropper Principle because each of the three components needs to be implemented separately. For this to work in an open world with multiple alternative component providers, there will need to be a convergence on open standards between these three components. 
+In addition to managing their own personal data, identity agents, need to enable individuals to act as guardians for others (e.g. minors, the elderly and other vulnerable people). To implement this, agents must include the ability for a user to delegate access to portions of their personal data to another user.
 
 \section{Identity agents} % SECTION 4
 
- \emph{Identity agents} are a solution to the problems described in the first section and take into account the design considerations in the second section. Through a combination of technical and legal mechanisms an identity agent gives individuals control over their personal information as they interact with websites, mobile apps, as well as other people's identity agents. The solution combines a legal contract with a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} integrated with a traditional digital wallet\cite{Graham2023}.
+ \emph{Identity agents} promise to address the power imbalance described in the first section and take into account the design considerations in the second section. Through a combination of technical and legal mechanisms an identity agent gives individuals control over their personal information as they interact with websites, mobile apps, as well as other people's identity agents. The solution combines a legal contract with a trusted, personal agent\footnote{Similar ideas have been proposed by others. See \emph{personal user agents}, in \cite[p24]{Flanagan2020}} integrated with a traditional digital wallet\cite{Graham2023}.
 
 An identity agent is a native software application (e.g., written in Swift on iOS, Kotlin on Android, etc.) that runs on a user's devices (e.g., mobile phone, laptop, etc.). It maintains a local, private datastore of the user's personal information. 
 
