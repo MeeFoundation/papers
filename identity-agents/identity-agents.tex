@@ -440,7 +440,7 @@ An identity agent contains an embedded personal datastore, although storage of t
 
 This section describes the data model used by identity agents to represent personal information. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
 
-These Person instances are connected into a directed graph that spans these  levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to, or perceived by, another party (e.g. another person's identity agent or a digital service provider's app)--that is their whoness. The Person node in the Self container has no scalar attributes but usually contains a set of correlation links pointing to a corresponding Person node in multiple contexts.
+These Person instances are connected into a directed graph that spans these  levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to, or perceived by, another party (e.g. another person's identity agent or a digital service provider's app)--that is, their \emph{whoness}. The Person node in the Self container has no scalar attributes but contains a set of correlation links pointing to Person nodes in a set of contexts.
 
 In the simplified example shown in Figure~\ref{fig:four-contexts} a person, Alice, whose selfness is represented by a blue Person node in the Self context. Alice has four connections, each to one of four apps: a game, a social network, the Olde York Times and a shopping site. Each of these connections is represented by a single context, although more complex connections may include more than one context. The whoness, i.e. the aspect of Alice that she exposes in each context, is represented by a Person node in each.
 
@@ -484,10 +484,10 @@ In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice
 
 \begin{itemize}
 	\item \textbf{Bob}. Alice has a connection to Bob mediated by an app that uses the DIDComm \hyperfootnote[BasicMessage protocol][https://]{didcomm.org/basicmessage/1.0/}.
-	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a context representing this game. She uses id ``DevilSpawn666'' as her identifier in this context.  
-	\item \textbf{X}. Alice has a connection to X social network. It contains a context representing her X account. Her id is ``@alicewalker'' on X.
-	\item \textbf{Google Account}. Alice has a connection mediated by an app that accesses her Google account. The context for this app contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' id. 
-	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her id, ``0x3443f23135839''. The context holds information she has entered using a form filler app as well as her account information managed by this site. 
+	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a context representing this game. She uses ``DevilSpawn666'' as her identifier in this context.  
+	\item \textbf{X}. Alice has a connection to X social network. It contains a context representing her X account. Her identifier is ``@alicewalker'' on X.
+	\item \textbf{Google Account}. Alice has a connection mediated by an app that accesses her Google account. The context for this app contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' identifier. 
+	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her identifier, ``0x3443f23135839''. The context holds information she has entered using a form filler app as well as her account information managed by this site. 
 \end{itemize}
 
 \begin{figure}[htbp]
