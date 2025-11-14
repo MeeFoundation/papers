@@ -319,15 +319,15 @@ The selfness of the person is represented by a person entity in a data container
 
 Each context represents a relationship between the agent user and some relying party and is represented by a \emph{context} data container. A directed \emph{correlation} link points from the singleton entity in the self to the individual entities representing the user in each context. The identifier of the entity representing the user may differ by context. To ensure privacy, i.e. to prevent correlation across contexts, only the agent user knows that each of these separate contexts contain representations of them. 
 
-We can illustrate these concepts with a simple example. A person named Alice might play a game on a gaming app using the identifier DevilSpawn666, communicating on a social networking site as @alicewalker, subscribing to the Olde York Times as alice.walker@gmail.com and shopping on a shopping site also using alice.walker@gmail.com. Figure~\ref{fig:four-contexts} shows a simplified view of how this is represented:
+We can illustrate these concepts with a simple example. A person named Alice might have a relationship with someone called Robert Fox, another identity agent user, and she may interact with a fictional airline website called Untied Airlines. Figure~\ref{fig:two-contexts} shows a simplified view of how this is represented:
 
 \begin{figure}[htbp]
-\includegraphics[width=\textwidth]{./images/example1.png}
-\caption{Alice in four contexts}
-\label{fig:four-contexts}
+\includegraphics[width=\textwidth]{./images/two-contexts.png}
+\caption{Two facets of Alice in two different contexts}
+\label{fig:two-contexts}
 \end{figure}
 
-In our example Alice has four digital relationships called \emph{connections}. Each of the four connections shown in the diagram has a single context representing a specific relying party such as the Olde York Times. Each context contains an entity (blue circle, representing a facet of Alice) with an identifier. The information about Alice that she chooses to present in each context may differ from context to context, and usually does. 
+In our example Alice has two digital relationship contexts called \emph{connections}. The blue circle at the left inside black ``Alice'' container represents Alice's selfness--her innate sense of being a single individual person. In the context of each relationship Alice may choose to express herself differently. The blue circle within the Robert Fox box represents who she is to the relying party named Robert Fox (her whoness to Robert). The blue circle within the Untied Airlines box represents who she is to this airline relying party. The personal information (attributes, messages, credentials, etc.) about Alice that she chooses to present in each context may differ, and usually does.
 
 \subsection{Functionality}
 
@@ -388,114 +388,59 @@ An identity agent contains an embedded personal datastore, although storage of t
 
 \subsection{Persona data model}\label{data_model_subsection} 
 
-This section describes the data model used by identity agents to represent personal information. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. The data model can be thought of as a two level hierarchy of data containers each of which holds \emph{Person} instances representing the user. The top layer consists of a single \emph{Self} container. The bottom layer consists of \emph{Context} containers.
+This section describes the data model used by identity agents to represent personal information. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. 
 
-These Person instances are connected into a directed graph that spans these  levels of containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self has a set of context containers each of which represents how the person is presented to, or perceived by, another party (e.g. another person's identity agent or a digital service provider's app)--that is, their \emph{whoness}. The Person node in the Self container has no scalar attributes but contains a set of correlation links pointing to Person nodes in a set of contexts.
+These Person instances are connected into a directed graph that spans \emph{Context} containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self links to Person nodes in distinct context containers. Each Person contains information about how the user (Self) perceived by the relying party, that is, their \emph{whoness}. 
 
-In the simplified example shown in Figure~\ref{fig:four-contexts} a person, Alice, whose selfness is represented by a blue Person node in the Self context. Alice has four connections, each to one of four apps: a game, a social network, the Olde York Times and a shopping site. Each of these connections is represented by a single context, although more complex connections may include more than one context. The whoness, i.e. the aspect of Alice that she exposes in each context, is represented by a Person node in each.
-
-The information in a context, most importantly Person nodes, is read and written to by the identity agent based on the data flowing through the identity agent's connection with the other party (or more precisely, with the apps of the other party). We have added four of these other ``relying parties'' to Figure~\ref{fig:RPs-container}, and added a new kind of container, called RPs, to contain them. 
+The namespace of the identifier of the Person node in each context varies based on the digital protocol used to interact with the relying party. Since her relationship with Robert was via an agent-to-agent protocol the namespace use some kind of pseudonymous \hyperfootnote[DID URL][https://]{www.w3.org/TR/did-1.0/} identifier that was exchanged during an introduction ceremony with Robert. In her relationship with Untied Airlines, her Person identifier was an email address. The graph of Person nodes with identifiers is shown in Figure~\ref{fig:contexts-and-ids}
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{./images/example2.png}
-\caption{Alice's Self and Relying Parties}
-\label{fig:RPs-container}
+\includegraphics[width=\textwidth]{./images/contexts-and-ids.png}
+\caption{Contexts and Person nodes with identifiers}
+\label{fig:contexts-and-ids}
 \end{figure}
 
-The personal information flowing through the connections may flow from the identity agent, to the identity agent, or in both directions. It may have originated on either side. It may be self-asserted claims (attributes) entered by the person directly into the identity agent, or it may be claims entered by the person using an app, or sensed by a local app's sensor, or generated by the other party based on direct on-site or on-app interactions with the person.
+In the simplified example shown earlier in Figure~\ref{fig:two-contexts} Alice, has two connections, one to a person named Robert Fox (also using an identity agent) and the other to the Untied Airlines. 
 
-\subsubsection{Container classes}
+In each context the Person node has a set of information (attributes, messages, credentials, etc.) that the user defines. We call these pieces of describe the user (Alice) and are made by the user (Alice), thus we refer to them as User-By-User or \emph{UBU claims}. For example, Alice might name the UBU claim that her first name is "Alice" and she might include another UBU claim whose value is her street address. In her relationship with Untied Airlines she might also include a first name UBU claim of "Alice", but not a UBU claim of her home address. 
 
-We describe the data model in two parts. The first part describes the data containers. The second describes the data held by these containers. Let us start describing the data model of the containers themselves. Figure~\ref{fig:containers} shows the various data container classes. 
+So far we've discussed the claims Alice makes about herself in a context. But in a relationship context the relying party (RP) may make claims about Alice too. We call these claims about the User By the RP or \emph{UBR} claims. For example Unitied Airlines might claim that Alice's frequent-flyer-number is 823-21-5531. To reduce clutter in the diagrams, from now on we will omit the Self and the graph of Person nodes. See Figure~\ref{fig:UBUs-and-UBRs} for a representation of these UBUs and UBRs. 
 
 \begin{figure}[h!]
-\includegraphics[width=\textwidth]{./images/container-classes.png}
-\caption{Container classes}
-\label{fig:containers}
-\end{figure} 
-
-\textbf{Classes}
-
-\begin{itemize}
-	\item \textbf{RPs} - a container holding a set of Relying Party (RP) nodes (see Identity agent Classes). Each RP node represents a party with which the person has a connection. These RPs may be other people or corporations, such as a digital service provider. Each RP has the following properties:
-	\begin{itemize}
-		\item \textbf{Context} - a single Context that captures one aspect of the connection between the user and some RP.
-	\end{itemize}
-	\item \textbf{Self} - the single data Container holding a single Person node that represents the selfness of the user.
-	\begin{itemize}
-		\item \textbf{id} - user identifier (e.g. email)
-	\end{itemize}
-	\item \textbf{Context} - a Container holding a Person node that represents the user in a specific aspect of their relationship (called a \emph{Connection}) with some RP. 
-\end{itemize}
-
-\textbf{Multiple connections}
-
-In the example shown in Figure~\ref{fig:groups}, we expand our story about Alice. Alice has five connections contextualizing her relationships with each of five organizations and/or people. We discuss each connection moving left to right in the diagram:
-
-\begin{itemize}
-	\item \textbf{Bob}. Alice has a connection to Bob mediated by an app that uses the DIDComm \hyperfootnote[BasicMessage protocol][https://]{didcomm.org/basicmessage/1.0/}.
-	\item \textbf{Some game}. Alice has a connection with a game she likes to play. It contains a context representing this game. She uses ``DevilSpawn666'' as her identifier in this context.  
-	\item \textbf{X}. Alice has a connection to X social network. It contains a context representing her X account. Her identifier is ``@alicewalker'' on X.
-	\item \textbf{Google Account}. Alice has a connection mediated by an app that accesses her Google account. The context for this app contains the attributes of her Google account. This context uses her ``awalker@gmail.com'' identifier. 
-	\item \textbf{Olde York Times}. Alice has a connection to the Olde Yorke Times (hypothetical) news media site. The context captures her sign-on relationship using OpenID SIOPv2 protocol using her identifier, ``0x3443f23135839''. The context holds information she has entered using a form filler app as well as her account information managed by this site. 
-\end{itemize}
-
-\begin{figure}[htbp]
-\includegraphics[width=\textwidth]{./images/multiple-connections.png}
-\caption{Alice's five connections}
-\label{fig:groups}
+\includegraphics[width=\textwidth]{./images/ubus-and-ubrs.png}
+\caption{Claims about the user: UBUs and UBRs}
+\label{fig:UBUs-and-UBRs}
 \end{figure}
 
-A relationship between the identity agent and another party is called a \emph{connection}. It is represented by one or more other contexts. Alice is shown with five connections--one for each of the five RP nodes in her RPs container. 
+In the context of Alice's a relationship with a relying party, the RP shares claims it makes about itself/themselves. For example in the context of Alice's connection to Robert Fox, Robert's identity agent shares claims about Robert back to Alice's agent. These claims about RPs made by RPs are called \emph{RBR} claims. An example of an RBR claim is the claim made by Robert Fox that his first name is Robert. To complete our tour of claim types, here is one fourth and last type. These are claims made about the RP by the user are called \emph{RBU}. RBU claims are never shared with the RP. An example of an RBU claim by Alice might be a private note to herself that she met Robert in 2019. See Figure~\ref{fig:RBRs-and-RBUs}.
 
-\textbf{Delegated Contexts}
-
-Alice takes care of her elderly mother, and helps her mother manage her bank account at Santander Bank. Her mother has an identity agent containing a connection to her bank, the data for which (e.g. her mother's OpenID Connect SIOP claims) is stored in one of the contexts representing this connection. Using her identity agent, Alice's mother has delegated access to this context to her daughter Alice.
-
-\begin{figure}[htbp]
-\includegraphics[width=\textwidth]{./images/delegated-contexts.png}
-\caption{Alice's identity agent with a connection using a delegated context}
-\label{fig:delegated-contexts}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{./images/rbrs-and-rbus.png}
+\caption{Claims about the RP: RBRs and RBUs}
+\label{fig:RBRs-and-RBUs}
 \end{figure}
 
-As shown in Figure~\ref{fig:delegated-contexts}, Alice's mother's connection with her bank is represented by a delegated context. Alice now has the ability to view (and potentially update) information in this context. Information about her mother's account information at the bank might be helpful for Alice to have while taking care of her mother. Data replication/synchronization is used to ensure that Alice's DelegatedContext is always synchronized with the ``original'' context on her mother's identity agent.
+Now that we've discussed contexts, connections and the four types of claims, we turn to the aggregates of connections called \emph{Collections} and \emph{Groups}. 
 
-\subsubsection{Identity agent Classes}
+A collection is a set of connections. In addition to individual connections having UBU claims, the collection itself can have its own UBU claims. The values of the UBU claims that are shared with an RP are computed by taking the value of the claim at the collection level and overriding it with the value of the claim at the connection level if it exists. 
 
-Group and context containers contain information about subjects (things) that are described according to the \emph{Persona} schema. In knowledge representation parlance, the Persona schema would be known as an \emph{upper ontology}.
+In Figure~\ref{fig:Collections} we show Alice as having organized connections into two collections, Friends and Work. The former contains her connections to Bob Fox and Kristin Watson. The latter contains two connections to co-workers, Charlie Smith and Devon Lane and two connections to service providers, Google and Untied Airlines. 
 
-In the Persona schema, people are represented as instances of Person, a \emph{PersonalAccount} class is also defined. These classes are shown below. 
-
-\begin{figure}[htbp]
-\includegraphics[width=\textwidth]{./images/persona-classes.png}
-\caption{Persona schema}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{./images/collections.png}
+\caption{Two collections of connections}
+\label{fig:Collections}
 \end{figure}
 
-\textbf{Classes}
+A group is also comprised of connections, but with different properties. Whereas in a Collection the RPs are unaware of one another and the connections may be moved between collections by the user at will, in a Group the RPs become members of the group. The group object itself is shared between all members of the group. The group has a set of attributes which are dynamically and continuously shared with all members. A group attribute could be a shared calendar, group chat, etc. 
 
-\begin{itemize}
-\item \textbf{Subject} - kind of digital subject about which the identity agent stores information
-\item \textbf{Person} - a natural person, a subclass of Subject. Each person has the following properties:
-	\begin{itemize}
-	\item \textbf{claims[]} - a set of zero or more properties. These properties may be structured (e.g. a physical address (e.g. from vCard)) or scalars. Here are a few examples of scalar \emph{claim} properties: 
-		\begin{itemize}
-		\item givenName
-		\item familyName
-		\item phoneticGivenName
-		\end{itemize}
-	\item \textbf{account} - an optional PersonalAccount at some other party's site or app
-	\item \textbf{correlation} - zero or more CrossContextPersonRefs each of which acts as a link to a target Person object in another Context. Both the source Person and the target Person can be thought of as contextualizations of the same underlying person.
-	\item \textbf{knows} - zero or more PersonRefs that link to a Person representing some other person (other than the  identity agent user) in the same context
-	\end{itemize}
-\item \textbf{RP} - a Subject representing another person or a legal entity with which the identity agent user has a connection. Each RP object has:
-	\begin {itemize}
-	\item \textbf{consents} - zero or more Consent objects. Each Consent has:
-		\begin{itemize}
-		\item \textbf{dateTime} - time stamp of when the user consented to share this set of claims
-		\item \textbf{claims[]}  - a set of zero or more claims (note: claim types (e.g. ``email address") not their values)
-		\end{itemize}
-	\end{itemize}
-\end{itemize}
+In our example, Robert Fox, Kristin A Watson, and Susan Franks have agreed to connect with Alice, join her Bridge Club group, and share claims about themselves using their identity agents. The group attributes of the Bridge Club are shared and synchronized between all four group members. All members of the group see the same shared, updated state of all Group Attributes.
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{./images/group.png}
+\caption{A Group and two Collections}
+\label{fig:group}
+\end{figure}
 
 
 \begin{comment}{\textbf{Secret Recovery Phrase} - a 12-word textual phrase that the person creates. It is used to generate cryptographic keys that in turn are used to encrypt the person personal data whether it is stored locally on their device or in a backup location. It can be used to generate keys to digitally sign transactions (e.g., for crypto currency transactions). It should never be shared with anyone or any service provider. If the person loses this phrase, they lose the ability to decrypt their data. 
