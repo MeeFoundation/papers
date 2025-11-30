@@ -83,7 +83,7 @@ Society agrees to supervise the places children inhabit, protect them from envir
 
 Many approaches have been proposed and tried with little to no success. Existing laws have proven to be insufficient, and industry self-regulation has largely failed. Today there is a renewed global push to protect children's safety through stronger laws and regulations. Although some use other approaches\footnote{Such as requiring online services that are likely to be used by young people to default to the highest privacy setting possible for minors, as mandated by California's Age-Appropriate Design Code Act.}, many mandate age verification.\cite{Griswold2023}\cite{Jackson2023} However, privacy advocates and others have shown that many of the mechanisms for verifying age online weaken anonymity and privacy.\cite{Roth2023} 
 
-Age Protect is a new age verification solution with a unique combination of characteristics: (i) it is opt-in; a parent or guardian can choose to protect their minor children and adults can use it to prove they are of age (ii) the privacy and anonymity of all parties is respected\footnote{This addresses the limitations of current age verification approaches\cite{Roth2023}} (iii) it leaves the existing internet experience completely unchanged.\footnote{The Age Protect approach is in contrast to age verification mandates. ``Age verification laws don’t just impact young people. It’s necessary to confirm the age of all website visitors, in order to keep out one select age group."\cite{Kelley2023}}
+Age Protect is a new age verification solution with a unique combination of characteristics: (i) it is opt-in; a parent or guardian can choose to protect their minor children and adults can use it to prove they are of age (ii) the privacy and anonymity of all parties is respected\footnote{This addresses the limitations of current age verification approaches\cite{Roth2023}} (iii) it leaves the existing internet experience completely unchanged.\footnote{The Age Protect approach is in contrast to age verification mandates. ``Age verification laws don’t just impact young people. It’s necessary to confirm the age of all website visitors, in order to keep out one select age group."\cite{Kelley2023}}. 
 
 \section{Design Goals}
 
@@ -238,6 +238,7 @@ An Age Protect-compatible wallet relies on a browser extension that implements t
 \begin{lstlisting}[language=json,firstnumber=1]
 	Sec-PD: type=AgeProtectv1
 \end{lstlisting}
+This approach is similar to how the \hyperfootnote[Global Privacy Contro][https://]{globalprivacycontrol.org} signal is implemented. Indeed, one of the authors, Robin Berjon, of the Global Privacy Control has suggested it could be used to send a \hyperfootnote[signal for child privacy][https://]{berjon.com/gpc-child-privacy}.
 
 Optionally, if the person already has a relationship with a specific age verification provider, e.g. example.com, they can advertise this fact by configuring their browser extension to send an enriched HTTP header field as follows:
 \begin{lstlisting}[language=json,firstnumber=1]
