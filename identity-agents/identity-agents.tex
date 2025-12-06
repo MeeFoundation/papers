@@ -208,17 +208,17 @@ Using these terms we can say that in everyday life people have one \emph{selfnes
 
 In this section we explain the motivation for a local-first architecture. 
 
-A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that as long as a relatively large number of many people are using the solution, having a personal datastore on-device is more secure than one in the cloud. Even if these alternatives were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a proportionately larger economic incentive for hackers. 
+A user's personal datastore may be on-device or in the cloud. By \emph{on-device} we mean that the individual's datastore and processing is on their own phones, laptops, and/or home servers. By \emph{cloud-based} we mean that the person's datastore and processing lives in the cloud (e.g. on a \hyperfootnote[SOLID][https://]{solidproject.org} pod). The \hyperfootnote[local-first software][https://]{www.inkandswitch.com/local-first/} principles are highly relevant. Although there are other points of view, we contend that as long as a relatively large number of people are using the solution, having a personal datastore on-device is more secure than one in the cloud. Even if these alternatives were equivalently secure for a single person, a cloud-based architecture by nature aggregates large numbers of personal datastores at one cloud service provider location, and thereby creates a proportionately larger economic incentive for hackers. 
 
 \subsubsection{Synchronization}
 
-A user may have two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The user's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that these identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately pure P2P communication between identity agents running on differing device platforms remains an unsolved problem and intermediate relay servers are sometimes required. 
+A user may have two or more identity agents running on multiple devices each of which is only intermittently connected to the internet. The user's data needs to be kept consistent across these identity agents and devices, at least eventually. This requires that these identity agents implement data replication and syncing between themselves in a peer-to-peer (P2P) fashion. Unfortunately, pure P2P internet communication between agents remains an unsolved technical challenge and thus intermediate ``relay'' servers are sometimes required. 
 
-Since relays are a necessary part of the deployment architecture, for privacy, autonomy, trust, and security reasons they are subject to their own design considerations. We touch on a few of them here. For the very few people who are able and willing to self-host their own relays, the relay needs to be free, open-source and easy to build and deploy. Everyone else will have to trust some external administrative authority. Hopefully relays will be available freely or at very low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open. The relay should only handle encrypted data transiently. That is, it should temporarily buffer (encrypted) message data while waiting for the recipient to come back online.
+These relays have their own privacy, autonomy, trust, and security considerations. We mention a few of them here.  Technically competent individuals can host their own relay servers, presuming it is relatively straightforward to build and deploy. Everyone else will have to rely on an external administrative hosting authority. Ideally they will be available freely or at low cost. In either the self-hosted or external case, the relay needs to be trusted. For this reason its source code should be open. The relay should only handle encrypted data transiently. That is, it should temporarily buffer (encrypted) message data while waiting for the recipient app or agent to come back online.
 
 \subsubsection{Backup and recovery} 
 
-One disadvantage of noncustodial, on-device architectures, as opposed to more conventional cloud-based architectures, is that they are vulnerability to data loss in the event that all the user's devices are lost or damaged simultaneously, and no backups exist. For users with more than one device this kind of catastrophic loss is less likely since data is replicated across their devices and a repaired or replaced device's data can be restored from one of the user's other devices. 
+One disadvantage of noncustodial, on-device architectures, as opposed to more conventional cloud-based architectures, is that they are vulnerability to data loss if all the user's devices are lost or damaged simultaneously, and no backups exist. For users with more than one device this kind of catastrophic loss is less likely since data is replicated across their devices and a repaired or replaced device's data can be restored from one of the user's other devices. 
 
 Since we envision that a person would use an agent for their entire life, agents must implement backup/restore approaches that would provide recovery from even the worst case disaster scenario. The identity agent's data must be backed up in secure remote storage location(s) and encrypted. The user's private key(s) must also be recoverable. Approaches combining sharding, \hyperfootnote[shared secrets][https://]{en.wikipedia.org/wiki/Shamir\%27s\_secret\_sharing}, and social recovery have been proposed, although this remains an area of active research. 
 
@@ -243,7 +243,7 @@ The Private Data Network (PDN) is a set of protocols designed to support data sh
 
 The PDN includes a trust framework wherein apps authorized by The Mee Foundation implement PDN protocols and to agree to the terms of the PDN License. This license requires that apps abide by certain privacy principles regarding how they handle the individual's data (e.g. requiring explicit consent for collection, processing, storage and sharing of the person's data) as well as implement the PDN protocols. These protocols, combined with the license, enable \emph{private sharing} between the identity agent and the app or site. 
 
-Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it in the hope that the app will treat it with care. Using their identity agent, the user can exercise their rights to access, correct and delete their information stored by the app.
+Private sharing allows the user to share personal information with confidence that it remains under their control. Following intellectual property law precedents, the user licenses their information to the app rather than transferring a copy of it, and then hoping that the app will treat it with care. 
 
 The PDN is described in more detail in section \ref{sec:PDN2}.
 
@@ -257,7 +257,7 @@ If the identity agent includes a browser extension component, it can add the \hy
 
 \subsubsection{Protection of Minors}
 
-Minors can be given a special child-oriented identity agent by their guardians. This kind of identity agent is an enabler to  provide the minor with an age-appropriate experience online. The guardian would register their minors on a third-party age verification service and issue into the minor's identity agent an age verification credential. When the minor uses a first-party app, the identity agent can signal that the minor wishes to have an age appropriate experience. In response the app can request the age verification credential from the minor's identity agent and adapt its experience accordingly.
+Minors can be given a special child-oriented identity agent by their guardians which provides the minor with an age-appropriate experience online. The guardian would register their minors on a third-party age verification service. This service would issue  an age verification credential which is stored in the minor's agent (and its replicas on other devices if they exist). When the minor uses an app, the agent signals that the minor wishes to have an age appropriate experience.\footnote{This signaling is used in the https://ageprotect.org proposal} In response, the app requests the age verification credential from the minor's identity agent and adapt its experience accordingly.
 
 \subsubsection{Autonomy}
 
@@ -281,7 +281,7 @@ In real life an individual can, say, present their driver's license to a wine se
 
 Apps rely on form filling and other kinds of tedious, manual data entry because individuals lack the ability to \emph{digitally} present personal information about themselves. Individuals must manually re-enter personal information into each app, endlessly repeating themselves. They lack an agent that can automatically present information on their behalf.\footnote{The credential presentation interaction just mentioned is another example of this.} 
 
-This endless repetition is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The individual has the hassle of repeated data entry, and the app offers a less-than-optimal user experience. With an identity agent the user no longer has to repeat themselves as they move from app to app.
+This endless repetition is a symptom of the internet's silo-ed architecture wherein each app maintains its own database of personal information. The individual has the hassle of repeated data entry, and the app offers a less-than-optimal user experience. Armed with an identity agent, the user is no longer required to repeat themselves as they move from app to app.
 
 This inability to present ourselves digitally is a contributing factor to the concentration of corporate power on the internet. For example, it's simply easier to buy something from Amazon because so many of us have already entered so much information to them. We have a preferential attachment to Amazon that goes beyond their intrinsic advantages. Continuing with the shopping example, identity agents can represent an individual to any e-commerce website, and thereby provide the same Amazon-like, frictionless user experience that can mitigate corporate concentration and ``natural'' monopolies. 
 
@@ -291,7 +291,7 @@ Identity agents enable the user to log in to apps using a variety of password-le
 
 \textbf{Infer and present ad profiles}
 
-An identity agent can generate on-device an ad profile by inferring traits from an individual's browsing behavior. The identity agent's user can review and edit this profile, and may choose to share it with apps that are supported by interest-based \emph{private} advertising technology. This approach eliminates the need for surveillance by third-parties using cookies and other tracking technologies. It is similar in design to \hyperfootnote[Google's Topics API][https://]{developer.chrome.com/en/docs/privacy-sandbox/topics/overview/}.
+An identity agent can generate on-device an ad profile by inferring traits from the user's browsing behavior. The user can review and edit this profile, and may choose to share it with apps that are supported by interest-based \emph{private} advertising technology. This approach eliminates the need for surveillance by third-parties using cookies and other tracking technologies. It is similar in design to \hyperfootnote[Google's Topics API][https://]{developer.chrome.com/en/docs/privacy-sandbox/topics/overview/}.
 
 \textbf{Delegation}
 
@@ -311,7 +311,7 @@ The individual carries the burden of maintaining the timeliness and consistency 
 
 In a human-centric architecture the user's identity agent is at the center with the user's interactions with multiple apps radiating out from it. ``When we put the user at the center, and make them the point of integration, the entire system becomes simpler, more robust, more scalable, and more useful.''\cite{Andrieu2007}
 
-This necessitates that an identity agent be able to interact with a wide variety of different kinds of apps. To illustrate this point, let's consider the user's interactions with six apps. The first app might need the user's email address, and ask for it in a web form. A second form-filler app (which might be a browser extension integrated with the agent) uses this value to fill in the form. A third app might support password-less sign-in (e.g. using OpenID Connect) that leverages an identity agent acting as the so-called \emph{identity provider}. A fourth might request a digital driver's license credential from the agent--a credential that had presumably been installed into it from a fifth credential-issuing app. Finally, a sixth app could be some other person's identity agent (acting as an app) requesting contact information about the user.
+This necessitates that an identity agent have the ability to interact with a wide variety of different kinds of apps. To illustrate this point, let's consider the user's interactions with six apps. The first app might need the user's email address, and ask for it in a web form. A second form-filler app (which might be a browser extension integrated with the agent) uses this value to fill in the form. A third app might support password-less sign-in (e.g. using OpenID Connect) that leverages an identity agent acting as the so-called \emph{identity provider}. A fourth might request a digital driver's license credential from the agent--a credential that had presumably been installed into it from a fifth credential-issuing app. Finally, a sixth app could be some other person's identity agent (acting as an app) requesting contact information about the user.
 
 \subsection{Self and Contexts}
 
@@ -333,7 +333,7 @@ In our example Alice has two digital relationship contexts called \emph{connecti
 
 \subsection{Functionality}
 
-Figure~\ref{fig:functionality} summarizes the functionality of an identity agent.  The first set of rows list the set basic identity agent functions.  The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. 
+Figure~\ref{fig:functionality} summarizes the functionality of an identity agent. The cells in light and dark green show the progress of implementation work being led by The Mee Foundation. 
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/functionality.png}
@@ -344,7 +344,7 @@ Figure~\ref{fig:functionality} summarizes the functionality of an identity agent
 In addition to authenticating the user to the identity agent, an identity agent performs the following functions:
 
 \begin{itemize}
-\item \textbf{Organize} the relationships the user has with relying party's apps into a set of connections and contexts.
+\item \textbf{Organize} relationships with relying party's apps into a set of connections.
 \item \textbf{Request} access to a context managed by another app.
 \item \textbf{Grant} access to a context managed by the user.
 \item \textbf{Sync} contexts across user's devices.
@@ -358,7 +358,7 @@ In addition to authenticating the user to the identity agent, an identity agent 
 
 The architecture of an identity agent is shown in the center of Figure~\ref{fig:architecture}. The state of the identity agents is replicated and synchronized across this pool of identity agents.
 
-Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the following are described in section \ref{data_model_subsection} where the Persona data model is described.
+The terms \emph{self}, \emph{context}, and \emph{connection}, are defined in section \ref{data_model_subsection} as part of the Persona data model description.
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{./images/architecture.png}
@@ -370,7 +370,7 @@ Terms such as \emph{self}, \emph{context}, and \emph{connection}, used in the fo
 
 The Application layer of an identity agent consists of a User Interface (UI) subcomponent and associated business logic. 
 
-The UI provides an interface that enables the user to manage their data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data being shared from their identity agent, see what data is involved in the connection, and in some cases edit attribute values. 
+The UI provides an interface that enables users to manage their data sharing relationships with apps. Using this UI the user can add and delete connections. Within each connection they can consent to data being shared from their identity agent, see what data is involved in the connection, and in some cases edit attribute values. 
 
 \subsubsection{Authorization layer}
 
@@ -378,7 +378,7 @@ The Authorization Layer manages the granting, verification and revocation of cap
 
 \subsubsection{Data access layer}
 
-The Mee Data Query Language subcomponent is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts in the User Interface where it can be viewed and in some cases edited. 
+The Mee Data Query Language subcomponent is responsible for management of the user’s data whether it is stored locally, replicated on another of the user's identity agents, or managed by a service provider's app. It exposes data contexts in the User Interface where they can be viewed and in some cases edited. 
 
 \subsubsection{Personal datastore layer}
 
@@ -392,9 +392,9 @@ An identity agent contains an embedded personal datastore, although storage of t
 
 This section describes the data model used by identity agents to represent personal information. The user's data may be replicated across multiple identity agents on different devices, but we focus here on the logical model, not these replicas. 
 
-These Person instances are connected into a directed graph that spans \emph{Context} containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self links to Person nodes in distinct context containers. Each Person contains information about how the user (Self) perceived by the relying party, that is, their \emph{whoness}. 
+These Person instances are connected into a directed graph that spans \emph{Context} containers. The singleton Self container holds a single Person node that represents the selfness of person as a single individual. The Self node links to Person nodes in distinct context containers. Each Person contains information about how the user (Self) perceived by the relying party, that is, their \emph{whoness}. 
 
-The namespace of the identifier of the Person node in each context varies based on the digital protocol used to interact with the relying party. Since her relationship with Robert was via an agent-to-agent protocol the namespace use some kind of pseudonymous \hyperfootnote[DID URL][https://]{www.w3.org/TR/did-1.0/} identifier that was exchanged during an introduction ceremony with Robert. In her relationship with Untied Airlines, her Person identifier was an email address. The graph of Person nodes with identifiers is shown in Figure~\ref{fig:contexts-and-ids}
+The namespace of the identifier of the Person node in each context varies based on the digital protocol used to interact with the relying party. Since a hypothetical user named Alice's relationship with Robert is via an agent-to-agent protocol, the namespace would utilize a pseudonymous \hyperfootnote[DID URL][https://]{www.w3.org/TR/did-1.0/} identifier, exchanged during an introduction ceremony with Robert. In Alice's relationship with Untied Airlines, her Person identifier is an email address. The graph of Person nodes with identifiers is shown in Figure~\ref{fig:contexts-and-ids}
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{./images/contexts-and-ids.png}
@@ -402,9 +402,9 @@ The namespace of the identifier of the Person node in each context varies based 
 \label{fig:contexts-and-ids}
 \end{figure}
 
-In the simplified example shown earlier in Figure~\ref{fig:two-contexts} Alice, has two connections, one to a person named Robert Fox (also using an identity agent) and the other to the Untied Airlines. 
+In the simplified example shown earlier in Figure~\ref{fig:two-contexts} Alice has two connections, one to a person named Robert Fox (also using an identity agent) and the other to the Untied Airlines. 
 
-In each context the Person node has a set of information (attributes, messages, credentials, etc.) that the user defines. We call these pieces of describe the user (Alice) and are made by the user (Alice), thus we refer to them as User-By-User or \emph{UBU claims}. For example, Alice might name the UBU claim that her first name is "Alice" and she might include another UBU claim whose value is her street address. In her relationship with Untied Airlines she might also include a first name UBU claim of "Alice", but not a UBU claim of her home address. 
+In each context the Person node has a set of information (attributes, messages, credentials, etc.) defined by the user. We call claims \emph{about} the user (Alice) and are made \emph{by} the user (Alice) \emph{UBU} (User-By-User) claims. For example, Alice might create the UBU claim that her first name is "Alice" and another UBU claim the value of which is her street address. In her relationship with Untied Airlines she might include her first name UBU claim of "Alice", but not choose to include a UBU claim of her home address. 
 
 So far we've discussed the claims Alice makes about herself in a context. But in a relationship context the relying party (RP) may make claims about Alice too. We call these claims about the User By the RP or \emph{UBR} claims. For example Unitied Airlines might claim that Alice's frequent-flyer-number is 823-21-5531. To reduce clutter in the diagrams, from now on we will omit the Self and the graph of Person nodes. See Figure~\ref{fig:UBUs-and-UBRs} for a representation of these UBUs and UBRs. 
 
@@ -430,11 +430,13 @@ In Figure~\ref{fig:Collections} we show Alice as having organized connections in
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{./images/collections.png}
-\caption{Two collections of connections}
+\caption{Two Collections}
 \label{fig:Collections}
 \end{figure}
 
-A group is also comprised of connections, but with different properties. Whereas in a Collection the RPs are unaware of one another and the connections may be moved between collections by the user at will, in a Group the RPs become members of the group. The group object itself is shared between all members of the group. The group has a set of attributes which are dynamically and continuously shared with all members. A group attribute could be a shared calendar, group chat, etc. 
+A \emph{group} is also comprised of connections, but with different characteristics from a collection. In a collection the RPs to which the agent is connected are unaware of one another. The fact that an RP is a member of a collection is not shared with the RP. A Collection is a set of 1:1 relationships and connections may be moved between collections by the user. 
+
+A \emph{group} extends the concept of a collection. A group is a set of connections to RPs. This set itself is replicated to all connections in the group. For example, if Alice has a group with connections to RPs B and C, then the group membership set, (A, B, C), is shared and synchronized to RPs B and C. Thus RP B knows that it is in a group with A and C, and RP C knows it is in a group with A and B. The group also may have a set of \emph{group attributes} which are dynamically and continuously shared with all members of the Group. A group attribute could be a shared calendar, group chat, etc. 
 
 In our example, Robert Fox, Kristin A Watson, and Susan Franks have agreed to connect with Alice, join her Bridge Club group, and share claims about themselves using their identity agents. The group attributes of the Bridge Club are shared and synchronized between all four group members. All members of the group see the same shared, updated state of all Group Attributes.
 
@@ -459,12 +461,12 @@ It is obvious that data held and/or managed by a user's identity agent and store
 
 The legal mechanism we propose is the \hyperfootnote[Mee License][https://]{docs.google.com/document/d/13aGk5adoncMxxfl5637NfqP6fl6q\_op\_1CF50UrJNjg}. The license is a pairwise contract between two parties. The first is the service provider providing an app. The second is an organization that represents the community of identity agent users (e.g. The Mee Foundation). This organization acts as a \emph{Mediator of Individual Data} (MID), a term coined by Lanier et al.\cite{Lanier2018}, that enforces the terms of the license on behalf of the community. 
 
-The Mee License imposes obligations on the app provider, among which is the requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The Mee License covers information that the user may have shared manually (e.g. by filling in a form, or other kinds of on-app interactions) or shared with them by a person's identity agent. The license requires the provider to implement \emph{data rights} APIs that an identity agent uses to remotely control this app-held data. In this way, we tie the legal (license) and technical means (identity agents and APIs) together.
+The Mee License imposes obligations on the app provider, among which is the requirement to respect the user's \emph{data rights} to access, correction (editing), and deletion of the information collected and held by them. The Mee License covers information that the user may have shared manually (e.g. by filling in a form, or other kinds of in-app interactions) or shared with them by a person's identity agent. The license requires the provider to implement \emph{data rights} APIs that an identity agent uses to remotely control this app-held data. In this way, we tie the legal (license) and technical means (identity agents and APIs) together.
 
-The Mee License's provisions are intentionally generic. They are designed to meet the needs of the entire community of identity agent users. We expect that other contracts containing more specific provisions will be required to meet the needs of more specialized communities. Each community can amend the license to meet the specifics they require, provided that they do not weaken the license's existing provisions and protections. These specialized communities would organize, govern and operate independent MIDs that enforce their more specialized Mee license-based contracts. These specialized MIDs would enter into agreements with one or more providers which would be held to both the generic terms of the Mee license and the additional, specialized terms.
+The Mee License's provisions are intentionally generic. They are designed to meet the needs of the entire community of identity agent users. We expect that other contracts containing more specific provisions will be required to meet the needs of more specialized communities. Each community can amend the license to meet the specifics they require, providing that they do not weaken the license's existing provisions and protections. These specialized communities would organize, govern and operate independent MIDs that enforce their more specialized Mee license-based contracts. These specialized MIDs would enter into agreements with one or more providers which would be held to both the generic terms of the Mee license and the additional, specialized terms.
 
 \section{Acknowledgements} % SECTION 7
-Contributors to this paper include Kirill Khalitov, Alexander Yuhimenko, Maria Vasuytenko, Vlad Fisher, and Xenya Shatalova.
+Contributors to this paper include Alexey Pepeskul, Kirill Khalitov, Alexander Yuhimenko, Maria Vasuytenko, Vlad Fisher, and Xenya Shatalova.
 
 \bibliography{../library}
 \bibliographystyle{plainurl}
