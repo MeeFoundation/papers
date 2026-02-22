@@ -414,7 +414,7 @@ The namespace of the identifier of the Person node in each context varies based 
 
 In the simplified example shown earlier in Figure~\ref{fig:two-contexts} Alice has two connections, one to a person named Robert Fox (also using an identity agent) and the other to the Untied Airlines. 
 
-In each context the Person node has a set of information (attributes, messages, credentials, etc.) defined by the user. We call claims \emph{about} the user (Alice) and are made \emph{by} the user (Alice) \emph{UBU} (User-By-User) claims. For example, Alice might create the UBU claim that her first name is "Alice" and another UBU claim the value of which is her street address. In her relationship with Untied Airlines she might include her first name UBU claim of "Alice", but not choose to include a UBU claim of her home address. 
+In each context the Person node has a set of information (attributes, messages, credentials, etc.) defined by the user. We call claims \emph{about} the user (Alice) and are made \emph{by} the user (Alice) \emph{UBU} (User-By-User) claims. For example, Alice might create the UBU claim that her given name is "Alice" and another UBU claim the value of which is her street address. In her relationship with Untied Airlines she might include her given name UBU claim of "Alice", but not choose to include a UBU claim of her home address. 
 
 So far we've discussed the claims Alice makes about herself in a context. But in a relationship context the relying party (RP) may make claims about Alice too. We call these claims about the User By the RP or \emph{UBR} claims. For example Unitied Airlines might claim that Alice's frequent-flyer-number is 823-21-5531. To reduce clutter in the diagrams, from now on we will omit the Self and the graph of Person nodes. See Figure~\ref{fig:UBUs-and-UBRs} for a representation of these UBUs and UBRs. 
 
@@ -424,7 +424,7 @@ So far we've discussed the claims Alice makes about herself in a context. But in
 \label{fig:UBUs-and-UBRs}
 \end{figure}
 
-In the context of Alice's a relationship with a relying party (RP), the RP shares claims it makes about itself/themselves. For example in the context of Alice's connection to Robert Fox, Robert's identity agent shares claims about Robert with Alice's agent. These claims about RPs made by RPs are called \emph{RBR} claims. An example of an RBR claim is the claim made by Robert Fox that his first name is Robert. We complete our tour of claim types with fourth and final type, called \emph{RBU} claims. These are claims made about the RP by the user. RBU claims are never shared with the RP. An example of an RBU claim by Alice might be a private note to herself that she met Robert in 2019. See Figure~\ref{fig:RBRs-and-RBUs}.
+In the context of Alice's a relationship with a relying party (RP), the RP shares claims it makes about itself/themselves. For example in the context of Alice's connection to Robert Fox, Robert's identity agent shares claims about Robert with Alice's agent. These claims about RPs made by RPs are called \emph{RBR} claims. An example of an RBR claim is the claim made by Robert Fox that his given name is Robert. We complete our tour of claim types with fourth and final type, called \emph{RBU} claims. These are claims made about the RP by the user. RBU claims are never shared with the RP. An example of an RBU claim by Alice might be a private note to herself that she met Robert in 2019. See Figure~\ref{fig:RBRs-and-RBUs}.
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{./images/rbrs-and-rbus.png}
